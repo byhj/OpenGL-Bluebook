@@ -28,8 +28,11 @@ The github of this book: https://github.com/openglsuperbible/sb6code
 =============================================================================================================================
   1. Make sure you develop environment is right.
   2. You can build the environment by yourself according your target.
+ 
   glew: http://glew.sourceforge.net
+
   glfw: http://www.glfw.org
+  
   glm:  http://glm.g-truc.net
   
   3.Project Organization:
