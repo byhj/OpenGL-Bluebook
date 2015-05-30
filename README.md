@@ -6,10 +6,9 @@ Welcome to the OpenGL SuperBible Book 6th Edition Source Code by byhj!
 OpenGL® SuperBible, Sixth Edition, is the definitive programmer’s guide, tutorial, and reference for the world’s leading 3D API for real-time computer graphics, OpenGL 4.3. The best all-around introduction to OpenGL for developers at all levels of experience, it clearly explains both the newest API and indispensable related concepts. You’ll find up-to-date, hands-on guidance for all facets of modern OpenGL development on both desktop and mobile platforms, including transformations, texture mapping, shaders, buffers, geometry management, and much more.
 
 You can get more infomation by: http://www.openglsuperbible.com/
-
 You can download the source code and media in this Website. 
-
 The github of this book: https://github.com/openglsuperbible/sb6code
+
 =============================================================================================================================
 
  
