@@ -33,23 +33,18 @@ The github of this book: https://github.com/openglsuperbible/sb6code
   glm:  http://glm.g-truc.net
   
   3.Project Organization:
-		  |Root
 
+		  |Root
               |-- include 
-              
               |-- bin
-              
               |-- lib
-              
               |-- src
-              
               |-- media
               
  Notice: I use the Visual Studio project props file to share the project setting.
          The output dir:
          
               |-- exe(Execute Dir) 
-              
               |-- temp(temp file we possibly not need) 
 
 =============================================================================================================================
