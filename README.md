@@ -33,7 +33,8 @@ The github of this book: https://github.com/openglsuperbible/sb6code
   glfw: http://www.glfw.org
   
   glm:  http://glm.g-truc.net
-  3.Project Organization:
+  
+3.Project Organization:
 
 		  |Root
               |-- include 
