@@ -13,7 +13,6 @@ The github of this book: https://github.com/openglsuperbible/sb6code
 
 =============================================================================================================================
 
- 
 2.Requirements
 =============================================================================================================================
   1. Visual Studio 2012 or 2013 (and some knowledge on how to build, run, and debug C++ projects)
