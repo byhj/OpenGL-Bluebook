@@ -16,7 +16,7 @@ The github of this book: https://github.com/openglsuperbible/sb6code
  
 2.Requirements
 =============================================================================================================================
-  1. Visual Studio 2012 or 2013 (and some knowledge on how to build, run, and debug C++/C# projects)
+  1. Visual Studio 2012 or 2013 (and some knowledge on how to build, run, and debug C++ projects)
   2. Microsoft Windows SDK for Windows 7 (This include the opengl)
   3. glew (The OpenGL Extension Wrangler Library)
   4. glfw3 (Use to creating render windows)
