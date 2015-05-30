@@ -4,6 +4,9 @@
 class WindowApp: public sb6::Application
 {
 public:
+	WindowApp() {};
+	~WindowApp() {};
+
 	void render()
 	{
 		//Every frame we get the currentTime

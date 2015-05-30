@@ -7,6 +7,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Chapter03", "Chapter03", "{
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch2-01-Window", "src\Chapter02\ch2-01-Window\ch2-01-Window.vcxproj", "{58BA1A5E-F865-4248-9B15-7DB221375158}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch2-02-Point", "src\Chapter02\ch2-02-Point\ch2-02-Point.vcxproj", "{CE5B1DBA-A39B-43E4-8B61-5B70E23E9760}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch2-03-Triangle", "src\Chapter02\ch2-03-Triangle\ch2-03-Triangle.vcxproj", "{542BF811-1E28-4149-92A3-5207294CC9B0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -17,11 +21,23 @@ Global
 		{58BA1A5E-F865-4248-9B15-7DB221375158}.Debug|Win32.Build.0 = Debug|Win32
 		{58BA1A5E-F865-4248-9B15-7DB221375158}.Release|Win32.ActiveCfg = Release|Win32
 		{58BA1A5E-F865-4248-9B15-7DB221375158}.Release|Win32.Build.0 = Release|Win32
+		{CE5B1DBA-A39B-43E4-8B61-5B70E23E9760}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CE5B1DBA-A39B-43E4-8B61-5B70E23E9760}.Debug|Win32.Build.0 = Debug|Win32
+		{CE5B1DBA-A39B-43E4-8B61-5B70E23E9760}.Debug|Win32.Deploy.0 = Debug|Win32
+		{CE5B1DBA-A39B-43E4-8B61-5B70E23E9760}.Release|Win32.ActiveCfg = Release|Win32
+		{CE5B1DBA-A39B-43E4-8B61-5B70E23E9760}.Release|Win32.Build.0 = Release|Win32
+		{542BF811-1E28-4149-92A3-5207294CC9B0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{542BF811-1E28-4149-92A3-5207294CC9B0}.Debug|Win32.Build.0 = Debug|Win32
+		{542BF811-1E28-4149-92A3-5207294CC9B0}.Debug|Win32.Deploy.0 = Debug|Win32
+		{542BF811-1E28-4149-92A3-5207294CC9B0}.Release|Win32.ActiveCfg = Release|Win32
+		{542BF811-1E28-4149-92A3-5207294CC9B0}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{58BA1A5E-F865-4248-9B15-7DB221375158} = {E96BE73D-2341-4CDA-8073-BD279332822F}
+		{CE5B1DBA-A39B-43E4-8B61-5B70E23E9760} = {E96BE73D-2341-4CDA-8073-BD279332822F}
+		{542BF811-1E28-4149-92A3-5207294CC9B0} = {E96BE73D-2341-4CDA-8073-BD279332822F}
 	EndGlobalSection
 EndGlobal

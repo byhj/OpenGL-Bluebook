@@ -3,8 +3,9 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <OutDir>$(SolutionDir)\exe</OutDir>
+    <OutDir>$(SolutionDir)\shader\$(ProjectName)\</OutDir>
     <IntDir>$(SolutionDir)\temp</IntDir>
+    <ExecutablePath>$(SolutionDir)\shader\$(ProjectName)\;$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>

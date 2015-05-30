@@ -5,9 +5,11 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <windows.h>
 
 char *textFileRead(const char *fn);  
 
+#define WINDOW_PLATFORM
 
 class Shader {
 public:
@@ -17,14 +19,21 @@ public:
 	void init();
 	void attach(int type, char *filename);
 	void link();
-	void use(void) {
+	void use(void) 
+	{
 		glUseProgram(program);
-		
 	}
-	void end(void) {
+	void end(void) 
+	{
 		glUseProgram(0);
-		
 	}
+
+	GLuint GetProgram()
+	{
+        return program;
+	}
+
+private:
 	std::vector<GLuint> handles; //shader handle
 	GLuint program;   //shader program
 	std::string name;   //shader class name
@@ -36,8 +45,15 @@ char *textFileRead( char *fn) {  //read the shader code
 	int count=0;  
 
 	if (fn != NULL) {  
-		fopen_s(&fp , fn, "rt");
 
+		fopen_s(&fp , fn, "rt");
+		/*
+#ifdef WINDOW_PLATFORM
+		 MessageBox(NULL, "Can not open the shader file", "Error",  MB_OK | MB_ICONERROR | MB_TASKMODAL);
+#else
+        std::cerr << "Can not open the shader file:" << fn << std::endl;
+#endif
+		*/
 		if (fp != NULL) {  
 			fseek(fp, 0, SEEK_END);  
 			count = ftell(fp);  

@@ -72,7 +72,7 @@ namespace sb6 {
 				render();
 				glfwSwapBuffers(window);
 			}
-			shotdown();
+			shutdown();
 			glfwTerminate();
 		}//run
 
@@ -86,7 +86,7 @@ namespace sb6 {
 		virtual void render()
 		{
 		}
-		virtual void shotdown()
+		virtual void shutdown()
 		{
 		}
 		virtual void keyboard(GLFWwindow * window, int key, int scancode, int action, int mode)
