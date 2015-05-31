@@ -65,6 +65,10 @@
   <ItemGroup>
     <ClCompile Include="ch5-08-Texture-Wrap.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="wrap.frag" />
+    <None Include="wrap.vert" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
