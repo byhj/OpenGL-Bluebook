@@ -7,7 +7,7 @@ public:
 	WindowApp() {};
 	~WindowApp() {};
 
-	void render()
+	void vRender()
 	{
 		//Every frame we get the currentTime
 		static double time = 0.0;

@@ -5,14 +5,14 @@
 class PointApp : public sb6::Application
 {
 public:
-	PointApp():PointShader("Point Shader") {}
+	PointApp():program(0), vao(0), vbo(0), PointShader("Point Shader") {}
 	virtual ~PointApp() {};
 
 	void init_shader();
 	void init_buffer();
 	void init_vertexArray();
 
-	void init()
+	void vInit()
 	{
 		//init the data and status
 		init_shader();
@@ -20,7 +20,7 @@ public:
 		init_vertexArray();
 	}
 	
-	void render()
+	void vRender()
 	{
 		//Use this shader and vao data to render
 		glUseProgram(program);
@@ -35,7 +35,7 @@ public:
 	}
 
 	//We shutdown the object
-	void shutdown()
+	void vShutdown()
 	{
 		glDeleteProgram(program);
 		glDeleteVertexArrays(1, &vao);
@@ -60,7 +60,6 @@ void PointApp::init_shader()
 	PointShader.attach(GL_FRAGMENT_SHADER, "point.frag");
 	PointShader.link();
 	program = PointShader.GetProgram();
-	glUseProgram(program);
 }
 
 void PointApp::init_buffer()
@@ -85,5 +84,6 @@ void PointApp::init_vertexArray()
 
 	//We should always disable the status after use it
 	glDisableVertexAttribArray(0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 }

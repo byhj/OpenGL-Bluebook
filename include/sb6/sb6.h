@@ -13,7 +13,7 @@ namespace sb6 {
 		Application() {}
 		virtual ~Application() {}
 
-		virtual void run(sb6::Application *the_app)
+		virtual void vRun(sb6::Application *the_app)
 		{
 			app = the_app;
 			std::cout << "Starting GLFW context" << std::endl;
@@ -63,30 +63,30 @@ namespace sb6 {
 			// Create a GLFWwindow object that we can use for GLFW's functions
 
 
-			init();
+			vInit();
 			glViewport(0, 0, windowInfo.Width, windowInfo.Height);
 
 			while (!glfwWindowShouldClose(window)) 
 			{
 				glfwPollEvents();
-				render();
+				vRender();
 				glfwSwapBuffers(window);
 			}
-			shutdown();
+			vShutdown();
 			glfwTerminate();
 		}//run
 
 		virtual void initWindowInfo()
 		{
 		}
-		virtual void init()
+		virtual void vInit()
 		{
 		}
 
-		virtual void render()
+		virtual void vRender()
 		{
 		}
-		virtual void shutdown()
+		virtual void vShutdown()
 		{
 		}
 		virtual void keyboard(GLFWwindow * window, int key, int scancode, int action, int mode)
@@ -120,7 +120,7 @@ sb6::Application * sb6::Application::app; //静态成员需要声明
 int main(int argc, const char **argv)               \
 {                                                   \
 	a *app = new a;                                 \
-	app->run(app);                                  \
+	app->vRun(app);                                  \
 	delete app;                                     \
 	return 0;                                       \
 }
