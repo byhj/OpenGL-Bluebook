@@ -55,31 +55,31 @@ void TriangleApp::init_shader()
 	glUniform1i(tex_loc, 0);
 }
 
-static const GLubyte tex_checkboard_data[] = { //ÆåÅÌµÄºÚ°×ÎÆÀí
-	0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00,
-	0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF,
-	0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00,
-	0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF,
-	0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00,
-	0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF,
-	0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00,
-	0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF
-};
+void generate_texture(float *data, int width, int height)
+{
+	int x, y;
+
+	for (y = 0; y < height; y++)
+	{
+		for (x = 0; x < width; x++)
+		{
+			data[(y * width + x) * 4 + 0] = (float)((x & y) & 0xFF) / 255.0f;
+			data[(y * width + x) * 4 + 1] = (float)((x | y) & 0xFF) / 255.0f;
+			data[(y * width + x) * 4 + 2] = (float)((x ^ y) & 0xFF) / 255.0f;
+			data[(y * width + x) * 4 + 3] = 1.0f;
+		}
+	}
+}
 
 void TriangleApp::init_texture()
 {
 	glGenTextures(1, &texture);
 	glBindTexture(GL_TEXTURE_2D, texture);
-	glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA32F, 8, 8);
-	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, 8, 8, GL_RED, GL_UNSIGNED_BYTE,  tex_checkboard_data);
-	
-	static const GLint swizzles[] = { GL_RED, GL_RED, GL_RED, GL_ONE };
-	glTexParameteriv(GL_TEXTURE_2D, GL_TEXTURE_SWIZZLE_RGBA, swizzles);
-	
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-
+	glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA32F, 256, 256);
+	float *data  = new float[256 * 256 * 4];
+	generate_texture(data, 256, 256);
+	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, 256, 256, GL_RGBA, GL_FLOAT, data);
 	glBindTexture(GL_TEXTURE, 0);
+
+	delete [] data;
 }

@@ -47,13 +47,16 @@ char *textFileRead( char *fn) {  //read the shader code
 	if (fn != NULL) {  
 
 		fopen_s(&fp , fn, "rt");
-		/*
+		if (!fp){
+
 #ifdef WINDOW_PLATFORM
 		 MessageBox(NULL, "Can not open the shader file", "Error",  MB_OK | MB_ICONERROR | MB_TASKMODAL);
 #else
         std::cerr << "Can not open the shader file:" << fn << std::endl;
+
 #endif
-		*/
+        return NULL;
+		}
 		if (fp != NULL) {  
 			fseek(fp, 0, SEEK_END);  
 			count = ftell(fp);  
