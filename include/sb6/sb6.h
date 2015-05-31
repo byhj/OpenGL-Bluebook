@@ -22,7 +22,9 @@ namespace sb6 {
 				std::cerr << "Failed to initialize GLFW" << std::endl;
 				return;
 			}
-			initWindowInfo();
+
+			vInitWindowInfo();
+
 			GLFWwindow *window = glfwCreateWindow(windowInfo.Width, windowInfo.Height, windowInfo.title.c_str(), nullptr, nullptr);
 			glfwSetWindowPos(window, windowInfo.posX, windowInfo.posY);
 			glfwMakeContextCurrent(window);
@@ -76,7 +78,7 @@ namespace sb6 {
 			glfwTerminate();
 		}//run
 
-		virtual void initWindowInfo()
+		virtual void vInitWindowInfo()
 		{
 		}
 		virtual void vInit()
