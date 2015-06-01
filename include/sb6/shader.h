@@ -145,7 +145,7 @@ void Shader::interfaceInfo()
 		glGetProgramResourceName(program, GL_PROGRAM_INPUT, i, sizeof(name), NULL, name);
 		glGetProgramResourceiv(program, GL_PROGRAM_INPUT, i, 2, props, 2, NULL, params);
 		type_name = name;
-		std::cout << "Index " << i << std::endl;
+		//std::cout << "Index " << i << std::endl;
 		std::cout <<  "(" <<  type_name  << ")" << " locatoin: " << params[1] << std::endl;
 	}
 
@@ -159,7 +159,7 @@ void Shader::interfaceInfo()
 		glGetProgramResourceiv(program, GL_PROGRAM_OUTPUT, i, 2, props, 2, NULL, params);
 
 		type_name = name;
-		std::cout << "Index " << i << std::endl;
+		//std::cout << "Index " << i << std::endl;
 		std::cout  <<  "(" <<  type_name  << ")" << " locatoin: " << params[1] << std::endl;
 	}
 
@@ -174,7 +174,7 @@ void Shader::interfaceInfo()
 		glGetProgramResourceiv(program, GL_UNIFORM_BLOCK, i, 2, props, 2, NULL, params);
 
 		type_name = name;
-		std::cout << "Index " << i << std::endl;
+		//std::cout << "Index " << i << std::endl;
 		std::cout  <<  "(" <<  type_name  << ")" << " locatoin: " << params[1] << std::endl;
 	}
 
@@ -189,7 +189,7 @@ void Shader::interfaceInfo()
 		glGetProgramResourceiv(program, GL_UNIFORM, i, 2, props, 2, NULL, params);
 
 		type_name = name;
-		std::cout << "Index " << i << std::endl;
+		//std::cout << "Index " << i << std::endl;
 		std::cout  <<  "(" <<  type_name  << ")" << " locatoin: " << params[1] << std::endl;
 	}
 }
