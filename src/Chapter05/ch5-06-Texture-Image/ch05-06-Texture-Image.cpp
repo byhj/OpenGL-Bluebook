@@ -110,6 +110,8 @@ void TriangleApp::init_shader()
 	TriangleShader.attach(GL_VERTEX_SHADER, "texture.vert");
 	TriangleShader.attach(GL_FRAGMENT_SHADER, "texture.frag");
 	TriangleShader.link();
+	TriangleShader.interfaceInfo();
+
 	program = TriangleShader.GetProgram();
 	tex_loc = glGetUniformLocation(program, "tex");
 	mvp_loc = glGetUniformLocation(program, "mvp");

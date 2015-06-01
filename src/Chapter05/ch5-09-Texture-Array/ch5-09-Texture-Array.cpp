@@ -131,7 +131,7 @@ void TextureArrayApp::init_shader()
 	TextureArrayShader.attach(GL_VERTEX_SHADER, "textureArray.vert");
 	TextureArrayShader.attach(GL_FRAGMENT_SHADER, "textureArray.frag");
 	TextureArrayShader.link();
-
+    TextureArrayShader.interfaceInfo();
 	program = TextureArrayShader.GetProgram();
 	tex_loc = glGetUniformLocation(program, "tex_array");
 	glUniform1i(tex_loc, 0);
