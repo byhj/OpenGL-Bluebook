@@ -65,6 +65,10 @@
   <ItemGroup>
     <ClCompile Include="ch5-09-Texture-Array.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="textureArray.frag" />
+    <None Include="textureArray.vert" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
