@@ -69,6 +69,11 @@
     <None Include="perspective.frag" />
     <None Include="perspective.vert" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Chapter02\ch2-01-Window\ch2-01-Window.vcxproj">
+      <Project>{58ba1a5e-f865-4248-9b15-7db221375158}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

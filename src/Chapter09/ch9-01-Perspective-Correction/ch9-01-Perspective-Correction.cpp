@@ -72,7 +72,7 @@ void PerspectiveApp::init_texture()
 {
 	glGenTextures(1, &tex);
 	glBindTexture(GL_TEXTURE_2D, tex);
-	glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA8, 8, 8); //LEVEL must set >=1
+	glTexStorage2D(GL_TEXTURE_2D, 4, GL_RGBA8, 8, 8); //LEVEL must set >=1
 
 	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, 8, 8, GL_RED, GL_UNSIGNED_BYTE, checker_data);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
