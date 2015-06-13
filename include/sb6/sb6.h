@@ -1,7 +1,7 @@
 #ifndef SB6_H
 #define SB6_H
 
-#include <GL/glfw3.h>
+#include <GLFW/glfw3.h>
 #include <iostream>
 #include <string>
 #include <functional>
