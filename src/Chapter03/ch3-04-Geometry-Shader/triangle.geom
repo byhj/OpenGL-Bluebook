@@ -3,6 +3,7 @@
 layout (triangles) in ;
 layout (triangle_strip, max_vertices = 6) out;
 
+//Notice, The data is array
 in TES_OUT
 {
   vec4 color;
@@ -15,6 +16,9 @@ out GEOM_OUT
 
 void main(void)
 {
+   //Input one triangle, but we use geometry shader to output two triangle
+
+   //First Triangle, end by primitive
    for (int i = 0; i != gl_in.length(); ++i)
    {
       gm_out.color = gm_in[i].color;
@@ -23,6 +27,7 @@ void main(void)
    }
    EndPrimitive();
 
+   //Second Triangle
    for (int i = 0; i != gl_in.length(); ++i)
    {
       gm_out.color = gm_in[i].color;
@@ -30,4 +35,5 @@ void main(void)
 	  EmitVertex();		
    }
    EndPrimitive();
+
 }

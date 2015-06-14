@@ -2,6 +2,8 @@
 #include <sb6/sb6.h>
 #include <sb6/shader.h>
 #include <sb6/ktx.cpp>
+#include <sb6/glDebug.h>
+
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
@@ -19,7 +21,7 @@ static inline float random_float()
 }
 
 
-class TextureArrayApp: public sb6::Application
+class TextureArrayApp: public byhj::Application
 {
 public:
 	TextureArrayApp(){}
@@ -30,19 +32,20 @@ public:
 	void init_shader();
 	void init_texture();
 
-	void vInit()
+	void v_Init()
 	{
 		//We enable the blend func, so the texture black area can blend with backgroud
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
+			
 		init_buffer();
 		init_vertexArray();
 		init_shader();
 		init_texture();
+	
 	}
 
-	void vRender()
+	void v_Render()
 	{
 		static const GLfloat black[] = {0.0f, 0.0f, 0.0f, 1.0f};
 		glClearBufferfv(GL_COLOR, 0, black);
@@ -50,11 +53,14 @@ public:
 		float time = glfwGetTime();
 		glUseProgram(program);
 		glBindVertexArray(vao);
+
+		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D_ARRAY, tex_alien_array);
 
 		//We change the ubo data every frame, use mapbuffer, 0 is bind point
 		// GL_MAP_INVALIDATE_BUFFER_BIT: previous contents of the entire buffer may be discarded. 
 		glBindBufferBase(GL_UNIFORM_BUFFER, 0, ubo);
+
 		glm::vec4 *droplet = (glm::vec4*)glMapBufferRange(
 			                   GL_UNIFORM_BUFFER,
 			                   0,256*sizeof(glm::vec4), 
@@ -68,6 +74,7 @@ public:
 			droplet[i].z = time * droplet_rot_speed[i];
 			droplet[i].w = 1.0f;
 		}
+
 		glUnmapBuffer(GL_UNIFORM_BUFFER);
 
 		//We draw 256 aliens, send each index to shader use vertexAttrib*
@@ -79,7 +86,7 @@ public:
 
 	}
 
-	void vShutdown()
+	void v_Shutdown()
 	{
 		glDeleteProgram(program);
 		glDeleteVertexArrays(1, &vao);
@@ -97,7 +104,7 @@ protected:
 	float droplet_rot_speed[256]; 
 	float droplet_fall_speed[256];
 };
-DECLARE_MAIN(TextureArrayApp);
+CALL_MAIN(TextureArrayApp);
 
 
 void TextureArrayApp::init_buffer()
@@ -131,11 +138,16 @@ void TextureArrayApp::init_shader()
 	TextureArrayShader.attach(GL_VERTEX_SHADER, "textureArray.vert");
 	TextureArrayShader.attach(GL_FRAGMENT_SHADER, "textureArray.frag");
 	TextureArrayShader.link();
-    TextureArrayShader.interfaceInfo();
+
+	//GL_ENUM_92e2 Error if call this function
+	//TextureArrayShader.interfaceInfo();
+
 	program = TextureArrayShader.GetProgram();
+	glUseProgram(program);
 	tex_loc = glGetUniformLocation(program, "tex_array");
 	glUniform1i(tex_loc, 0);
 
+	CheckDebugLog();
 }
 
 void TextureArrayApp::init_texture()

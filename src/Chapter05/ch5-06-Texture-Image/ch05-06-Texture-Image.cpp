@@ -5,8 +5,9 @@
 #include <sb6/object.cpp>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <sb6/glDebug.h>
 
-class TriangleApp: public sb6::Application
+class TriangleApp: public byhj::Application
 {
 public:
 	TriangleApp():program(0), TriangleShader("Triangle Shader"), tex_index(0) 
@@ -16,16 +17,18 @@ public:
 
 	~TriangleApp() {} ;
 
-	void vInit()
+	void v_Init()
 	{
 		init_texture();
 		init_shader();
-		obj.load("../../../media/objects/torus_nrms_tc.sbm");
+		init_buffer();
+
 		glEnable(GL_DEPTH_TEST);
 		glDepthFunc(GL_LEQUAL);
+
 	}
 
-	void vRender()
+	void v_Render()
 	{
 		static const GLfloat black[] = {0.0f, 0.0f, 0.0f, 1.0f};
 		static const GLfloat ones[] = { 1.0f };
@@ -34,38 +37,38 @@ public:
 
 		double currentTime = glfwGetTime();
 		glUseProgram(program);
+
 		glBindTexture(GL_TEXTURE_2D, texture[tex_index]);
+
 		glm::mat4 mvp = glm::perspective(45.0f, (float)windowInfo.Width / (float)windowInfo.Height, 0.1f, 1000.0f)
-			* glm::lookAt(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, -3.0f), glm::vec3(0.0f, 1.0f, 0.0f))
-			* glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -3.0f)) 
-			* glm::rotate(glm::mat4(1.0f), glm::radians( (float)currentTime * 19.3f ) , glm::vec3(0.0f, 1.0f, 0.0f)) 
-			* glm::rotate(glm::mat4(1.0f), glm::radians( (float)currentTime * 21.1f ), glm::vec3(0.0f, 0.0f, 1.0f));
+			          * glm::lookAt(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, -3.0f), glm::vec3(0.0f, 1.0f, 0.0f))
+			          * glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -3.0f)) 
+			          * glm::rotate(glm::mat4(1.0f), glm::radians( (float)currentTime * 19.3f ) , glm::vec3(0.0f, 1.0f, 0.0f)) 
+			          * glm::rotate(glm::mat4(1.0f), glm::radians( (float)currentTime * 21.1f ), glm::vec3(0.0f, 0.0f, 1.0f));
 		glUniformMatrix4fv(mvp_loc, 1, GL_FALSE, &mvp[0][0]);
 
 		obj.render();
+
 		glUseProgram(0);
 	}
 
-	void vShutdown()
+	void v_Shutdown()
 	{
 		glDeleteProgram(program);
 	}
 
-	void keyboard(GLFWwindow * window, int key, int scancode, int action, int mode)
+	void v_Keyboard(GLFWwindow * window, int key, int scancode, int action, int mode)
 	{
 		if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 			glfwSetWindowShouldClose(window, GL_TRUE);
-
-		//Enter Key 't' to change the texture
-		if (key >= 0 && key < 1024)
-		{
-			if (action == GLFW_PRESS && key == GLFW_KEY_T)
+		if (key == GLFW_KEY_T && action == GLFW_PRESS)
 				tex_index = !tex_index;
-		}
 	}
+private:
 
 	void init_shader();
 	void init_texture();
+	void init_buffer();
 
 private:
 	Shader TriangleShader;
@@ -76,9 +79,11 @@ private:
 	bool keys[1024];
 };
 
-DECLARE_MAIN(TriangleApp);
+CALL_MAIN(TriangleApp);
 
-//Checkbox texture
+#pragma region  TextureData
+
+//Checkerbox texture
 #define B 0x00, 0x00, 0x00, 0x00
 #define W 0xFF, 0xFF, 0xFF, 0xFF
 static const GLubyte tex_data[] =  
@@ -103,6 +108,7 @@ static const GLubyte tex_data[] =
 #undef B
 #undef W
 
+#pragma endregion
 
 void TriangleApp::init_shader()
 {
@@ -115,7 +121,9 @@ void TriangleApp::init_shader()
 	program = TriangleShader.GetProgram();
 	tex_loc = glGetUniformLocation(program, "tex");
 	mvp_loc = glGetUniformLocation(program, "mvp");
+	glUseProgram(program);
 	glUniform1i(tex_loc, 0);
+	glUseProgram(0);
 }
 
 void TriangleApp::init_texture()
@@ -131,5 +139,9 @@ void TriangleApp::init_texture()
 
 	glBindTexture(GL_TEXTURE_2D, 0);
 
+}
 
+void TriangleApp::init_buffer()
+{
+	obj.load("../../../media/objects/torus_nrms_tc.sbm");
 }

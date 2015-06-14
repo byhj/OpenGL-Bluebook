@@ -2,21 +2,21 @@
 #include <sb6/sb6.h>
 #include <sb6/shader.h>
 
-class TriangleApp: public sb6::Application
+class TriangleApp: public byhj::Application
 {
 public:
-	TriangleApp():program(0), TriangleShader("Triangle Shader") 
+	TriangleApp():program(0), flat(0), TriangleShader("Triangle Shader") 
 	{
 	};
 
 	~TriangleApp() {} ;
 
-	void vInit()
+	void v_Init()
 	{
 		init_shader();
 	}
 
-	void vRender()
+	void v_Render()
 	{
 		static const GLfloat black[] = {0.0f, 0.0f, 0.0f, 1.0f};
 		glClearBufferfv(GL_COLOR, 0, black);
@@ -31,24 +31,37 @@ public:
 		};
 
 		glUseProgram(program);
+		glUniform1i(glGetUniformLocation(program, "isFlat"), flat);
 		glVertexAttrib4fv(0, offset);
+
 		glDrawArrays(GL_TRIANGLES, 0, 3);
 		glUseProgram(0);
 	}
 
-	void vShutdown()
+	void v_Shutdown()
 	{
 		glDeleteProgram(program);
 	}
 
-	void init_shader();
+	void v_Keyboard(GLFWwindow * window, int key, int scancode, int action, int mode)
+	{
+		//Enter key 'F' to change the color smooth or flat
+	    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+			glfwSetWindowShouldClose(window, GL_TRUE);
+		if (key == GLFW_KEY_F && action == GLFW_PRESS)
+			flat = !flat;
+	}
+
 
 private:
+	void init_shader();
+
 	Shader TriangleShader;
 	GLuint program;
+	int flat;
 };
 
-DECLARE_MAIN(TriangleApp);
+CALL_MAIN(TriangleApp);
 
 void TriangleApp::init_shader()
 {

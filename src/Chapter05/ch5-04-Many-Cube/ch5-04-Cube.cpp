@@ -6,11 +6,11 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/random.hpp>
 
-#define MANY_CUBE 1
+#define MANY_CUBE 
 const int CubeSize = 24;
 static glm::vec4 pos[CubeSize];
 
-class CubeApp: public sb6::Application
+class CubeApp: public byhj::Application
 {
 public:
 	CubeApp():program(0), vbo(0), vao(0), ibo(0), 
@@ -22,7 +22,7 @@ public:
 	void init_shader();
 	void gen_pos();
 
-	void vInit()
+	void v_Init()
 	{	
 		glEnable(GL_DEPTH_TEST);
 		gen_pos();
@@ -31,7 +31,7 @@ public:
 		init_vertexArray();
 	}
 
-	void vRender()
+	void v_Render()
 	{
 		static const GLfloat black[] = {0.0f, 0.0f, 0.0f, 1.0f};
 		static const GLfloat one[] = {1.0f};
@@ -78,14 +78,14 @@ public:
 		glUseProgram(0);
 	}
 
-	void vShutdown()
+	void v_Shutdown()
 	{
 		glDeleteProgram(program);
 		glDeleteVertexArrays(1, &vao);
 		glDeleteBuffers(1, &vbo);
 		glDeleteBuffers(1, &ibo);
 	}
-	void vInitWindowInfo()
+	void v_InitWindowInfo()
 	{
 		windowInfo.title = "OpenGL-Cube";
 	}
@@ -97,7 +97,7 @@ private:
 };
 
 
-DECLARE_MAIN(CubeApp);
+CALL_MAIN(CubeApp);
 
 static const GLfloat VertexData[] = 
 {  

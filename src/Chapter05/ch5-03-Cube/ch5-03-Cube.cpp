@@ -4,7 +4,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-class CubeApp: public sb6::Application
+class CubeApp: public byhj::Application
 {
 public:
 	CubeApp():program(0), vbo(0), vao(0), ibo(0), 
@@ -15,14 +15,14 @@ public:
 	void init_vertexArray();
 	void init_shader();
 
-	void vInit()
+	void v_Init()
 	{
 		glEnable(GL_DEPTH_TEST);
 		init_shader();
 		init_buffer();
 		init_vertexArray();
 	}
-	void vRender()
+	void v_Render()
 	{
 		static const GLfloat black[] = {0.0f, 0.0f, 0.0f, 1.0f};
 		static const GLfloat one[] = {1.0f};
@@ -48,14 +48,14 @@ public:
 		glUseProgram(0);
 	}
 
-	void vShutdown()
+	void v_Shutdown()
 	{
 		glDeleteProgram(program);
 		glDeleteVertexArrays(1, &vao);
 		glDeleteBuffers(1, &vbo);
 		glDeleteBuffers(1, &ibo);
 	}
-	void vInitWindowInfo()
+	void v_InitWindowInfo()
 	{
 		windowInfo.title = "OpenGL-Cube";
 	}
@@ -67,7 +67,7 @@ private:
 };
 
 
-DECLARE_MAIN(CubeApp);
+CALL_MAIN(CubeApp);
 
 static const GLfloat VertexData[] = 
 {  
@@ -83,7 +83,7 @@ static const GLfloat VertexData[] =
 	 0.5f,  0.5f, -0.5f, 1.0f,
 	-0.5f,  0.5f, -0.5f, 1.0f,
 };
-
+static const GLsizei VertexSize = sizeof(VertexData);
 
 static const GLuint IndexData[] = 
 {
@@ -111,8 +111,6 @@ static const GLuint IndexData[] =
 	5, 1, 0,
 	0, 4, 5,
 };
-
-static const GLsizei VertexSize = sizeof(VertexData);
 static const GLsizei IndexSize = sizeof(IndexData);
 
 void CubeApp::init_buffer()
@@ -132,9 +130,10 @@ void CubeApp::init_vertexArray()
 {
 	glGenVertexArrays(1, &vao);
 	glBindVertexArray(vao);
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
 
+	//We change the vao status
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 	glEnableVertexAttribArray(0);   
 	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 0, 0);
 

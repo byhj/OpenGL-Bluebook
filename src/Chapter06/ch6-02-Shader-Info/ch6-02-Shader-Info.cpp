@@ -11,7 +11,7 @@ const static GLfloat VertexData[] =
 	 0.0f,  0.5f
 };
 
-class test_app : public sb6::Application 
+class test_app : public byhj::Application 
 {
 public:
 	void init_shader()
@@ -43,21 +43,21 @@ public:
 		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, 0);
 		glBindVertexArray(0);
 	}
-	void vInitWindowInfo()
+	void v_InitWindowInfo()
 	{
 		windowInfo.title = "Test";
 		windowInfo.Width = 1200;
 		windowInfo.Height = 800;
 	}
 
-	void vInit()
+	void v_Init()
 	{
 		init_shader();
 		init_buffer();
 		init_vertexArray();
 	}
 
-	void vRender()
+	void v_Render()
 	{
 		static const GLfloat black[] = {0.0f, 0.0f, 0.0f, 1.0f };
 		glClearBufferfv(GL_COLOR, 0, black);
@@ -71,7 +71,7 @@ public:
 		glUseProgram(0);
 	}
 
-	virtual void vShutdown()
+	virtual void v_Shutdown()
 	{
 		glDeleteBuffers(1, &vbo);
 		glDeleteVertexArrays(1, &vao);
@@ -83,4 +83,4 @@ private:
 	GLuint  vbo, vao, ibo;;
 };
 
-DECLARE_MAIN(test_app);
+CALL_MAIN(test_app);

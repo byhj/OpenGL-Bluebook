@@ -6,7 +6,7 @@
 #include <sb6/object.cpp>
 #include <sb6/ktx.cpp>
 
-class Texture :public sb6::Application
+class Texture :public byhj::Application
 {
 public:
 	Texture():TextureShader("Texture shader"), program(0)
@@ -16,7 +16,7 @@ public:
 	void init_shader();
 	void init_texture();
 
-	void vInit()
+	void v_Init()
 	{
 		init_shader();
 		init_texture();
@@ -24,7 +24,7 @@ public:
 		glDepthFunc(GL_LEQUAL);
 	}
 
-	void vRender()
+	void v_Render()
 	{
 		static const GLfloat gray[] = { 0.2f, 0.2f, 0.2f, 1.0f };
 		static const GLfloat ones[] = { 1.0f };
@@ -56,7 +56,7 @@ public:
 		}
 	}
 
-	virtual void vShutdown()
+	virtual void v_Shutdown()
 	{
 		glDeleteProgram(program);
 		glDeleteTextures(1, &tex);
@@ -77,14 +77,15 @@ void Texture::init_texture()
 
 void Texture::init_shader()
 {
+	TextureShader.init();
 	TextureShader.attach(GL_VERTEX_SHADER, "wrap.vert");
 	TextureShader.attach(GL_FRAGMENT_SHADER, "wrap.frag");
 	TextureShader.link();
-
+	TextureShader.use();
 	program = TextureShader.GetProgram();
 	tex_loc = glGetUniformLocation(program, "tex");
 	glUniform1i(tex_loc, 0);
 }
 
 
-DECLARE_MAIN(Texture);
+CALL_MAIN(Texture);

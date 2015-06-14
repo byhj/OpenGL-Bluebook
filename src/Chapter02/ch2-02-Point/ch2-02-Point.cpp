@@ -2,7 +2,7 @@
 #include <sb6/sb6.h>
 #include <sb6/shader.h>
 
-class PointApp : public sb6::Application
+class PointApp : public byhj::Application
 {
 public:
 	PointApp():program(0), vao(0), vbo(0), PointShader("Point Shader") {}
@@ -12,7 +12,7 @@ public:
 	void init_buffer();
 	void init_vertexArray();
 
-	void vInit()
+	void v_Init()
 	{
 		//init the data and status
 		init_shader();
@@ -20,7 +20,7 @@ public:
 		init_vertexArray();
 	}
 	
-	void vRender()
+	void v_Render()
 	{
 		//Use this shader and vao data to render
 		glUseProgram(program);
@@ -35,7 +35,7 @@ public:
 	}
 
 	//We shutdown the object
-	void vShutdown()
+	void v_Shutdown()
 	{
 		glDeleteProgram(program);
 		glDeleteVertexArrays(1, &vao);
@@ -48,7 +48,7 @@ private:
 
 };
 
-DECLARE_MAIN(PointApp);
+CALL_MAIN(PointApp);
 
 static const GLfloat VertexData[] = {0.0f, 0.0f, 0.0f, 1.0f};
 static const GLsizei VertexCount  = sizeof(VertexData);

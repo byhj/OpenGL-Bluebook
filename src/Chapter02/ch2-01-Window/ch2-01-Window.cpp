@@ -1,13 +1,13 @@
 #include <GL/glew.h>
 #include <sb6/sb6.h>
 
-class WindowApp: public sb6::Application
+class WindowApp: public byhj::Application
 {
 public:
 	WindowApp() {};
 	~WindowApp() {};
 
-	void vRender()
+	void v_Render()
 	{
 		//Every frame we get the currentTime
 		static double time = 0.0;
@@ -28,4 +28,4 @@ public:
 };
 
 //Call the main function
-DECLARE_MAIN(WindowApp);
+CALL_MAIN(WindowApp);

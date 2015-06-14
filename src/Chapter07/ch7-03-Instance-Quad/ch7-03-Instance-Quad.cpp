@@ -2,7 +2,7 @@
 #include <sb6/sb6.h>
 #include <sb6/shader.h>
 
-class InstanceQuadApp:  public sb6::Application
+class InstanceQuadApp:  public byhj::Application
 {
 public:
 	InstanceQuadApp()
@@ -16,13 +16,13 @@ public:
 	void init_vertexArray();
 	void init_shader();
 
-	void vInit()
+	void v_Init()
 	{
 		init_buffer();
 		init_vertexArray();
 		init_shader();
 	}
-	void vRender()
+	void v_Render()
 	{
 		static const GLfloat black[] = {0.0f, 0.0f, 0.0f, 1.0f};
 		glClearBufferfv(GL_COLOR, 0, black);
@@ -42,7 +42,7 @@ private:
 	Shader InstanceQuadShader;
 };
 
-DECLARE_MAIN(InstanceQuadApp);
+CALL_MAIN(InstanceQuadApp);
 
 static const GLfloat VertexData[] = 
 {

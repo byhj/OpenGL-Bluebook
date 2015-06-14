@@ -3,7 +3,7 @@
 #include <sb6/shader.h>
 
 
-class MapBufferApp: public sb6::Application
+class MapBufferApp: public byhj::Application
 {
 public:
 	MapBufferApp():MapBufferShader("MapBufferShader") {};
@@ -13,13 +13,13 @@ public:
 	void init_vertexArray();
 	void init_shader();
 
-	void vInit()
+	void v_Init()
 	{
 		init_shader();
 		init_buffer();
 		init_vertexArray();
 	}
-	void vRender()
+	void v_Render()
 	{
 		static const GLfloat black[] = {0.0f, 0.0f, 0.0f, 1.0f};
 		glClearBufferfv(GL_COLOR, 0, black);
@@ -30,13 +30,13 @@ public:
 		glBindVertexArray(0);
 		glUseProgram(0);
 	}
-	void vShutdown()
+	void v_Shutdown()
 	{
 		glDeleteProgram(program);
 		glDeleteVertexArrays(1, &vao);
 		glDeleteBuffers(1, &vbo);
 	}
-	void vInitWindowInfo()
+	void v_InitWindowInfo()
 	{
 		windowInfo.title = "OpenGL-MapBuffer";
 	}
@@ -46,7 +46,7 @@ private:
 	Shader MapBufferShader;
 };
 
-DECLARE_MAIN(MapBufferApp);
+CALL_MAIN(MapBufferApp);
 
 static const GLfloat VertexData[] = 
 {   //Position                 

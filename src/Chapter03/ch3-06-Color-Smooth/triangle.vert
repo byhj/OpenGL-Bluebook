@@ -19,13 +19,15 @@ const vec4 Color[3] =
 //Use flat or smooth
 out VS_OUT 
 {
- flat vec4 color;
+ flat vec4 flatColor;
+ smooth vec4 smoothColor;
 }vs_out;
 
 void main(void)
 {
    //gl_VertexID is current vertex index
 
-   vs_out.color = Color[gl_VertexID];
+   vs_out.flatColor = Color[gl_VertexID];
+   vs_out.smoothColor = Color[gl_VertexID];
    gl_Position = Position[gl_VertexID] + offset;
 }

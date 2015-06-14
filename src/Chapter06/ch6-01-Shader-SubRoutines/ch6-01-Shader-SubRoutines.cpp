@@ -2,14 +2,14 @@
 #include <sb6/shader.h>
 #include <sb6/sb6.h>
 
-class Subroutine: public sb6::Application
+class Subroutine: public byhj::Application
 {
 public:
 	Subroutine():program(0), subShader("Subroutine") {};
 	~Subroutine(){}
 public:
-	void vInit();
-	void vRender();
+	void v_Init();
+	void v_Render();
 	void init_shader();
 
 private:
@@ -18,12 +18,12 @@ private:
 	Shader subShader;
 };
 
-void Subroutine::vInit()
+void Subroutine::v_Init()
 {
 	init_shader();
 }
 
-void Subroutine::vRender()
+void Subroutine::v_Render()
 {
 	glUseProgram(program);
 
@@ -50,4 +50,4 @@ void Subroutine::init_shader()
 	sub_loc = glGetSubroutineUniformLocation(program, GL_FRAGMENT_SHADER, "subroutineUniform");
 }
 
-DECLARE_MAIN(Subroutine);
+CALL_MAIN(Subroutine);

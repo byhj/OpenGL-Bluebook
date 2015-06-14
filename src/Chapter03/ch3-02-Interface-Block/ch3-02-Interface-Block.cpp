@@ -2,7 +2,7 @@
 #include <sb6/sb6.h>
 #include <sb6/shader.h>
 
-class TriangleApp: public sb6::Application
+class TriangleApp: public byhj::Application
 {
 public:
 	TriangleApp():program(0), TriangleShader("Triangle Shader") 
@@ -11,12 +11,12 @@ public:
 
 	~TriangleApp() {} ;
 
-	void vInit()
+	void v_Init()
 	{
 		init_shader();
 	}
 
-	void vRender()
+	void v_Render()
 	{
 		static const GLfloat black[] = {0.0f, 0.0f, 0.0f, 1.0f};
 		glClearBufferfv(GL_COLOR, 0, black);
@@ -36,7 +36,7 @@ public:
 		glUseProgram(0);
 	}
 
-	void vShutdown()
+	void v_Shutdown()
 	{
 		glDeleteProgram(program);
 	}
@@ -48,7 +48,7 @@ private:
 	GLuint program;
 };
 
-DECLARE_MAIN(TriangleApp);
+CALL_MAIN(TriangleApp);
 
 void TriangleApp::init_shader()
 {

@@ -4,15 +4,15 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-class PerspectiveApp: public sb6::Application
+class PerspectiveApp: public byhj::Application
 {
 public:
 	PerspectiveApp():program(0), use_perspective(true)
 	{
 		memset(keys, 0, sizeof(keys));
 	}
-	void vInit();
-	void vRender();
+	void v_Init();
+	void v_Render();
 
 	void init_shader();
 	void init_texture();
@@ -38,7 +38,7 @@ private:
 	 bool keys[1024];
 };
 
-DECLARE_MAIN(PerspectiveApp);
+CALL_MAIN(PerspectiveApp);
 
 void PerspectiveApp::init_shader()
 {
@@ -83,13 +83,13 @@ void PerspectiveApp::init_texture()
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-void PerspectiveApp::vInit()
+void PerspectiveApp::v_Init()
 {
 	init_shader();
 	init_texture();
 }
 
-void PerspectiveApp::vRender()
+void PerspectiveApp::v_Render()
 {
 	static const GLfloat black[] = {0.0f, 0.0f, 0.0f, 1.0f};
 	static const GLfloat ones[] = { 1.0f };

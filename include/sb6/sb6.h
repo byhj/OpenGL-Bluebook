@@ -6,14 +6,30 @@
 #include <string>
 #include <functional>
 
-namespace sb6 {
+#ifdef _WIN32
+#include <windows.h>
+//If PLATFORM IS WIN32, we put the render window to the middle of window
+const int g_ScreenWidth = GetSystemMetrics(SM_CXSCREEN) * 0.75;
+const int g_ScreenHeight = GetSystemMetrics(SM_CYSCREEN) * 0.75;
+const GLfloat g_Aspect = float(g_ScreenWidth) / float(g_ScreenHeight);
+const int g_PosX = (GetSystemMetrics(SM_CXSCREEN) - g_ScreenWidth) / 2;
+const int g_PosY = (GetSystemMetrics(SM_CYSCREEN) - g_ScreenHeight) / 2;
+
+#else
+const int g_ScreenWidth = 1000;
+const int g_ScreenHeight = 800;
+const int g_PosX = 300;
+const int g_PosY = 100;
+#endif
+
+namespace byhj {
 	class Application 
 	{
 	public:
 		Application() {}
 		virtual ~Application() {}
 
-		virtual void vRun(sb6::Application *the_app)
+		virtual void v_Run(byhj::Application *the_app)
 		{
 			app = the_app;
 			std::cout << "Starting GLFW context" << std::endl;
@@ -23,7 +39,7 @@ namespace sb6 {
 				return;
 			}
 
-			vInitWindowInfo();
+			v_InitWindowInfo();
 
 			GLFWwindow *window = glfwCreateWindow(windowInfo.Width, windowInfo.Height, windowInfo.title.c_str(), nullptr, nullptr);
 			glfwSetWindowPos(window, windowInfo.posX, windowInfo.posY);
@@ -65,33 +81,34 @@ namespace sb6 {
 			// Create a GLFWwindow object that we can use for GLFW's functions
 
 
-			vInit();
+			v_Init();
 			glViewport(0, 0, windowInfo.Width, windowInfo.Height);
 
 			while (!glfwWindowShouldClose(window)) 
 			{
 				glfwPollEvents();
-				vRender();
+				v_Render();
 				glfwSwapBuffers(window);
 			}
-			vShutdown();
+			v_Shutdown();
+
 			glfwTerminate();
 		}//run
 
-		virtual void vInitWindowInfo()
+		virtual void v_InitWindowInfo()
 		{
 		}
-		virtual void vInit()
+		virtual void v_Init()
 		{
 		}
 
-		virtual void vRender()
+		virtual void v_Render()
 		{
 		}
-		virtual void vShutdown()
+		virtual void v_Shutdown()
 		{
 		}
-		virtual void keyboard(GLFWwindow * window, int key, int scancode, int action, int mode)
+		virtual void v_Keyboard(GLFWwindow * window, int key, int scancode, int action, int mode)
 		{
 			if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 				glfwSetWindowShouldClose(window, GL_TRUE);
@@ -99,30 +116,43 @@ namespace sb6 {
 	protected:
 		struct WindowInfo
 		{
-			WindowInfo():title("Bluebook"), Width(1300), Height(900), posX(300), posY(50){}
+			WindowInfo():title("Bluebook"), Width(g_ScreenWidth), Height(g_ScreenHeight), posX(g_PosX), posY(g_PosY){}
 			std::string title;
 			int Width;
 			int Height;
 			int posX, posY;
 		}windowInfo;
+
+		float GetAspect()
+		{
+			return static_cast<float>(g_ScreenWidth) / static_cast<float>(g_ScreenHeight);
+		}
+		int GetScreenWidth()
+		{
+			return g_ScreenWidth;
+		}
+		int GetScreenHeight()
+		{
+			return g_ScreenHeight;
+		}
 	protected:
 
-	static sb6::Application *app;
+	static byhj::Application *app;
 	static void glfw_key(GLFWwindow * window, int key, int scancode, int action, int mode) 
 	{
-		app->keyboard(window,  key,  scancode, action,  mode);
+		app->v_Keyboard(window,  key,  scancode, action,  mode);
 	}
 
 	};  //class
 }  //namespace 
 
-sb6::Application * sb6::Application::app; //静态成员需要声明
+byhj::Application * byhj::Application::app; 
 
-#define DECLARE_MAIN(a)                             \
+#define CALL_MAIN(a)                                \
 int main(int argc, const char **argv)               \
 {                                                   \
 	a *app = new a;                                 \
-	app->vRun(app);                                  \
+	app-> v_Run(app);                               \
 	delete app;                                     \
 	return 0;                                       \
 }

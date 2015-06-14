@@ -1,6 +1,7 @@
 #include <gl/glew.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+
 #include <sb6/sb6.h>
 #include <sb6/shader.h>
 #include <sb6/object.cpp>
@@ -8,12 +9,11 @@
 #include <sb6/vmath.h>
 
 
-class Texture :public sb6::Application
+class Texture :public byhj::Application
 {
 public:
 	Texture():TextureShader("Texture shader"), program(0)
 	{
-		memset(keys, 0, sizeof(keys));
 	}
 
 	~Texture(){}
@@ -22,40 +22,41 @@ public:
 	void init_vertexArray();
 	void init_texture();
 
-   void vInit()
+   void v_Init()
 	{
 		init_shader();
 		init_texture();
 
-		textures[0] = tex_wall; textures[1] = tex_floor; //墙，地板，墙，天花板
+		//Wall floor Wall ceiling
+		textures[0] = tex_wall; textures[1] = tex_floor; 
 		textures[2] = tex_wall; textures[3] = tex_ceiling;
 
 		//glEnable(GL_DEPTH_TEST);
 		//glDepthFunc(GL_LEQUAL);
 	}
 
-	void vRender()
+	void v_Render()
 	{
 		static const GLfloat gray[] = { 0.2f, 0.2f, 0.2f, 1.0f };
 		static const GLfloat ones[] = { 1.0f };
 		glClearBufferfv(GL_COLOR, 0, gray);
 		glClearBufferfv(GL_DEPTH, 0, ones);
-		float currentTime = glfwGetTime();
+		float currentTime = static_cast<float>( glfwGetTime() );
 
-		glUniform1f(offset_loc, currentTime * 0.003f);
 		glUseProgram(program);
 
-		vmath::mat4 proj = vmath::perspective(60.0f,
-			(float)windowInfo.Width / (float)windowInfo.Height,
-			0.1f, 100.0f);
+		glUniform1f(offset_loc, currentTime * 0.003f);
+
+		vmath::mat4 proj = vmath::perspective(60.0f, GetAspect(), 0.1f, 100.0f);
 
 		for (int i = 0; i != 4; ++i)
 		{
 
-			vmath::mat4 mv = vmath::rotate(90.0f * (float)i, vmath::vec3(0.0f, 0.0f, 1.0f)) *
-				vmath::translate(-0.5f, 0.0f, -10.0f) *
-				vmath::rotate(90.0f, 0.0f, 1.0f, 0.0f) *
-				vmath::scale(30.0f, 1.0f, 1.0f);
+			vmath::mat4 mv = vmath::rotate(90.0f * (float)i, vmath::vec3(0.0f, 0.0f, 1.0f)) 
+				           * vmath::translate(-0.5f, 0.0f, -10.0f) 
+				           * vmath::rotate(90.0f, 0.0f, 1.0f, 0.0f) 
+				           * vmath::scale(30.0f, 1.0f, 1.0f);
+
 			vmath::mat4 mvp = proj * mv;
 
 			glUniformMatrix4fv(mvp_loc, 1, GL_FALSE, mvp);
@@ -65,20 +66,20 @@ public:
 		}
 	}
 
-	virtual void shutdown()
+	virtual void v_Shutdown()
 	{
 		glDeleteProgram(program);
 	}
+
 private:
 	GLuint program;
 	Shader TextureShader;
 	GLuint mvp_loc, tex_loc, offset_loc;
 	GLuint tex_wall, tex_ceiling, tex_floor;
-	bool keys[1024];
 	GLuint textures[4];
 };
 
-DECLARE_MAIN(Texture);
+CALL_MAIN(Texture);
 
 void Texture::init_texture()
 {
@@ -90,7 +91,8 @@ void Texture::init_texture()
 
 	for (int i = 0; i != 3; ++i)
 	{  
-		glBindTexture(GL_TEXTURE_2D, texture[i]);    //设置当前纹理的参数
+		//Set each texture parameteri
+		glBindTexture(GL_TEXTURE_2D, texture[i]);    
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	}
@@ -112,4 +114,5 @@ void Texture::init_shader()
 	offset_loc = glGetUniformLocation(program, "offset");
 	mvp_loc = glGetUniformLocation(program, "mvp");
 	glUniform1i(tex_loc, 0);
+	glUseProgram(0);
 }
