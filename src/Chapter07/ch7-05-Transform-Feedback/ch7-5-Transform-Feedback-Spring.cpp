@@ -206,7 +206,7 @@ void Spring::init_buffer()
 	glTexBuffer(GL_TEXTURE_BUFFER, GL_RGBA32F, m_vbo[POSITION_A]);
 	glBindTexture(GL_TEXTURE_BUFFER, m_pos_tbo[1]);
 	glTexBuffer(GL_TEXTURE_BUFFER, GL_RGBA32F, m_vbo[POSITION_B]);
-
+	
 	int lines = (POINTS_X - 1) * POINTS_Y + (POINTS_Y - 1) * POINTS_X;
 
 	glGenBuffers(1, &m_index_buffer);
@@ -214,7 +214,7 @@ void Spring::init_buffer()
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, lines * 2 * sizeof(int), NULL, GL_STATIC_DRAW);
 
 	int * e = (int *)glMapBufferRange(GL_ELEMENT_ARRAY_BUFFER, 0, lines * 2 * sizeof(int),
-		GL_MAP_WRITE_BIT | GL_MAP_INVALIDATE_BUFFER_BIT);
+		                              GL_MAP_WRITE_BIT | GL_MAP_INVALIDATE_BUFFER_BIT);
 	for (int j = 0; j < POINTS_Y; j++)  
 	{
 		for (int i = 0; i < POINTS_X - 1; i++) 
