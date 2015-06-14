@@ -14,4 +14,23 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="hdr_exposure.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="hdr_naive.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="hdr.vert">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="hdr_adaptive.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ch9-11-HDR-Tone-Mapping.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
 </Project>

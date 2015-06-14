@@ -64,6 +64,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="hdr.vert" />
+    <None Include="hdr_adaptive.frag" />
+    <None Include="hdr_exposure.frag" />
+    <None Include="hdr_naive.frag" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ch9-11-HDR-Tone-Mapping.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

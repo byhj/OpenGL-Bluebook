@@ -64,6 +64,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ch9-03-depthClamp.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="depthClamp.frag" />
+    <None Include="depthClamp.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

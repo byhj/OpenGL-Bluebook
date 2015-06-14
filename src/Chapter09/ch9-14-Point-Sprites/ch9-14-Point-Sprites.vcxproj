@@ -64,6 +64,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="star.frag" />
+    <None Include="star.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ch9-14-Point-Sprites.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -64,6 +64,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ch9-16-Msaanative.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="msaa.vert" />
+    <None Include="msaa.frag" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

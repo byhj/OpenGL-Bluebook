@@ -64,6 +64,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="cube.vert" />
+    <None Include="cube0.frag" />
+    <None Include="cube1.frag" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ch9-05-Framebuffer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

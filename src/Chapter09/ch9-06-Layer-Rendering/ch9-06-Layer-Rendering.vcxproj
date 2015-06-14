@@ -64,6 +64,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="layer.frag" />
+    <None Include="layer.geom" />
+    <None Include="layer.vert" />
+    <None Include="show.frag" />
+    <None Include="show.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ch9-6-Layer-Rendering.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

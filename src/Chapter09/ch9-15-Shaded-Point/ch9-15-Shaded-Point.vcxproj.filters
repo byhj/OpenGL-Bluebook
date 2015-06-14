@@ -14,4 +14,17 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="D:\OpenGL\OpenGL-Bluebook\ch9-16-Shaded-Point\shape.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="D:\OpenGL\OpenGL-Bluebook\ch9-16-Shaded-Point\shape.vert">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="D:\OpenGL\OpenGL-Bluebook\ch9-16-Shaded-Point\ch9-15-Shaped-Point.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
 </Project>

@@ -64,6 +64,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="filter.frag" />
+    <None Include="filter.vert" />
+    <None Include="resolve.frag" />
+    <None Include="resolve.vert" />
+    <None Include="scene.frag" />
+    <None Include="scene.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ch9-hdrbloom.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

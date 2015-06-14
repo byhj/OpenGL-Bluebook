@@ -14,4 +14,26 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="layer.geom">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="layer.vert">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="show.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="show.vert">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="layer.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ch9-6-Layer-Rendering.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
 </Project>

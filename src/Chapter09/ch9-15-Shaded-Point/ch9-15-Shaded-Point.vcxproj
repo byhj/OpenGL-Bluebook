@@ -64,6 +64,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="D:\OpenGL\OpenGL-Bluebook\ch9-16-Shaded-Point\ch9-15-Shaped-Point.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="D:\OpenGL\OpenGL-Bluebook\ch9-16-Shaded-Point\shape.frag" />
+    <None Include="D:\OpenGL\OpenGL-Bluebook\ch9-16-Shaded-Point\shape.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
