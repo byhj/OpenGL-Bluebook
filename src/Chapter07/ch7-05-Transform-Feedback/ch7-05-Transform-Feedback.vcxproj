@@ -63,6 +63,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="render.frag" />
+    <None Include="render.vert" />
+    <None Include="update.frag" />
+    <None Include="update.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ch7-5-Transform-Feedback-Spring.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
