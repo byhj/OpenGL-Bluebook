@@ -6,7 +6,7 @@
 #include <sb6/shader.h>
 
 
-class Phong: public byhj::Application
+class Blinn: public byhj::Application
 {
 public:
 	void v_Init();
@@ -17,29 +17,29 @@ public:
 
 private:
 	GLuint program, mvp_loc, mv_loc;
-	Shader PhongShader;
+	Shader BlinnShader;
 	sb6::Object sphereObject;
 };
-CALL_MAIN(Phong);
+CALL_MAIN(Blinn);
 
-void Phong::init_shader()
+void Blinn::init_shader()
 {
-	PhongShader.attach(GL_VERTEX_SHADER, "blinn.vert");
-	PhongShader.attach(GL_FRAGMENT_SHADER, "blinn.frag");
-	PhongShader.link();
-	program = PhongShader.GetProgram();
+	BlinnShader.attach(GL_VERTEX_SHADER, "Blinn.vert");
+	BlinnShader.attach(GL_FRAGMENT_SHADER, "Blinn.frag");
+	BlinnShader.link();
+	program = BlinnShader.GetProgram();
 	mv_loc = glGetUniformLocation(program, "mv_matrix");
 	mvp_loc = glGetUniformLocation(program, "mvp_matrix");
 }
 
-void Phong::v_Init()
+void Blinn::v_Init()
 {
 	init_shader();
 	sphereObject.load("../../../media/objects/sphere.sbm");
 	glEnable(GL_DEPTH_TEST);
 }
 
-void Phong::v_Render()
+void Blinn::v_Render()
 {
 	static const float one[] = {1.0f};
 	static const float black[] = {0.0f, 0.0f, 0.0f, 1.0f};

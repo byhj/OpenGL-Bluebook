@@ -25,8 +25,8 @@ CALL_MAIN(Phong);
 
 void Phong::init_shader()
 {
-	PhongShader.attach(GL_VERTEX_SHADER, "phong.vert");
-	PhongShader.attach(GL_FRAGMENT_SHADER, "phong.frag");
+	PhongShader.attach(GL_VERTEX_SHADER, "Phong.vert");
+	PhongShader.attach(GL_FRAGMENT_SHADER, "Phong.frag");
 	PhongShader.link();
 	program = PhongShader.GetProgram();
 	mv_loc = glGetUniformLocation(program, "mv_matrix");
