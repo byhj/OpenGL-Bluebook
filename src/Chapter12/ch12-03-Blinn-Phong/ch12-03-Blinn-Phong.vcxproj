@@ -64,6 +64,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="blinn.frag" />
+    <None Include="blinn.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ch12-3-Blinn-phong.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
