@@ -1,121 +1,59 @@
+#include <GL/glew.h>
+#include <sb6/sb6.h>
+#include <sb6/ktx.cpp>
+#include <sb6/shader.h>
+#include <sb6/glDebug.h>
 
-#include <sb6.h>
-#include <vmath.h>
-#include <sb6ktx.h>
-
-#include <string>
-static void print_shader_log(GLuint shader)
-{
-    std::string str;
-    GLint len;
-
-    glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &len);
-    str.resize(len);
-    glGetShaderInfoLog(shader, len, NULL, &str[0]);
-
-#ifdef _WIN32
-    OutputDebugStringA(str.c_str());
-#endif
-}
-
-static const char * vs_source[] =
-{
-    "#version 420 core                                                              \n"
-    "                                                                               \n"
-    "void main(void)                                                                \n"
-    "{                                                                              \n"
-    "    const vec4 vertices[] = vec4[](vec4(-1.0, -1.0, 0.5, 1.0),                 \n"
-    "                                   vec4( 1.0, -1.0, 0.5, 1.0),                 \n"
-    "                                   vec4(-1.0,  1.0, 0.5, 1.0),                 \n"
-    "                                   vec4( 1.0,  1.0, 0.5, 1.0));                \n"
-    "                                                                               \n"
-    "    gl_Position = vertices[gl_VertexID];                                       \n"
-    "}                                                                              \n"
-};
-
-static const char * fs_source[] =
-{
-    "#version 430 core                                                              \n"
-    "                                                                               \n"
-    "uniform sampler2D s;                                                           \n"
-    "                                                                               \n"
-    "uniform float exposure;\n"
-    "\n"
-    "out vec4 color;                                                                \n"
-    "                                                                               \n"
-    "void main(void)                                                                \n"
-    "{                                                                              \n"
-    "    color = texture(s, gl_FragCoord.xy / textureSize(s, 0)) * exposure;                   \n"
-    "}                                                                              \n"
-};
-
-class simpletexture_app : public sb6::application
+class simpletexture_app : public byhj::Application
 {
 public:
-    void init()
+    void v_Init()
     {
-        static const char title[] = "OpenGL SuperBible - KTX Viewer";
-
-        sb6::application::init();
-
-        memcpy(info.title, title, sizeof(title));
+		init_shader();
+		// Generate a name for the texture
+		glGenTextures(1, &texture);
+		// Load texture from file
+		sb6::ktx::load("../../../media/textures/tree.ktx", texture);
+		glBindTexture(GL_TEXTURE_2D, texture);
+		
     }
 
-    void startup(void)
-    {
-        // Generate a name for the texture
-        glGenTextures(1, &texture);
-
-        // Load texture from file
-        sb6::ktx::file::load("media/textures/tree.ktx", texture);
-
-        // Now bind it to the context using the GL_TEXTURE_2D binding point
-        glBindTexture(GL_TEXTURE_2D, texture);
-
-        program = glCreateProgram();
-        GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
-        glShaderSource(fs, 1, fs_source, NULL);
-        glCompileShader(fs);
-
-        print_shader_log(fs);
-
-        GLuint vs = glCreateShader(GL_VERTEX_SHADER);
-        glShaderSource(vs, 1, vs_source, NULL);
-        glCompileShader(vs);
-
-        print_shader_log(vs);
-
-        glAttachShader(program, vs);
-        glAttachShader(program, fs);
-
-        glLinkProgram(program);
-
-        glGenVertexArrays(1, &vao);
-        glBindVertexArray(vao);
-    }
-
-    void shutdown(void)
+    void v_Shutdown(void)
     {
         glDeleteProgram(program);
         glDeleteVertexArrays(1, &vao);
         glDeleteTextures(1, &texture);
     }
 
-    void render(double t)
+    void v_Render()
     {
+		float t = glfwGetTime();
         static const GLfloat green[] = { 0.0f, 0.25f, 0.0f, 1.0f };
         glClearBufferfv(GL_COLOR, 0, green);
 
         glUseProgram(program);
-        glViewport(0, 0, info.windowWidth, info.windowHeight);
+		glBindTexture(GL_TEXTURE_2D, texture);
+        glViewport(0, 0, GetScreenWidth(), GetScreenHeight());
         glUniform1f(0, (float)(sin(t) * 16.0 + 16.0));
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     }
 
 private:
+	void init_shader();
+
     GLuint      texture;
     GLuint      program;
     GLuint      vao;
+	Shader      KtxShader;
 };
 
-DECLARE_MAIN(simpletexture_app);
+CALL_MAIN(simpletexture_app);
+
+void simpletexture_app::init_shader()
+{
+	KtxShader.init();
+	KtxShader.attach(GL_VERTEX_SHADER, "ktx.vert");
+	KtxShader.attach(GL_FRAGMENT_SHADER, "ktx.frag");
+	KtxShader.link();
+	program = KtxShader.GetProgram();
+}

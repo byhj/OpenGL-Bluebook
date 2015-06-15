@@ -1,16 +1,13 @@
-
-
-#include <sb6.h>
-#include <vmath.h>
-
-#include <object.h>
-#include <sb6ktx.h>
-#include <shader.h>
+#include <sb6/sb6.h>
+#include <sb6/vmath.h>
+#include <sb6/object.cpp>
+#include <sb6/ktx.cpp>
+#include <sb6/shader.h>
 
 #define DEPTH_TEXTURE_SIZE      4096
 #define FRUSTUM_DEPTH           1000
 
-class shadowmapping_app : public sb6::application
+class shadowmapping_app : public byhj::Application
 {
 public:
     shadowmapping_app()
@@ -23,14 +20,7 @@ public:
     }
 
 protected:
-    void init()
-    {
-        static const char title[] = "OpenGL SuperBible - Shadow Mapping";
 
-        sb6::application::init();
-
-        memcpy(info.title, title, sizeof(title));
-    }
 
     void startup();
     void render(double currentTime);
@@ -65,7 +55,7 @@ protected:
     enum { OBJECT_COUNT = 4 };
     struct
     {
-        sb6::object     obj;
+        sb6::Object     obj;
         vmath::mat4     model_matrix;
     } objects[OBJECT_COUNT];
 
@@ -95,10 +85,10 @@ void shadowmapping_app::startup()
 
     static const char * const object_names[] =
     {
-        "media/objects/dragon.sbm",
-        "media/objects/sphere.sbm",
-        "media/objects/cube.sbm",
-        "media/objects/torus.sbm"
+        "../../../media/objects/dragon.sbm",
+        "../../../media/objects/sphere.sbm",
+        "../../../media/objects/cube.sbm",
+        "../../../media/objects/torus.sbm"
     };
 
     for (i = 0; i < OBJECT_COUNT; i++)
@@ -157,7 +147,7 @@ void shadowmapping_app::render(double currentTime)
                                       vmath::vec3(0.0f), vmath::vec3(0.0f, 1.0f, 0.0f));
 
     camera_proj_matrix = vmath::perspective(50.0f,
-                                            (float)info.windowWidth / (float)info.windowHeight,
+                                            GetAspect(),
                                             1.0f,
                                             200.0f);
 
@@ -225,7 +215,7 @@ void shadowmapping_app::render_scene(double currentTime, bool from_light)
     }
     else
     {
-        glViewport(0, 0, info.windowWidth, info.windowHeight);
+        glViewport(0, 0, GetScreenWidth(), GetScreenHeight());
         glClearBufferfv(GL_COLOR, 0, gray);
         glUseProgram(view_program);
         glActiveTexture(GL_TEXTURE0);
@@ -347,4 +337,4 @@ void shadowmapping_app::load_shaders()
     glDeleteShader(fs);
 }
 
-DECLARE_MAIN(shadowmapping_app)
+CALL_MAIN(shadowmapping_app)

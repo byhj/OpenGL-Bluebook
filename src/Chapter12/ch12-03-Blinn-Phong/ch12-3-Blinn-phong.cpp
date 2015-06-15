@@ -51,7 +51,7 @@ void Blinn::v_Render()
 	float t = glfwGetTime() / 1000.0;
 	glm::mat4 mv_matrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -2.5f))
 		* glm::rotate(glm::mat4(1.0f), sin(t) * 60.0f, glm::vec3(0.0, 1.0, 0.0) );
-	glm::mat4 proj_matrix = glm::perspective(45.0f, 1300.0f / 900.0f, 0.1f, 1000.0f);
+	glm::mat4 proj_matrix = glm::perspective(45.0f, GetAspect(), 0.1f, 1000.0f);
 	glm::mat4 mvp_matrix = proj_matrix * mv_matrix;
 	glUniformMatrix4fv(mv_loc, 1, GL_FALSE, &mv_matrix[0][0]);
 	glUniformMatrix4fv(mvp_loc, 1, GL_FALSE, &mvp_matrix[0][0]);

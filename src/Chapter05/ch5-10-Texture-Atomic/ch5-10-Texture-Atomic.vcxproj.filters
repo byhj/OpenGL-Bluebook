@@ -20,22 +20,22 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="clear.vs.glsl">
+    <None Include="append.frag">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="resolve.fs.glsl">
+    <None Include="append.vert">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="resolve.vs.glsl">
+    <None Include="clear.frag">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="append.fs.glsl">
+    <None Include="clear.vert">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="append.vs.glsl">
+    <None Include="resolve.frag">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="clear.fs.glsl">
+    <None Include="resolve.vert">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

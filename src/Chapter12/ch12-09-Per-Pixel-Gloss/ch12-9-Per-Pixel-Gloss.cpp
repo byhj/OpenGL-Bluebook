@@ -41,7 +41,7 @@ void Gloss::v_Init()
 {
 	init_shader();
 	init_texture();
-	object.load("../media/objects/torus_nrms_tc.sbm");
+	object.load("../../../media/objects/torus_nrms_tc.sbm");
 	glEnable(GL_DEPTH_TEST);
 }
 

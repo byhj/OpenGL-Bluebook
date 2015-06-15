@@ -45,7 +45,7 @@ void Equirectangular::v_Init()
 {
 	init_shader();
 	init_texture();
-	object.load("../media/objects/dragon.sbm");
+	object.load("../../../media/objects/dragon.sbm");
 	glEnable(GL_DEPTH_TEST);
 }
 

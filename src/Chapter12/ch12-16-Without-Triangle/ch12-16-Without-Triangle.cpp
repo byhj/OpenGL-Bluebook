@@ -14,7 +14,10 @@ public:
 	{
 
 	}
-	void v_Init();
+	void v_Init()
+	{
+		init_shader();
+	}
 	void v_Render()
 	{
 		static const GLfloat color[] = { 0.0f, 0.0f, 0.0f, 0.0f };
@@ -67,6 +70,8 @@ private:
 	float x_offset;
 	float y_offset;
 };
+CALL_MAIN(JuliaApp);
+
 #pragma region DATA
 static const unsigned char palette[] =
 {

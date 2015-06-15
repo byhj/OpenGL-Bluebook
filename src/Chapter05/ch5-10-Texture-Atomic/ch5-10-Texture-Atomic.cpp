@@ -1,34 +1,12 @@
-/*
- * Copyright ?2012-2013 Graham Sellers
- *
- * Permission is hereby granted, free of charge, to any person obtaining a
- * copy of this software and associated documentation files (the "Software"),
- * to deal in the Software without restriction, including without limitation
- * the rights to use, copy, modify, merge, publish, distribute, sublicense,
- * and/or sell copies of the Software, and to permit persons to whom the
- * Software is furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice (including the next
- * paragraph) shall be included in all copies or substantial portions of the
- * Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
- * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
- * DEALINGS IN THE SOFTWARE.
- */
+#include <gl/glew.h>
 
-#include <sb6.h>
-#include <vmath.h>
+#include <sb6/sb6.h>
+#include <sb6/vmath.h>
+#include <sb6/object.cpp>
+#include <sb6/ktx.cpp>
+#include <sb6/shader.h>
 
-#include <object.h>
-#include <sb6ktx.h>
-#include <shader.h>
-
-class fragmentlist_app : public sb6::application
+class fragmentlist_app : public byhj::Application
 {
 public:
     fragmentlist_app()
@@ -38,17 +16,19 @@ public:
     {
     }
 
+	void v_Init();
+	void v_Render();
+	void init_shader();
+	void init_buffer();
 protected:
-    void init();
-    void startup();
-    void render(double currentTime);
-    void onKey(int key, int action);
-
-    void load_shaders();
 
     GLuint          clear_program;
     GLuint          append_program;
     GLuint          resolve_program;
+
+	Shader  ClearShader;
+	Shader  AppendShader;
+	Shader  ResolveShader;
 
     struct
     {
@@ -70,7 +50,7 @@ protected:
         GLint           mvp;
     } uniforms;
 
-    sb6::object     object;
+    sb6::Object     object;
 
     GLuint          fragment_buffer;
     GLuint          head_pointer_image;
@@ -78,49 +58,47 @@ protected:
     GLuint          dummy_vao;
 };
 
-void fragmentlist_app::init()
+
+void fragmentlist_app::v_Init()
 {
-    static const char title[] = "OpenGL SuperBible - Fragment List";
+   init_shader();
+   init_buffer();
 
-    sb6::application::init();
 
-    memcpy(info.title, title, sizeof(title));
 }
 
-void fragmentlist_app::startup()
+void fragmentlist_app::init_buffer()
 {
-    load_shaders();
+	int w = GetScreenWidth();
+	int h = GetScreenHeight();
+	glGenBuffers(1, &uniforms_buffer);
+	glBindBuffer(GL_UNIFORM_BUFFER, uniforms_buffer);
+	glBufferData(GL_UNIFORM_BUFFER, sizeof(uniforms_block), NULL, GL_DYNAMIC_DRAW);
 
-    glGenBuffers(1, &uniforms_buffer);
-    glBindBuffer(GL_UNIFORM_BUFFER, uniforms_buffer);
-    glBufferData(GL_UNIFORM_BUFFER, sizeof(uniforms_block), NULL, GL_DYNAMIC_DRAW);
+	object.load("../../../media/objects/dragon.sbm");
 
-    object.load("media/objects/dragon.sbm");
+	glGenBuffers(1, &fragment_buffer);
+	glBindBuffer(GL_SHADER_STORAGE_BUFFER, fragment_buffer);
+	glBufferData(GL_SHADER_STORAGE_BUFFER, w * h* 16, NULL, GL_DYNAMIC_COPY);
 
-    glGenBuffers(1, &fragment_buffer);
-    glBindBuffer(GL_SHADER_STORAGE_BUFFER, fragment_buffer);
-    glBufferData(GL_SHADER_STORAGE_BUFFER, 1024 * 1024 * 16, NULL, GL_DYNAMIC_COPY);
+	glGenBuffers(1, &atomic_counter_buffer);
+	glBindBuffer(GL_ATOMIC_COUNTER_BUFFER, atomic_counter_buffer);
+	glBufferData(GL_ATOMIC_COUNTER_BUFFER, 4, NULL, GL_DYNAMIC_COPY);
 
-    glGenBuffers(1, &atomic_counter_buffer);
-    glBindBuffer(GL_ATOMIC_COUNTER_BUFFER, atomic_counter_buffer);
-    glBufferData(GL_ATOMIC_COUNTER_BUFFER, 4, NULL, GL_DYNAMIC_COPY);
+	glGenTextures(1, &head_pointer_image);
+	glBindTexture(GL_TEXTURE_2D, head_pointer_image);
+	glTexStorage2D(GL_TEXTURE_2D, 1, GL_R32UI, w, h);
 
-    glGenTextures(1, &head_pointer_image);
-    glBindTexture(GL_TEXTURE_2D, head_pointer_image);
-    glTexStorage2D(GL_TEXTURE_2D, 1, GL_R32UI, 1024, 1024);
-
-    glGenVertexArrays(1, &dummy_vao);
-    glBindVertexArray(dummy_vao);
+	glGenVertexArrays(1, &dummy_vao);
+	glBindVertexArray(dummy_vao);
 }
 
-void fragmentlist_app::render(double currentTime)
+void fragmentlist_app::v_Render()
 {
     static const GLfloat zeros[] = { 0.0f, 0.0f, 0.0f, 0.0f };
     static const GLfloat gray[] = { 0.1f, 0.1f, 0.1f, 0.0f };
     static const GLfloat ones[] = { 1.0f };
-    const float f = (float)currentTime;
-
-    glViewport(0, 0, info.windowWidth, info.windowHeight);
+    const float f = (float)glfwGetTime();
 
     glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT | GL_ATOMIC_COUNTER_BARRIER_BIT | GL_SHADER_STORAGE_BARRIER_BIT);
 
@@ -138,7 +116,7 @@ void fragmentlist_app::render(double currentTime)
 
     vmath::mat4 mv_matrix = view_matrix * model_matrix;
     vmath::mat4 proj_matrix = vmath::perspective(50.0f,
-                                                 (float)info.windowWidth / (float)info.windowHeight,
+                                                 GetAspect(),
                                                  0.1f,
                                                  1000.0f);
 
@@ -167,48 +145,27 @@ void fragmentlist_app::render(double currentTime)
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
 
-void fragmentlist_app::onKey(int key, int action)
+
+
+void fragmentlist_app::init_shader()
 {
-    if (action)
-    {
-        switch (key)
-        {
-            case 'R': 
-                load_shaders();
-                break;
-        }
-    }
-}
+	ClearShader.init();
+    ClearShader.attach( GL_VERTEX_SHADER, "clear.vert");
+    ClearShader.attach( GL_FRAGMENT_SHADER, "clear.frag");
+	ClearShader.link();
+    clear_program = ClearShader.GetProgram();
 
-void fragmentlist_app::load_shaders()
-{
-    GLuint  shaders[2];
-
-    shaders[0] = sb6::shader::load("media/shaders/fragmentlist/clear.vs.glsl", GL_VERTEX_SHADER);
-    shaders[1] = sb6::shader::load("media/shaders/fragmentlist/clear.fs.glsl", GL_FRAGMENT_SHADER);
-
-    if (clear_program)
-        glDeleteProgram(clear_program);
-
-    clear_program = sb6::program::link_from_shaders(shaders, 2, true);
-
-    shaders[0] = sb6::shader::load("media/shaders/fragmentlist/append.vs.glsl", GL_VERTEX_SHADER);
-    shaders[1] = sb6::shader::load("media/shaders/fragmentlist/append.fs.glsl", GL_FRAGMENT_SHADER);
-
-    if (append_program)
-        glDeleteProgram(append_program);
-
-    append_program = sb6::program::link_from_shaders(shaders, 2, true);
+    AppendShader.attach( GL_VERTEX_SHADER, "append.vert");
+    AppendShader.attach( GL_FRAGMENT_SHADER, "append.frag");
+	AppendShader.link();
+    append_program = AppendShader.GetProgram();
 
     uniforms.mvp = glGetUniformLocation(append_program, "mvp");
 
-    shaders[0] = sb6::shader::load("media/shaders/fragmentlist/resolve.vs.glsl", GL_VERTEX_SHADER);
-    shaders[1] = sb6::shader::load("media/shaders/fragmentlist/resolve.fs.glsl", GL_FRAGMENT_SHADER);
-
-    if (resolve_program)
-        glDeleteProgram(resolve_program);
-
-    resolve_program = sb6::program::link_from_shaders(shaders, 2, true);
+    ResolveShader.attach( GL_VERTEX_SHADER, "resolve.vert");
+    ResolveShader.attach( GL_FRAGMENT_SHADER, "resolve.frag");
+	ResolveShader.link();
+    resolve_program = ResolveShader.GetProgram();
 }
 
-DECLARE_MAIN(fragmentlist_app)
+CALL_MAIN(fragmentlist_app)

@@ -4,6 +4,8 @@
 #include <sb6/ktx.cpp>
 #include <iostream>
 #include <vector> 
+#include <sb6/vmath.h>
+
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -60,9 +62,9 @@ void Terrian::init_shader()
 	glBindVertexArray(vao);
 	glPatchParameteri(GL_PATCH_VERTICES, 4);
 	glEnable(GL_CULL_FACE);
-	tex_displacement = sb6::ktx::load("../media/textures/terragen1.ktx");
+	tex_displacement = sb6::ktx::load("../../../media/textures/terragen1.ktx");
 	glActiveTexture(GL_TEXTURE1);
-	tex_color = sb6::ktx::load("../media/textures/terragen_color.ktx");
+	tex_color = sb6::ktx::load("../../../media/textures/terragen_color.ktx");
 
 	uniforms.mv_matrix = glGetUniformLocation(program, "mv_matrix");
 	uniforms.proj_matrix = glGetUniformLocation(program, "proj_matrix");
@@ -76,23 +78,36 @@ void Terrian::v_Render(void)
 	glClearBufferfv(GL_COLOR, 0, black);
 	glClearBufferfv(GL_DEPTH, 0, &one);
 
-	float currentTime =  glfwGetTime() / 100.0f;
+	float currentTime =  glfwGetTime();
 
 	float t = (float)currentTime * 0.03f;
 	float r = sinf(t * 5.37f) * 15.0f + 16.0f;
 	float h = cosf(t * 4.79f) * 2.0f + 3.2f;
 
+	  vmath::mat4 mv_matrix = /* vmath::translate(0.0f, 0.0f, -1.4f) *
+                                vmath::translate(0.0f, -0.4f, 0.0f) * */
+                                // vmath::rotate((float)currentTime * 6.0f, 0.0f, 1.0f, 0.0f) *
+                               vmath::lookat(vmath::vec3(sinf(t) * r, h, cosf(t) * r), vmath::vec3(0.0f), vmath::vec3(0.0f, 1.0f, 0.0f));
+      vmath::mat4 proj_matrix = vmath::perspective(60.0f, GetAspect(), 0.1f, 1000.0f);
 
+        glUseProgram(program);
+
+        glUniformMatrix4fv(uniforms.mv_matrix, 1, GL_FALSE, mv_matrix);
+        glUniformMatrix4fv(uniforms.proj_matrix, 1, GL_FALSE, proj_matrix);
+        glUniformMatrix4fv(uniforms.mvp_matrix, 1, GL_FALSE, proj_matrix * mv_matrix);
+
+/*
 	glm::mat4 mv_matrix  = glm::lookAt( glm::vec3(sinf(t) * r, h, cosf(t) * r), glm::vec3(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));   
-	glm::mat4 proj_matrix = glm::perspective(45.0f, 1300.0f / 900.0f, 0.1f, 1000.0f);
+	glm::mat4 proj_matrix = glm::perspective(60.0f, GetAspect(), 0.1f, 1000.0f);
 
 	glUniformMatrix4fv(uniforms.mv_matrix, 1, GL_FALSE, glm::value_ptr(mv_matrix));
 	glUniformMatrix4fv(uniforms.proj_matrix, 1, GL_FALSE, glm::value_ptr(proj_matrix));
 	glUniformMatrix4fv(uniforms.mvp_matrix, 1, GL_FALSE, glm::value_ptr(proj_matrix * mv_matrix));
+	*/
 	glUniform1f(uniforms.dmap_depth, enable_displacement ? dmap_depth : 0.0f);
 	glUniform1i(uniforms.enable_fog, enable_fog ? 1 : 0);
 
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	glDrawArraysInstanced(GL_PATCHES, 0, 4, 64 * 64);
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);

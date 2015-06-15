@@ -64,12 +64,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="shadowmapping-camera.fs.glsl" />
-    <None Include="shadowmapping-camera.vs.glsl" />
-    <None Include="shadowmapping-light-view.fs.glsl" />
-    <None Include="shadowmapping-light-view.vs.glsl" />
-    <None Include="shadowmapping-light.fs.glsl" />
-    <None Include="shadowmapping-light.vs.glsl" />
+    <None Include="camera.frag" />
+    <None Include="camera.vert" />
+    <None Include="light-view.frag" />
+    <None Include="light-view.vert" />
+    <None Include="light.frag" />
+    <None Include="light.vert" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ch12-10-Shadow-Mapping.cpp" />

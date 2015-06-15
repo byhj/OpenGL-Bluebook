@@ -15,22 +15,22 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="shadowmapping-light.vs.glsl">
+    <None Include="light-view.frag">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="shadowmapping-light-view.fs.glsl">
+    <None Include="light-view.vert">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="shadowmapping-light-view.vs.glsl">
+    <None Include="light.frag">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="shadowmapping-camera.fs.glsl">
+    <None Include="light.vert">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="shadowmapping-camera.vs.glsl">
+    <None Include="camera.frag">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="shadowmapping-light.fs.glsl">
+    <None Include="camera.vert">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
