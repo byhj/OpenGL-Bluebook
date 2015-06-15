@@ -1,5 +1,4 @@
 #include <GL/glew.h>
-#include <gl/glfw3.h>
 #include <sb6/sb6.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -7,7 +6,7 @@
 #include <sb6/vmath.h>
 #include <sb6/shader.h>
 #include <sb6/ktx.cpp>
-#include <sb6/object.h>
+#include <sb6/object.cpp>
 
 class Bloom: public byhj::Application
 {
@@ -18,7 +17,7 @@ public:
 
 	void v_Init();
 	void v_Render();
-
+	void v_Keyboard(GLFWwindow * window, int key, int scancode, int action, int mode);
 private:
 
 	enum
@@ -71,11 +70,10 @@ private:
 	GLuint      ubo_transform;
 	GLuint      ubo_material;
 
-	Shader resloveShader;
-	Shader filterShader;
-	Shader sceneShader;
+	Shader ResloveShader;
+	Shader FilterShader;
+	Shader SceneShader;
 	sb6::Object   obj;
-	bool     paused;
 	GLuint explode_factor_location;
 	bool depthClamp;
 };
@@ -85,9 +83,32 @@ CALL_MAIN(Bloom);
 void Bloom::init_shader(void)
 {
 
+	SceneShader.attach( GL_VERTEX_SHADER,  "scene.vert");
+	SceneShader.attach( GL_FRAGMENT_SHADER, "scene.frag");
+	SceneShader.link();
+	program_render = SceneShader.GetProgram();
+	uniforms.scene.bloom_thresh_min = glGetUniformLocation(program_render, "bloom_thresh_min");
+	uniforms.scene.bloom_thresh_max = glGetUniformLocation(program_render, "bloom_thresh_max");
+
+	FilterShader.attach( GL_VERTEX_SHADER, "filter.vert");
+	FilterShader.attach( GL_FRAGMENT_SHADER, "filter.frag");
+	FilterShader.link();
+	program_filter = FilterShader.GetProgram();
+
+
+	ResloveShader.attach(GL_VERTEX_SHADER, "resolve.vert");
+	ResloveShader.attach(GL_FRAGMENT_SHADER, "resolve.frag");
+	ResloveShader.link();
+	program_resolve = ResloveShader.GetProgram();
+	uniforms.resolve.exposure = glGetUniformLocation(program_resolve, "exposure");
+	uniforms.resolve.bloom_factor = glGetUniformLocation(program_resolve, "bloom_factor");
+	uniforms.resolve.scene_factor = glGetUniformLocation(program_resolve, "scene_factor");
 }
+
+
 void Bloom::v_Init()
 {
+	init_shader();
 
 	int i;
 	static const GLenum buffers[] = { GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1 };
@@ -104,12 +125,10 @@ void Bloom::v_Init()
 	glBindTexture(GL_TEXTURE_2D, tex_scene);
 	glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA16F, MAX_SCENE_WIDTH, MAX_SCENE_HEIGHT);
 	glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, tex_scene, 0);
-
 	glGenTextures(1, &tex_brightpass);
 	glBindTexture(GL_TEXTURE_2D, tex_brightpass);
 	glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA16F, MAX_SCENE_WIDTH, MAX_SCENE_HEIGHT);
 	glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT1, tex_brightpass, 0);
-
 	glGenTextures(1, &tex_depth);
 	glBindTexture(GL_TEXTURE_2D, tex_depth);
 	glTexStorage2D(GL_TEXTURE_2D, 1, GL_DEPTH_COMPONENT32F, MAX_SCENE_WIDTH, MAX_SCENE_HEIGHT);
@@ -171,29 +190,147 @@ void Bloom::v_Init()
 	glUnmapBuffer(GL_UNIFORM_BUFFER);
 }
 
-void Bloom::v_Render(void)
+void Bloom::v_Render()
 {
-	static const GLfloat black[] = { 0.0f, 0.0f, 0.0f, 0.0f };
+	static const GLfloat black[] = { 0.0f, 0.0f, 0.0f, 1.0f };
 	static const GLfloat one = 1.0f;
+	int i;
+	static double last_time = 0.0;
+	static double total_time = 0.0;
+	float currentTime = glfwGetTime();
+	if (!paused)
+		total_time += (currentTime - last_time);
+	last_time = currentTime;
+	float t = (float)total_time;
 
-	static float currentTime ;
-	currentTime = glfwGetTime();
+	glViewport(0, 0, GetScreenWidth(), GetScreenHeight());
 
-	float f =  0.9f; //(float)currentTime;
-
+	glBindFramebuffer(GL_FRAMEBUFFER, render_fbo);
 	glClearBufferfv(GL_COLOR, 0, black);
+	glClearBufferfv(GL_COLOR, 1, black);
 	glClearBufferfv(GL_DEPTH, 0, &one);
-	glEnable(GL_DEPTH_CLAMP);
 
-	glm::mat4 mv_matrix = glm::translate(glm::mat4(1.0), glm::vec3(0.0f, 0.0f, -2.0f)) 
-		                * glm::rotate(glm::mat4(1.0), f* 45.0f, glm::vec3(0.0f, 1.0f, 0.0f)) 
-		                * glm::rotate(glm::mat4(1.0), f* 81.0f, glm::vec3(1.0f, 0.0f, 0.0f));
-	glUniformMatrix4fv(mv_loc, 1, 0, glm::value_ptr(mv_matrix));
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LESS);
 
-	glm::mat4 proj_matrix = glm::perspective(50.0f, GetAspect(), 1.8f, 1000.0f);
-	glUniformMatrix4fv(proj__loc, 1, 0, glm::value_ptr(proj_matrix));
-	
-	obj.render();
+	glUseProgram(program_render);
+
+	glBindBufferBase(GL_UNIFORM_BUFFER, 0, ubo_transform);
+	struct transforms_t
+	{
+		vmath::mat4 mat_proj;
+		vmath::mat4 mat_view;
+		vmath::mat4 mat_model[SPHERE_COUNT];
+	} * transforms = (transforms_t *)glMapBufferRange(GL_UNIFORM_BUFFER, 0, sizeof(transforms_t), GL_MAP_WRITE_BIT | GL_MAP_INVALIDATE_BUFFER_BIT);
+	transforms->mat_proj = vmath::perspective(50.0f, GetAspect(), 1.0f, 1000.0f);
+	transforms->mat_view = vmath::translate(0.0f, 0.0f, -20.0f);
+	for (i = 0; i < SPHERE_COUNT; i++)
+	{
+		float fi = 3.141592f * (float)i / 16.0f;
+		// float r = cosf(fi * 0.25f) * 0.4f + 1.0f;
+		float r = (i & 2) ? 0.6f : 1.5f;
+		transforms->mat_model[i] = vmath::translate(cosf(t + fi) * 5.0f * r, sinf(t + fi * 4.0f) * 4.0f, sinf(t + fi) * 5.0f * r);
+	}
+	glUnmapBuffer(GL_UNIFORM_BUFFER);
+	glBindBufferBase(GL_UNIFORM_BUFFER, 1, ubo_material);
+
+	glUniform1f(uniforms.scene.bloom_thresh_min, bloom_thresh_min);
+	glUniform1f(uniforms.scene.bloom_thresh_max, bloom_thresh_max);
+
+	obj.render(SPHERE_COUNT);
+
+	glDisable(GL_DEPTH_TEST);
+
+	glUseProgram(program_filter);
+
+	glBindVertexArray(vao);
+
+	glBindFramebuffer(GL_FRAMEBUFFER, filter_fbo[0]);
+	glBindTexture(GL_TEXTURE_2D, tex_brightpass);
+	glViewport(0, 0, GetScreenWidth(), GetScreenHeight());
+
+	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+
+	glBindFramebuffer(GL_FRAMEBUFFER, filter_fbo[1]);
+	glBindTexture(GL_TEXTURE_2D, tex_filter[0]);
+	glViewport(0, 0, GetScreenWidth(), GetScreenHeight());
+
+	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+
+	glUseProgram(program_resolve);
+
+	glUniform1f(uniforms.resolve.exposure, exposure);
+	if (show_prefilter)
+	{
+		glUniform1f(uniforms.resolve.bloom_factor, 0.0f);
+		glUniform1f(uniforms.resolve.scene_factor, 1.0f);
+	}
+	else
+	{
+		glUniform1f(uniforms.resolve.bloom_factor, show_bloom ? bloom_factor : 0.0f);
+		glUniform1f(uniforms.resolve.scene_factor, show_scene ? 1.0f : 0.0f);
+	}
+
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, tex_filter[1]);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, show_prefilter ? tex_brightpass : tex_scene);
+
+	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
 
 
+void Bloom::v_Keyboard(GLFWwindow * window, int key, int scancode, int action, int mode)
+{
+	if (!action)
+		return;
+
+	switch (key)
+	{
+	case '1':
+	case '2':
+	case '3':
+		mode = key - '1';
+		break;
+	case 'B':
+		show_bloom = !show_bloom;
+		break;
+	case 'V':
+		show_scene = !show_scene;
+		break;
+	case 'A':
+		bloom_factor += 0.1f;
+		break;
+	case 'Z':
+		bloom_factor -= 0.1f;
+		break;
+	case 'S':
+		bloom_thresh_min += 0.1f;
+		break;
+	case 'X':
+		bloom_thresh_min -= 0.1f;
+		break;
+	case 'D':
+		bloom_thresh_max += 0.1f;
+		break;
+	case 'C':
+		bloom_thresh_max -= 0.1f;
+		break;
+	case 'N':
+		show_prefilter = !show_prefilter;
+		break;
+	case 'M':
+		mode = (mode + 1) % 3;
+		break;
+	case 'P':
+		paused = !paused;
+		break;
+	case GLFW_KEY_KP_ADD:
+		exposure *= 1.1f;
+		break;
+	case GLFW_KEY_KP_SUBTRACT:
+		exposure /= 1.1f;
+		break;
+	}
+}
