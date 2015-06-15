@@ -15,27 +15,24 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ch5-10-Texture-Atomic.cpp">
+    <ClCompile Include="ch10-03-Depth-of-Filed.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="clear.vs.glsl">
+    <None Include="display.vs.glsl">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="resolve.fs.glsl">
+    <None Include="display.fs.glsl">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="resolve.vs.glsl">
+    <None Include="gensat.cs.glsl">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="append.fs.glsl">
+    <None Include="render.fs.glsl">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="append.vs.glsl">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="clear.fs.glsl">
+    <None Include="render.vs.glsl">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

@@ -14,4 +14,29 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ch12-17-Ray-Tracing.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="trace-prepare.vs.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="blit.fs.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="blit.vs.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="raytracer.fs.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="raytracer.vs.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="trace-prepare.fs.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>

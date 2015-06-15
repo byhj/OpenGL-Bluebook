@@ -15,28 +15,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ch5-10-Texture-Atomic.cpp">
+    <ClCompile Include="win32raw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="clear.vs.glsl">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="resolve.fs.glsl">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="resolve.vs.glsl">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="append.fs.glsl">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="append.vs.glsl">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="clear.fs.glsl">
-      <Filter>Resource Files</Filter>
-    </None>
   </ItemGroup>
 </Project>

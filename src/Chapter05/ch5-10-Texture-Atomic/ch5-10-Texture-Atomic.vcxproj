@@ -65,6 +65,14 @@
   <ItemGroup>
     <ClCompile Include="ch5-10-Texture-Atomic.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="append.fs.glsl" />
+    <None Include="append.vs.glsl" />
+    <None Include="clear.fs.glsl" />
+    <None Include="clear.vs.glsl" />
+    <None Include="resolve.fs.glsl" />
+    <None Include="resolve.vs.glsl" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -15,27 +15,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ch5-10-Texture-Atomic.cpp">
+    <ClCompile Include="ch10-04-Flocking.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="clear.vs.glsl">
+    <None Include="render.fs.glsl">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="resolve.fs.glsl">
+    <None Include="render.vs.glsl">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="resolve.vs.glsl">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="append.fs.glsl">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="append.vs.glsl">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="clear.fs.glsl">
+    <None Include="flocking.cs.glsl">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

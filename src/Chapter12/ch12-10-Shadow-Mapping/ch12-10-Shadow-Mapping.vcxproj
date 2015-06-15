@@ -71,6 +71,9 @@
     <None Include="shadowmapping-light.fs.glsl" />
     <None Include="shadowmapping-light.vs.glsl" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ch12-10-Shadow-Mapping.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

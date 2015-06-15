@@ -11,8 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{D75A0085-C986-41B4-9B65-5E5D482644E7}</ProjectGuid>
-    <RootNamespace>ch1217RayTracing</RootNamespace>
+    <ProjectGuid>{6525412D-82AE-4707-A4CB-2ADDA5F7EC76}</ProjectGuid>
+    <RootNamespace>ch1001Prefixsum</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -64,15 +64,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ch12-17-Ray-Tracing.cpp" />
+    <ClCompile Include="ch10-01-Prefixsum.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="blit.fs.glsl" />
-    <None Include="blit.vs.glsl" />
-    <None Include="raytracer.fs.glsl" />
-    <None Include="raytracer.vs.glsl" />
-    <None Include="trace-prepare.fs.glsl" />
-    <None Include="trace-prepare.vs.glsl" />
+    <None Include="prefixsum.cs.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
