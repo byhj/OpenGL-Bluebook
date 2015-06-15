@@ -14,4 +14,18 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ssao.fs.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="ssao.vs.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="render.fs.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="render.vs.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>

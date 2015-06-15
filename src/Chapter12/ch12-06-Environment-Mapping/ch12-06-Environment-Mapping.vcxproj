@@ -64,6 +64,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="environment.frag" />
+    <None Include="environment.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ch12-6-Environment-Mapping.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

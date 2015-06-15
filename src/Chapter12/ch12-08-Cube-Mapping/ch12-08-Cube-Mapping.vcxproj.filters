@@ -14,4 +14,23 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="skybox.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="skybox.vert">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="render.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="render.vert">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ch12-7-Cube-Mapping.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
 </Project>

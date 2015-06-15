@@ -14,4 +14,32 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ch12-13-Deffered-Shading.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="render.vert">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="render.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="render-vis.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="render-nm.vert">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="render-nm.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="light.vert">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="light.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>

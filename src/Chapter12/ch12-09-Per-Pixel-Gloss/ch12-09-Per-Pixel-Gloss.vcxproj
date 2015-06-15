@@ -64,6 +64,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="gloss.frag" />
+    <None Include="gloss.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ch12-9-Per-Pixel-Gloss.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

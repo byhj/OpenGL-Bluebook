@@ -10,6 +10,13 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ch12-16-Without-Triangle.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="julia.frag" />
+    <None Include="julia.vert" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{6ECD6527-BF2F-4B43-9FE1-AE5C5CE66CFA}</ProjectGuid>
     <RootNamespace>ch1216WithoutTriangle</RootNamespace>
@@ -63,8 +70,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

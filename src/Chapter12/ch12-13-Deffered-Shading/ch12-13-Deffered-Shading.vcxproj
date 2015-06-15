@@ -64,6 +64,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ch12-13-Deffered-Shading.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="light.frag" />
+    <None Include="light.vert" />
+    <None Include="render-nm.frag" />
+    <None Include="render-nm.vert" />
+    <None Include="render-vis.frag" />
+    <None Include="render.frag" />
+    <None Include="render.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

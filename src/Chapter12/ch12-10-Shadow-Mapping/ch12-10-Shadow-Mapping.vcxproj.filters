@@ -14,4 +14,24 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="shadowmapping-light.vs.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="shadowmapping-light-view.fs.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="shadowmapping-light-view.vs.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="shadowmapping-camera.fs.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="shadowmapping-camera.vs.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="shadowmapping-light.fs.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>
