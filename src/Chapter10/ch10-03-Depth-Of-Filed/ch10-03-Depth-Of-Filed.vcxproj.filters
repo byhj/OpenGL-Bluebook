@@ -20,19 +20,19 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="display.vs.glsl">
+    <None Include="render.vert">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="display.fs.glsl">
+    <None Include="render.frag">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="gensat.cs.glsl">
+    <None Include="gensat.comp">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="render.fs.glsl">
+    <None Include="display.vert">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="render.vs.glsl">
+    <None Include="display.frag">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

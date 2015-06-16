@@ -15,17 +15,22 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ssao.fs.glsl">
+    <None Include="ssao.vert">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="ssao.vs.glsl">
+    <None Include="ssao.frag">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="render.fs.glsl">
+    <None Include="render.vert">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="render.vs.glsl">
+    <None Include="render.frag">
       <Filter>Resource Files</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ch12-14-SSAO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

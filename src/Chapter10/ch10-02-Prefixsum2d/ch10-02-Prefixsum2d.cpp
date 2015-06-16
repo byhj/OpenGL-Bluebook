@@ -1,31 +1,8 @@
-/*
- * Copyright ?2012-2013 Graham Sellers
- *
- * Permission is hereby granted, free of charge, to any person obtaining a
- * copy of this software and associated documentation files (the "Software"),
- * to deal in the Software without restriction, including without limitation
- * the rights to use, copy, modify, merge, publish, distribute, sublicense,
- * and/or sell copies of the Software, and to permit persons to whom the
- * Software is furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice (including the next
- * paragraph) shall be included in all copies or substantial portions of the
- * Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
- * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
- * DEALINGS IN THE SOFTWARE.
- */
-
-#include <sb6.h>
-#include <vmath.h>
-
-#include <shader.h>
-#include <sb6ktx.h>
+#include <gl/glew.h>
+#include <sb6/sb6.h>
+#include <sb6/vmath.h>
+#include <sb6/shader.h>
+#include <sb6/ktx.cpp>
 
 #include <cstdio>
 
@@ -47,7 +24,7 @@ static inline float random_float()
     return (res - 1.0f);
 }
 
-class prefixsum2d_app : public sb6::application
+class prefixsum2d_app : public byhj::Application
 {
 public:
     prefixsum2d_app()
@@ -57,37 +34,28 @@ public:
     }
 
 protected:
-    void init()
-    {
-        static const char title[] = "OpenGL SuperBible - 2D Prefix Sum";
-
-        sb6::application::init();
-
-        memcpy(info.title, title, sizeof(title));
-    }
-
-    void startup();
-    void render(double currentTime);
-    void onKey(int key, int action);
-
+    void v_Init();
+    void v_Render();
     void prefix_sum(const float * input, float * output, int elements);
 
     GLuint images[3];
 
-    void load_shaders();
+    void init_shader();
 
     GLuint  prefix_sum_prog;
     GLuint  show_image_prog;
     GLuint  dummy_vao;
+	Shader Prefixsum2dShader;
+	Shader ShowShader;
 };
 
-void prefixsum2d_app::startup()
+void prefixsum2d_app::v_Init()
 {
     int i;
 
     glGenTextures(3, images);
 
-    images[0] = sb6::ktx::file::load("media/textures/salad-gray.ktx");
+    images[0] = sb6::ktx::load("../../../media/textures/salad-gray.ktx");
 
     for (i = 1; i < 3; i++)
     {
@@ -98,11 +66,12 @@ void prefixsum2d_app::startup()
     glGenVertexArrays(1, &dummy_vao);
     glBindVertexArray(dummy_vao);
 
-    load_shaders();
+    init_shader();
 }
 
-void prefixsum2d_app::render(double currentTime)
+void prefixsum2d_app::v_Render()
 {
+	double currentTime = glfwGetTime();
     glUseProgram(prefix_sum_prog);
 
     glBindImageTexture(0, images[0], 0, GL_FALSE, 0, GL_READ_ONLY, GL_R32F);
@@ -126,41 +95,23 @@ void prefixsum2d_app::render(double currentTime)
 
     glUseProgram(show_image_prog);
 
-    glViewport(0, 0, info.windowWidth, info.windowHeight);
+    glViewport(0, 0, GetScreenWidth(), GetScreenHeight());
     glBindVertexArray(dummy_vao);
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
 
-void prefixsum2d_app::onKey(int key, int action)
+
+
+void prefixsum2d_app::init_shader()
 {
-    if (!action)
-        return;
+    Prefixsum2dShader.attach(GL_COMPUTE_SHADER, "prefixsum2d.comp");
+	Prefixsum2dShader.link();
+    prefix_sum_prog = Prefixsum2dShader.GetProgram();
 
-    switch (key)
-    {
-        case 'R':   load_shaders();
-            break;
-    }
-}
-
-void prefixsum2d_app::load_shaders()
-{
-    GLuint cs = sb6::shader::load("media/shaders/prefixsum2d/prefixsum2d.cs.glsl", GL_COMPUTE_SHADER);
-
-    if (prefix_sum_prog)
-        glDeleteProgram(prefix_sum_prog);
-
-    prefix_sum_prog = sb6::program::link_from_shaders(&cs, 1, true);
-
-    struct {
-        GLuint  vs;
-        GLuint  fs;
-    } show_image_shaders;
-
-    show_image_shaders.vs = sb6::shader::load("media/shaders/prefixsum2d/showimage.vs.glsl", GL_VERTEX_SHADER);
-    show_image_shaders.fs = sb6::shader::load("media/shaders/prefixsum2d/showimage.fs.glsl", GL_FRAGMENT_SHADER);
-
-    show_image_prog = sb6::program::link_from_shaders(&show_image_shaders.vs, 2, true);
+	ShowShader.attach(GL_VERTEX_SHADER, "showimage.vert");
+	ShowShader.attach(GL_FRAGMENT_SHADER, "showimage.frag");
+	ShowShader.link();
+    show_image_prog = ShowShader.GetProgram();
 }
 
 void prefixsum2d_app::prefix_sum(const float * input, float * output, int elements)
@@ -175,4 +126,4 @@ void prefixsum2d_app::prefix_sum(const float * input, float * output, int elemen
     }
 }
 
-DECLARE_MAIN(prefixsum2d_app);
+CALL_MAIN(prefixsum2d_app);

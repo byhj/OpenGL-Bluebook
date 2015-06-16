@@ -1,3 +1,4 @@
+#include <gl/glew.h>
 #include <sb6/sb6.h>
 #include <sb6/vmath.h>
 #include <sb6/object.cpp>
@@ -14,25 +15,26 @@ public:
         : light_program(0),
           view_program(0),
           show_light_depth_program(0),
-          mode(RENDER_FULL),
+          mode(RENDER_LIGHT),
           paused(false)
     {
     }
-
+	void v_Init();
+	void v_Render();
+	void v_Keyboard(GLFWwindow * window, int key, int scancode, int action, int mode);
 protected:
 
 
-    void startup();
-    void render(double currentTime);
     void render_scene(double currentTime, bool from_light);
-    void onKey(int key, int action);
+    void init_shader();
 
-    void load_shaders();
 
     GLuint          light_program;
     GLuint          view_program;
     GLint           show_light_depth_program;
-
+	Shader LightShader;
+	Shader ViewShader;
+	Shader ShowShader;
     struct
     {
         struct
@@ -77,9 +79,9 @@ protected:
     bool paused;
 };
 
-void shadowmapping_app::startup()
+void shadowmapping_app::v_Init()
 {
-    load_shaders();
+    init_shader();
 
     int i;
 
@@ -126,8 +128,9 @@ void shadowmapping_app::startup()
     glBindVertexArray(quad_vao);
 }
 
-void shadowmapping_app::render(double currentTime)
+void shadowmapping_app::v_Render()
 {
+	double currentTime = glfwGetTime();
     static const GLfloat zeros[] = { 0.0f, 0.0f, 0.0f, 0.0f };
     
     static double last_time = 0.0;
@@ -256,7 +259,7 @@ void shadowmapping_app::render_scene(double currentTime, bool from_light)
     }
 }
 
-void shadowmapping_app::onKey(int key, int action)
+void shadowmapping_app::v_Keyboard(GLFWwindow * window, int key, int scancode, int action, int mode)
 {
     if (action)
     {
@@ -271,8 +274,6 @@ void shadowmapping_app::onKey(int key, int action)
             case '3':
                 mode = RENDER_DEPTH;
                 break;
-            case 'R': 
-                load_shaders();
                 break;
             case 'P':
                 paused = !paused;
@@ -281,60 +282,28 @@ void shadowmapping_app::onKey(int key, int action)
     }
 }
 
-void shadowmapping_app::load_shaders()
+void shadowmapping_app::init_shader()
 {
-    GLuint vs;
-    GLuint fs;
-
-    vs = sb6::shader::load("media/shaders/shadowmapping/shadowmapping-light.vs.glsl", GL_VERTEX_SHADER);
-    fs = sb6::shader::load("media/shaders/shadowmapping/shadowmapping-light.fs.glsl", GL_FRAGMENT_SHADER);
-
-    if (light_program)
-        glDeleteProgram(light_program);
-
-    light_program = glCreateProgram();
-    glAttachShader(light_program, vs);
-    glAttachShader(light_program, fs);
-    glLinkProgram(light_program);
-
-    glDeleteShader(vs);
-    glDeleteShader(fs);
-
+    LightShader.attach( GL_VERTEX_SHADER, "light.vert");
+    LightShader.attach( GL_FRAGMENT_SHADER, "light.frag");
+	LightShader.link();
+    light_program = LightShader.GetProgram();
     uniforms.light.mvp = glGetUniformLocation(light_program, "mvp");
 
-    vs = sb6::shader::load("media/shaders/shadowmapping/shadowmapping-camera.vs.glsl", GL_VERTEX_SHADER);
-    fs = sb6::shader::load("media/shaders/shadowmapping/shadowmapping-camera.fs.glsl", GL_FRAGMENT_SHADER);
-
-    if (light_program)
-        glDeleteProgram(view_program);
-
-    view_program = glCreateProgram();
-    glAttachShader(view_program, vs);
-    glAttachShader(view_program, fs);
-    glLinkProgram(view_program);
-
-    glDeleteShader(vs);
-    glDeleteShader(fs);
-
+    ViewShader.attach(GL_VERTEX_SHADER, "light-view.vert");
+    ViewShader.attach(GL_FRAGMENT_SHADER, "light-view.frag");
+	ViewShader.link();
+    view_program = ViewShader.GetProgram();
     uniforms.view.proj_matrix = glGetUniformLocation(view_program, "proj_matrix");
     uniforms.view.mv_matrix = glGetUniformLocation(view_program, "mv_matrix");
     uniforms.view.shadow_matrix = glGetUniformLocation(view_program, "shadow_matrix");
     uniforms.view.full_shading = glGetUniformLocation(view_program, "full_shading");
 
-    if (show_light_depth_program)
-        glDeleteProgram(show_light_depth_program);
+    ShowShader.attach( GL_VERTEX_SHADER, "camera.vert");
+    ShowShader.attach( GL_FRAGMENT_SHADER, "camera.frag");
+	ShowShader.link();
+	show_light_depth_program = ShowShader.GetProgram();
 
-    show_light_depth_program = glCreateProgram();
-
-    vs = sb6::shader::load("media/shaders/shadowmapping/shadowmapping-light-view.vs.glsl", GL_VERTEX_SHADER);
-    fs = sb6::shader::load("media/shaders/shadowmapping/shadowmapping-light-view.fs.glsl", GL_FRAGMENT_SHADER);
-
-    glAttachShader(show_light_depth_program, vs);
-    glAttachShader(show_light_depth_program, fs);
-    glLinkProgram(show_light_depth_program);
-
-    glDeleteShader(vs);
-    glDeleteShader(fs);
 }
 
 CALL_MAIN(shadowmapping_app)

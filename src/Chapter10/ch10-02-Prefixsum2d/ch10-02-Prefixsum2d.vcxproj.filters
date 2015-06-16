@@ -20,13 +20,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="showimage.fs.glsl">
+    <None Include="showimage.vert">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="prefixsum2d.cs.glsl">
+    <None Include="showimage.frag">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="showimage.vs.glsl">
+    <None Include="prefixsum2d.comp">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
