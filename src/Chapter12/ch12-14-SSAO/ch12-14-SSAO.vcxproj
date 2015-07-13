@@ -64,10 +64,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="render.fs.glsl" />
-    <None Include="render.vs.glsl" />
-    <None Include="ssao.fs.glsl" />
-    <None Include="ssao.vs.glsl" />
+    <None Include="render.frag" />
+    <None Include="render.vert" />
+    <None Include="ssao.frag" />
+    <None Include="ssao.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ch12-14-SSAO.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -67,9 +67,9 @@
     <ClCompile Include="ch10-04-Flocking.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="flocking.cs.glsl" />
-    <None Include="render.fs.glsl" />
-    <None Include="render.vs.glsl" />
+    <None Include="flocking.comp" />
+    <None Include="render.frag" />
+    <None Include="render.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

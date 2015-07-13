@@ -67,12 +67,12 @@
     <ClCompile Include="ch12-17-Ray-Tracing.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="blit.fs.glsl" />
-    <None Include="blit.vs.glsl" />
-    <None Include="raytracer.fs.glsl" />
-    <None Include="raytracer.vs.glsl" />
-    <None Include="trace-prepare.fs.glsl" />
-    <None Include="trace-prepare.vs.glsl" />
+    <None Include="blit.frag" />
+    <None Include="blit.vert" />
+    <None Include="raytracer.frag" />
+    <None Include="raytracer.vert" />
+    <None Include="trace-prepare.frag" />
+    <None Include="trace-prepare.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

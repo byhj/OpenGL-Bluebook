@@ -1,37 +1,15 @@
-/*
- * Copyright ?2012-2013 Graham Sellers
- *
- * Permission is hereby granted, free of charge, to any person obtaining a
- * copy of this software and associated documentation files (the "Software"),
- * to deal in the Software without restriction, including without limitation
- * the rights to use, copy, modify, merge, publish, distribute, sublicense,
- * and/or sell copies of the Software, and to permit persons to whom the
- * Software is furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice (including the next
- * paragraph) shall be included in all copies or substantial portions of the
- * Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
- * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
- * DEALINGS IN THE SOFTWARE.
- */
+#include <GL/glew.h>
 
-#include <sb6.h>
-#include <vmath.h>
-
-#include <object.h>
-#include <sb6ktx.h>
-#include <shader.h>
+#include <sb6/sb6.h>
+#include <sb6/vmath.h>
+#include <sb6/object.cpp>
+#include <sb6/ktx.cpp>
+#include <sb6/shader.h>
 
 #define FBO_SIZE                2048
 #define FRUSTUM_DEPTH           1000
 
-class shadowmapping_app : public sb6::application
+class shadowmapping_app : public byhj::Application
 {
 public:
     shadowmapping_app()
@@ -45,25 +23,18 @@ public:
     }
 
 protected:
-    void init()
-    {
-        static const char title[] = "OpenGL SuperBible - Depth Of Field";
-
-        sb6::application::init();
-
-        memcpy(info.title, title, sizeof(title));
-    }
-
-    void startup();
-    void render(double currentTime);
+    void v_Init();
+    void v_Render();
     void render_scene(double currentTime);
-    void onKey(int key, int action);
-
-    void load_shaders();
+	void init_shader();
+	void v_Keyboard(GLFWwindow * window, int key, int scancode, int action, int mode);
 
     GLuint          view_program;
     GLuint          filter_program;
     GLuint          display_program;
+	Shader ViewShader;
+	Shader FilterShader;
+	Shader DisplayShader;
 
     struct
     {
@@ -89,7 +60,7 @@ protected:
     enum { OBJECT_COUNT = 5 };
     struct
     {
-        sb6::object     obj;
+        sb6::Object     obj;
         vmath::mat4     model_matrix;
         vmath::vec4     diffuse_albedo;
     } objects[OBJECT_COUNT];
@@ -105,19 +76,19 @@ protected:
     float          focal_depth;
 };
 
-void shadowmapping_app::startup()
+void shadowmapping_app::v_Init()
 {
-    load_shaders();
+    init_shader();
 
     int i;
 
     static const char * const object_names[] =
     {
-        "media/objects/dragon.sbm",
-        "media/objects/sphere.sbm",
-        "media/objects/cube.sbm",
-        "media/objects/cube.sbm",
-        "media/objects/cube.sbm",
+        "../../../media/objects/dragon.sbm",
+        "../../../media/objects/sphere.sbm",
+        "../../../media/objects/cube.sbm",
+        "../../../media/objects/cube.sbm",
+        "../../../media/objects/cube.sbm",
     };
 
     static const vmath::vec4 object_colors[] =
@@ -164,8 +135,9 @@ void shadowmapping_app::startup()
     glBindVertexArray(quad_vao);
 }
 
-void shadowmapping_app::render(double currentTime)
+void shadowmapping_app::v_Render()
 {
+	double currentTime = glfwGetTime();
     static const GLfloat zeros[] = { 0.0f, 0.0f, 0.0f, 0.0f };
     
     static double last_time = 0.0;
@@ -180,7 +152,7 @@ void shadowmapping_app::render(double currentTime)
     vmath::vec3 view_position = vmath::vec3(0.0f, 0.0f, 40.0f);
 
     camera_proj_matrix = vmath::perspective(50.0f,
-                                            (float)info.windowWidth / (float)info.windowHeight,
+                                            GetAspect(),
                                             2.0f,
                                             300.0f);
 
@@ -221,14 +193,14 @@ void shadowmapping_app::render(double currentTime)
     glBindImageTexture(0, color_tex, 0, GL_FALSE, 0, GL_READ_ONLY, GL_RGBA32F);
     glBindImageTexture(1, temp_tex, 0, GL_FALSE, 0, GL_WRITE_ONLY, GL_RGBA32F);
 
-    glDispatchCompute(info.windowHeight, 1, 1);
+    glDispatchCompute(GetScreenHeight(), 1, 1);
 
     glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
 
     glBindImageTexture(0, temp_tex, 0, GL_FALSE, 0, GL_READ_ONLY, GL_RGBA32F);
     glBindImageTexture(1, color_tex, 0, GL_FALSE, 0, GL_WRITE_ONLY, GL_RGBA32F);
 
-    glDispatchCompute(info.windowWidth, 1, 1);
+    glDispatchCompute(GetScreenWidth(), 1, 1);
 
     glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
 
@@ -255,7 +227,7 @@ void shadowmapping_app::render_scene(double currentTime)
     glBindFramebuffer(GL_FRAMEBUFFER, depth_fbo);
 
     glDrawBuffers(1, attachments);
-    glViewport(0, 0, info.windowWidth, info.windowHeight);
+    glViewport(0, 0, GetScreenWidth(), GetScreenHeight());
     glClearBufferfv(GL_COLOR, 0, gray);
     glClearBufferfv(GL_DEPTH, 0, ones);
     glUseProgram(view_program);
@@ -275,7 +247,7 @@ void shadowmapping_app::render_scene(double currentTime)
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
-void shadowmapping_app::onKey(int key, int action)
+void shadowmapping_app::v_Keyboard(GLFWwindow * window, int key, int scancode, int action, int mode)
 {
     if (action)
     {
@@ -293,9 +265,6 @@ void shadowmapping_app::onKey(int key, int action)
             case 'S':
                 focal_depth /= 1.1f;
                 break;
-            case 'R':
-                load_shaders();
-                break;
             case 'P':
                 paused = !paused;
                 break;
@@ -303,40 +272,30 @@ void shadowmapping_app::onKey(int key, int action)
     }
 }
 
-void shadowmapping_app::load_shaders()
+void shadowmapping_app::init_shader()
 {
-    GLuint shaders[4];
 
-    shaders[0] = sb6::shader::load("media/shaders/dof/render.vs.glsl", GL_VERTEX_SHADER);
-    shaders[1] = sb6::shader::load("media/shaders/dof/render.fs.glsl", GL_FRAGMENT_SHADER);
-
-    if (view_program)
-        glDeleteProgram(view_program);
-
-    view_program = sb6::program::link_from_shaders(shaders, 2, true);
+	ViewShader.attach(GL_VERTEX_SHADER, "render.vert");
+	ViewShader.attach(GL_FRAGMENT_SHADER, "render.frag");
+	ViewShader.link();
+    view_program = ViewShader.GetProgram();
 
     uniforms.view.proj_matrix = glGetUniformLocation(view_program, "proj_matrix");
     uniforms.view.mv_matrix = glGetUniformLocation(view_program, "mv_matrix");
     uniforms.view.full_shading = glGetUniformLocation(view_program, "full_shading");
     uniforms.view.diffuse_albedo = glGetUniformLocation(view_program, "diffuse_albedo");
 
-    shaders[0] = sb6::shader::load("media/shaders/dof/display.vs.glsl", GL_VERTEX_SHADER);
-    shaders[1] = sb6::shader::load("media/shaders/dof/display.fs.glsl", GL_FRAGMENT_SHADER);
-
-    if (display_program)
-        glDeleteProgram(display_program);
-
-    display_program = sb6::program::link_from_shaders(shaders, 2, true);
+    DisplayShader.attach( GL_VERTEX_SHADER, "display.vert");
+    DisplayShader.attach( GL_FRAGMENT_SHADER, "display.frag");
+	DisplayShader.link();
+    display_program = DisplayShader.GetProgram();
 
     uniforms.dof.focal_distance = glGetUniformLocation(display_program, "focal_distance");
     uniforms.dof.focal_depth = glGetUniformLocation(display_program, "focal_depth");
 
-    shaders[0] = sb6::shader::load("media/shaders/dof/gensat.cs.glsl", GL_COMPUTE_SHADER);
-
-    if (filter_program)
-        glDeleteProgram(filter_program);
-
-    filter_program = sb6::program::link_from_shaders(shaders, 1, true);
+    FilterShader.attach( GL_COMPUTE_SHADER, "gensat.comp");
+	FilterShader.link();
+    filter_program = FilterShader.GetProgram();
 }
 
-DECLARE_MAIN(shadowmapping_app)
+CALL_MAIN(shadowmapping_app)

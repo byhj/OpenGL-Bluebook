@@ -1,58 +1,9 @@
-/*
- * Copyright ?2012-2013 Graham Sellers
- *
- * Permission is hereby granted, free of charge, to any person obtaining a
- * copy of this software and associated documentation files (the "Software"),
- * to deal in the Software without restriction, including without limitation
- * the rights to use, copy, modify, merge, publish, distribute, sublicense,
- * and/or sell copies of the Software, and to permit persons to whom the
- * Software is furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice (including the next
- * paragraph) shall be included in all copies or substantial portions of the
- * Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
- * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
- * DEALINGS IN THE SOFTWARE.
- */
-
-#include <sb6.h>
-#include <vmath.h>
-#include <shader.h>
+#include <GL/glew.h>
+#include <sb6/sb6.h>
+#include <sb6/vmath.h>
+#include <sb6/shader.h>
 
 #include <string>
-static void print_shader_log(GLuint shader)
-{
-    std::string str;
-    GLint len;
-
-    glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &len);
-    str.resize(len);
-    glGetShaderInfoLog(shader, len, NULL, &str[0]);
-
-#ifdef _WIN32
-    OutputDebugStringA(str.c_str());
-#endif
-}
-
-static void print_program_log(GLuint program)
-{
-    std::string str;
-    GLint len;
-
-    glGetProgramiv(program, GL_INFO_LOG_LENGTH, &len);
-    str.resize(len);
-    glGetProgramInfoLog(program, len, NULL, &str[0]);
-
-#ifdef _WIN32
-    OutputDebugStringA(str.c_str());
-#endif
-}
 
 enum
 {
@@ -61,7 +12,7 @@ enum
     FLOCK_SIZE      = (NUM_WORKGROUPS * WORKGROUP_SIZE)
 };
 
-class csflocking_app : public sb6::application
+class csflocking_app : public byhj::Application
 {
 public:
     csflocking_app()
@@ -72,16 +23,8 @@ public:
 
     }
 
-    void init()
-    {
-        static const char title[] = "OpenGL SuperBible - Compute Shader Flocking";
 
-        sb6::application::init();
-
-        memcpy(info.title, title, sizeof(title));
-    }
-
-    virtual void startup()
+   void v_Init()
     {
         // This is position and normal data for a paper airplane
         static const vmath::vec3 geometry[] =
@@ -107,7 +50,7 @@ public:
             vmath::vec3(0.124f, 0.992f, 0.00f),
         };
 
-        load_shaders();
+        init_shader();
 
         glGenBuffers(2, flock_buffer);
         glBindBuffer(GL_SHADER_STORAGE_BUFFER, flock_buffer[0]);
@@ -157,9 +100,9 @@ public:
         glDepthFunc(GL_LEQUAL);
     }
 
-    void render(double T)
+    void v_Render()
     {
-        float t = (float)T;
+        float t = (float)glfwGetTime();
         static const float black[] = { 0.0f, 0.0f, 0.0f, 1.0f };
         static const float one = 1.0f;
 
@@ -178,7 +121,7 @@ public:
 
         glDispatchCompute(NUM_WORKGROUPS, 1, 1);
 
-        glViewport(0, 0, info.windowWidth, info.windowHeight);
+        glViewport(0, 0, GetScreenWidth(), GetScreenHeight());
         glClearBufferfv(GL_COLOR, 0, black);
         glClearBufferfv(GL_DEPTH, 0, &one);
 
@@ -188,7 +131,7 @@ public:
                                               vmath::vec3(0.0f, 0.0f, 0.0f),
                                               vmath::vec3(0.0f, 1.0f, 0.0f));
         vmath::mat4 proj_matrix = vmath::perspective(60.0f,
-                                                     (float)info.windowWidth / (float)info.windowHeight,
+                                                     GetAspect(),
                                                      0.1f,
                                                      3000.0f);
         vmath::mat4 mvp = proj_matrix * mv_matrix;
@@ -202,7 +145,7 @@ public:
         frame_index ^= 1;
     }
 
-    void load_shaders()
+    void init_shader()
     {
         if (flock_update_program)
             glDeleteProgram(flock_update_program);
@@ -210,43 +153,26 @@ public:
         if (flock_render_program)
             glDeleteProgram(flock_render_program);
 
-        struct {
-            GLuint vs;
-            GLuint fs;
-            GLuint cs;
-        } shaders;
-
-        shaders.cs = sb6::shader::load("media/shaders/flocking/flocking.cs.glsl", GL_COMPUTE_SHADER);
-
-        flock_update_program = sb6::program::link_from_shaders(&shaders.cs, 1, true);
+        UpdateShader.attach( GL_COMPUTE_SHADER, "flocking.comp");
+		UpdateShader.link();
+        flock_update_program = UpdateShader.GetProgram();
 
         uniforms.update.goal = glGetUniformLocation(flock_update_program, "goal");
 
-        shaders.vs = sb6::shader::load("media/shaders/flocking/render.vs.glsl", GL_VERTEX_SHADER);
-        shaders.fs = sb6::shader::load("media/shaders/flocking/render.fs.glsl", GL_FRAGMENT_SHADER);
-
-        flock_render_program = sb6::program::link_from_shaders(&shaders.vs, 2, true);
+		RenderShader.attach( GL_VERTEX_SHADER, "render.vert");
+		RenderShader.attach( GL_FRAGMENT_SHADER, "render.frag");
+		RenderShader.link();
+        flock_render_program = RenderShader.GetProgram();
 
         uniforms.render.mvp = glGetUniformLocation(flock_render_program, "mvp");
     }
 
-    void onKey(int key, int action)
-    {
-        if (action)
-        {
-            switch (key)
-            {
-                case 'R': 
-                    load_shaders();
-                    break;
-            }
-        }
-    }
 
 private:
     GLuint      flock_update_program;
     GLuint      flock_render_program;
-
+	Shader RenderShader;
+	Shader UpdateShader;
     GLuint      flock_buffer[2];
 
     GLuint      flock_render_vao[2];
@@ -275,4 +201,4 @@ private:
     GLuint      frame_index;
 };
 
-DECLARE_MAIN(csflocking_app)
+CALL_MAIN(csflocking_app)

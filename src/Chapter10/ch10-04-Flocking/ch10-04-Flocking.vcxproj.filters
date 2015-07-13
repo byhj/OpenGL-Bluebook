@@ -20,13 +20,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="render.fs.glsl">
+    <None Include="render.vert">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="render.vs.glsl">
+    <None Include="render.frag">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="flocking.cs.glsl">
+    <None Include="flocking.comp">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

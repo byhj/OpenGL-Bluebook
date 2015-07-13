@@ -20,22 +20,22 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="trace-prepare.vs.glsl">
+    <None Include="trace-prepare.vert">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="blit.fs.glsl">
+    <None Include="trace-prepare.frag">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="blit.vs.glsl">
+    <None Include="raytracer.vert">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="raytracer.fs.glsl">
+    <None Include="raytracer.frag">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="raytracer.vs.glsl">
+    <None Include="blit.vert">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="trace-prepare.fs.glsl">
+    <None Include="blit.frag">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

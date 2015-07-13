@@ -67,11 +67,11 @@
     <ClCompile Include="ch10-03-Depth-of-Filed.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="display.fs.glsl" />
-    <None Include="display.vs.glsl" />
-    <None Include="gensat.cs.glsl" />
-    <None Include="render.fs.glsl" />
-    <None Include="render.vs.glsl" />
+    <None Include="display.frag" />
+    <None Include="display.vert" />
+    <None Include="gensat.comp" />
+    <None Include="render.frag" />
+    <None Include="render.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

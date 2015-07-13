@@ -1,31 +1,7 @@
-/*
- * Copyright ?2012-2013 Graham Sellers
- *
- * Permission is hereby granted, free of charge, to any person obtaining a
- * copy of this software and associated documentation files (the "Software"),
- * to deal in the Software without restriction, including without limitation
- * the rights to use, copy, modify, merge, publish, distribute, sublicense,
- * and/or sell copies of the Software, and to permit persons to whom the
- * Software is furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice (including the next
- * paragraph) shall be included in all copies or substantial portions of the
- * Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
- * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
- * DEALINGS IN THE SOFTWARE.
- */
-
-#include <sb6.h>
-#include <vmath.h>
-
-#include <shader.h>
-
+#include <GL/glew.h>
+#include <sb6/sb6.h>
+#include <sb6/vmath.h>
+#include <sb6/shader.h>
 #include <cstdio>
 
 #define NUM_ELEMENTS 2048
@@ -46,7 +22,7 @@ static inline float random_float()
     return (res - 1.0f);
 }
 
-class prefixsum_app : public sb6::application
+class prefixsum_app : public byhj::Application
 {
 public:
     prefixsum_app()
@@ -56,18 +32,8 @@ public:
     }
 
 protected:
-    void init()
-    {
-        static const char title[] = "OpenGL SuperBible - 1D Prefix Sum";
-
-        sb6::application::init();
-
-        memcpy(info.title, title, sizeof(title));
-    }
-
-    void startup();
-    void render(double currentTime);
-    void onKey(int key, int action);
+    void v_Init();
+    void v_Render();
 
     void prefix_sum(const float * input, float * output, int elements);
 
@@ -76,12 +42,12 @@ protected:
     float input_data[NUM_ELEMENTS];
     float output_data[NUM_ELEMENTS];
 
-    void load_shaders();
-
+    void init_shader();
+    Shader PrefixsumShader;
     GLuint  prefix_sum_prog;
 };
 
-void prefixsum_app::startup()
+void prefixsum_app::v_Init()
 {
     glGenBuffers(2, data_buffer);
 
@@ -100,13 +66,13 @@ void prefixsum_app::startup()
 
     prefix_sum(input_data, output_data, NUM_ELEMENTS);
 
-    load_shaders();
+   init_shader();
 }
 
-void prefixsum_app::render(double currentTime)
+void prefixsum_app::v_Render()
 {
     float * ptr;
-
+	double currentTime = glfwGetTime();
     glBindBufferRange(GL_SHADER_STORAGE_BUFFER, 0, data_buffer[0], 0, sizeof(float) * NUM_ELEMENTS);
     glBufferSubData(GL_SHADER_STORAGE_BUFFER, 0, sizeof(float) * NUM_ELEMENTS, input_data);
 
@@ -133,26 +99,12 @@ void prefixsum_app::render(double currentTime)
 //    Sleep(500);
 }
 
-void prefixsum_app::onKey(int key, int action)
+
+void prefixsum_app::init_shader()
 {
-    if (!action)
-        return;
-
-    switch (key)
-    {
-        case 'R':   load_shaders();
-            break;
-    }
-}
-
-void prefixsum_app::load_shaders()
-{
-    GLuint cs = sb6::shader::load("media/shaders/prefixsum/prefixsum.cs.glsl", GL_COMPUTE_SHADER);
-
-    if (prefix_sum_prog)
-        glDeleteProgram(prefix_sum_prog);
-
-    prefix_sum_prog = sb6::program::link_from_shaders(&cs, 1, true);
+    PrefixsumShader.attach(GL_COMPUTE_SHADER, "prefixsum.comp");
+	PrefixsumShader.link();
+    prefix_sum_prog = PrefixsumShader.GetProgram();
     /*
     prefix_sum_prog = glCreateProgram();
     glAttachShader(prefix_sum_prog, cs);
@@ -179,4 +131,4 @@ void prefixsum_app::prefix_sum(const float * input, float * output, int elements
     }
 }
 
-DECLARE_MAIN(prefixsum_app);
+CALL_MAIN(prefixsum_app);
