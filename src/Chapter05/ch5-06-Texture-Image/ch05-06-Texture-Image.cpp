@@ -1,11 +1,11 @@
 #include <GL/glew.h>
-#include <sb6/sb6.h>
-#include <sb6/shader.h>
-#include <sb6/ktx.cpp>
-#include <sb6/object.cpp>
+#include "ogl/oglApp.h"
+#include <ogl/shader.h>
+#include <ogl/ktx.cpp>
+#include <ogl/object.cpp>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include <sb6/glDebug.h>
+#include <ogl/glDebug.h>
 
 class TriangleApp: public byhj::Application
 {

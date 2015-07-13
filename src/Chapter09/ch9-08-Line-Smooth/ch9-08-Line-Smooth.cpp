@@ -1,7 +1,7 @@
 #include <GL/glew.h>
 #include <gl/glfw3.h>
-#include <sb6/sb6.h>
-#include <sb6/shader.h>
+#include "ogl/oglApp.h"
+#include <ogl/shader.h>
 
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>

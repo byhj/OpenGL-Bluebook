@@ -4,10 +4,10 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-#include <sb6/sb6.h>
-#include <sb6/object.cpp>
-#include <sb6/ktx.cpp>
-#include <sb6/shader.h>
+#include "ogl/oglApp.h"
+#include <ogl/object.cpp>
+#include <ogl/ktx.cpp>
+#include <ogl/shader.h>
 
 #define DEPTH_TEXTURE_SIZE      4096
 #define FRUSTUM_DEPTH           1000

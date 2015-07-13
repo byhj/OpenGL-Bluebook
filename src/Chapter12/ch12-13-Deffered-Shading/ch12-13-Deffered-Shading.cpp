@@ -1,9 +1,9 @@
 #include <gl/glew.h>
-#include <sb6/sb6.h>
-#include <sb6/vmath.h>
-#include <sb6/object.cpp>
-#include <sb6/shader.h>
-#include <sb6/ktx.cpp>
+#include "ogl/oglApp.h"
+#include <ogl/vmath.h>
+#include <ogl/object.cpp>
+#include <ogl/shader.h>
+#include <ogl/ktx.cpp>
 
 enum
 {

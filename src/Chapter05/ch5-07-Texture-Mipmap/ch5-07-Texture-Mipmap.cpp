@@ -2,11 +2,11 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-#include <sb6/sb6.h>
-#include <sb6/shader.h>
-#include <sb6/object.cpp>
-#include <sb6/ktx.cpp>
-#include <sb6/vmath.h>
+#include "ogl/oglApp.h"
+#include <ogl/shader.h>
+#include <ogl/object.cpp>
+#include <ogl/ktx.cpp>
+#include <ogl/vmath.h>
 
 
 class Texture :public byhj::Application

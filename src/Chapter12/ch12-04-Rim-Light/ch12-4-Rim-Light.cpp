@@ -1,7 +1,7 @@
 #include <gl/glew.h>
-#include <sb6/sb6.h>
-#include <sb6/object.cpp>
-#include <sb6/shader.h>
+#include "ogl/oglApp.h"
+#include <ogl/object.cpp>
+#include <ogl/shader.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 

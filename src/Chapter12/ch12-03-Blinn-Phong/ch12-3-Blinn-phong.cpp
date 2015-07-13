@@ -1,9 +1,9 @@
 #include <gl/glew.h>
-#include <sb6/sb6.h>
-#include <sb6/object.cpp>
+#include "ogl/oglApp.h"
+#include <ogl/object.cpp>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include <sb6/shader.h>
+#include <ogl/shader.h>
 
 
 class Blinn: public byhj::Application

@@ -1,6 +1,6 @@
 #include <GL/glew.h>
-#include <sb6/sb6.h>
-#include <sb6/shader.h>
+#include "ogl/oglApp.h"
+#include <ogl/shader.h>
 
 class InstanceQuadApp:  public byhj::Application
 {

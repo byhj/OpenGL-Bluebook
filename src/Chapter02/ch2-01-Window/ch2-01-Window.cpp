@@ -1,5 +1,5 @@
 #include <GL/glew.h>
-#include <sb6/sb6.h>
+#include "ogl/oglApp.h"
 
 class WindowApp: public byhj::Application
 {

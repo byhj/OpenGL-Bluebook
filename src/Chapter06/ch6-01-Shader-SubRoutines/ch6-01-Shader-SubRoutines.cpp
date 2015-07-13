@@ -1,6 +1,6 @@
 #include <gl/glew.h>
-#include <sb6/shader.h>
-#include <sb6/sb6.h>
+#include <ogl/shader.h>
+#include "ogl/oglApp.h"
 
 class Subroutine: public byhj::Application
 {

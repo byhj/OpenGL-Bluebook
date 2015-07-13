@@ -1,6 +1,6 @@
 #include <GL/glew.h>
-#include <sb6/shader.h>
-#include <sb6/sb6.h>
+#include <ogl/shader.h>
+#include "ogl/oglApp.h"
 
 Shader shader("test");
 

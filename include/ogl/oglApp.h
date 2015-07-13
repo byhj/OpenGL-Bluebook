@@ -41,7 +41,9 @@ namespace byhj {
 
 			v_InitWindowInfo();
 
-			GLFWwindow *window = glfwCreateWindow(windowInfo.Width, windowInfo.Height, windowInfo.title.c_str(), nullptr, nullptr);
+			GLFWwindow *window = glfwCreateWindow(windowInfo.Width, windowInfo.Height, 
+				                                  windowInfo.title.c_str(), nullptr, nullptr);
+
 			glfwSetWindowPos(window, windowInfo.posX, windowInfo.posY);
 			glfwMakeContextCurrent(window);
 
@@ -73,7 +75,8 @@ namespace byhj {
 			std::cout << "GL Version (std::string)  : " << version << std::endl;  
 			std::cout << "GL Version (integer) : " << major << "." << minor << std::endl;  
 			std::cout << "GLSL Version : " << glslVersion << std::endl;    
-			std::cout << "------------------------------------------------------------------------------" << std::endl;
+			std::cout << "------------------------------------------------------------------------------"
+				      << std::endl;
 			glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, major); //opengl 4.3
 			glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, minor);
 			glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); //using opengl core file
