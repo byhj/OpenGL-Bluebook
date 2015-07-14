@@ -1,8 +1,8 @@
 #include <GL/glew.h>
 #include "ogl/oglApp.h"
 #include "ogl/shader.h"
-#include <ogl/ktx.cpp>
-#include <ogl/glDebug.h>
+#include "ogl/ktx.cpp"
+#include "ogl/glDebug.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -24,7 +24,8 @@ static inline float random_float()
 class TextureArrayApp: public byhj::Application
 {
 public:
-	TextureArrayApp(){}
+	TextureArrayApp():TextureArrayShader("TextureArray Shader")
+	{}
 	~TextureArrayApp(){}
 
 	void init_buffer();

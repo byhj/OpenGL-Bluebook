@@ -1,6 +1,6 @@
 #include "ogl/shader.h"
 #include "ogl/oglApp.h"
-#include <ogl/object.cpp>
+#include "ogl/object.cpp"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>

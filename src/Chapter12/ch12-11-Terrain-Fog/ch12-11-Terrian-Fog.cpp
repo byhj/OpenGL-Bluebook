@@ -1,10 +1,10 @@
 #include <GL/glew.h>
 #include "ogl/shader.h"
 #include "ogl/oglApp.h"
-#include <ogl/ktx.cpp>
+#include "ogl/ktx.cpp"
 #include <iostream>
 #include <vector> 
-#include <ogl/vmath.h>
+#include "ogl/vmath.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>

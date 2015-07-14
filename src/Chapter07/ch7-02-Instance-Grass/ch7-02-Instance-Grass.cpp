@@ -1,8 +1,8 @@
 #include <GL/glew.h>
 #include "ogl/oglApp.h"
 #include "ogl/shader.h"
-#include <ogl/ktx.cpp>
-#include <ogl/vmath.h>
+#include "ogl/ktx.cpp"
+#include "ogl/vmath.h"
 
 class GrassApp: public byhj::Application
 {

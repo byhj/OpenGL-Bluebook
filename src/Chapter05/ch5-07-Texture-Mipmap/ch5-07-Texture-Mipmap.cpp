@@ -4,9 +4,9 @@
 
 #include "ogl/oglApp.h"
 #include "ogl/shader.h"
-#include <ogl/object.cpp>
-#include <ogl/ktx.cpp>
-#include <ogl/vmath.h>
+#include "ogl/object.cpp"
+#include "ogl/ktx.cpp"
+#include "ogl/vmath.h"
 
 
 class Texture :public byhj::Application

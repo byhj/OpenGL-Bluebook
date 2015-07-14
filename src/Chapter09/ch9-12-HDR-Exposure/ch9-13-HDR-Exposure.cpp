@@ -1,7 +1,7 @@
 #include <gl/glew.h>
 #include "ogl/oglApp.h"
 #include "ogl/shader.h"
-#include <ogl/ktx.cpp>
+#include "ogl/ktx.cpp"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 

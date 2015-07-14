@@ -5,8 +5,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 #include "ogl/oglApp.h"
-#include <ogl/object.cpp>
-#include <ogl/ktx.cpp>
+#include "ogl/object.cpp"
+#include "ogl/ktx.cpp"
 #include "ogl/shader.h"
 
 #define DEPTH_TEXTURE_SIZE      4096

@@ -3,13 +3,13 @@
 #include "ogl/shader.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include <ogl/object.cpp>
-#include <ogl/ktx.cpp>
+#include "ogl/object.cpp"
+#include "ogl/ktx.cpp"
 
 class Texture :public byhj::Application
 {
 public:
-	Texture():TextureShader("Texture shader"), program(0)
+	Texture():TextureShader("TextureWarp shader"), program(0)
 	{
 	}
 	~Texture(){}

@@ -1,9 +1,9 @@
 #include <gl/glew.h>
 
 #include "ogl/oglApp.h"
-#include <ogl/vmath.h>
-#include <ogl/object.cpp>
-#include <ogl/ktx.cpp>
+#include "ogl/vmath.h"
+#include "ogl/object.cpp"
+#include "ogl/ktx.cpp"
 #include "ogl/shader.h"
 
 class fragmentlist_app : public byhj::Application
@@ -12,7 +12,10 @@ public:
     fragmentlist_app()
         : clear_program(0),
           append_program(0),
-          resolve_program(0)
+          resolve_program(0),
+		  ClearShader("Clear Shader"),
+		  AppendShader("Append Shader"),
+		  ResolveShader("Resolve Shader")
     {
     }
 
@@ -106,6 +109,7 @@ void fragmentlist_app::v_Render()
     glBindVertexArray(dummy_vao);
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
+///////////////////////////////////////////////////////////////////////////////
     glUseProgram(append_program);
 
     vmath::mat4 model_matrix = vmath::scale(7.0f);
@@ -136,8 +140,8 @@ void fragmentlist_app::v_Render()
 
     glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT | GL_ATOMIC_COUNTER_BARRIER_BIT | GL_SHADER_STORAGE_BARRIER_BIT);
 
-    glUseProgram(resolve_program);
-
+   ///////////////////////////////////////////////////////////////////////////////////////////
+	glUseProgram(resolve_program);
     glBindVertexArray(dummy_vao);
 
     glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT | GL_ATOMIC_COUNTER_BARRIER_BIT | GL_SHADER_STORAGE_BARRIER_BIT);
@@ -159,7 +163,6 @@ void fragmentlist_app::init_shader()
     AppendShader.attach( GL_FRAGMENT_SHADER, "append.frag");
 	AppendShader.link();
     append_program = AppendShader.GetProgram();
-
     uniforms.mvp = glGetUniformLocation(append_program, "mvp");
 
     ResolveShader.attach( GL_VERTEX_SHADER, "resolve.vert");

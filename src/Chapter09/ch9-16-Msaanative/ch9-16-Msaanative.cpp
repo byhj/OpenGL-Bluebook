@@ -1,6 +1,6 @@
 #include "ogl/shader.h"
 #include "ogl/oglApp.h"
-#include <ogl/vmath.h>
+#include "ogl/vmath.h"
 
 class msaanative_app : public byhj::Application
 {

@@ -1,21 +1,21 @@
 
-#include <sb6.h>
-#include <vmath.h>
-#include <shader.h>
+#include "ogl/oglApp.h"
+#include "ogl/vmath.h"
+#include "ogl/shader.h"
 
 #include <cstdio>
 
 #define NUM_PASSES 200
 #define NUM_CUBES 256
 
-class multimaterial_app : public sb6::application
+class multimaterial_app : public byhj::Application
 {
 public:
-    multimaterial_app()
-        : mode(BIG_UBO_INDIRECT),
-          draw_triangles(true),
-          paused(false)
-    {
+	multimaterial_app()
+		: mode(BIG_UBO_INDIRECT),
+		draw_triangles(true),
+		paused(false)
+	{
 
     }
 

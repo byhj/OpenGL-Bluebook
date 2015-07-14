@@ -1,8 +1,8 @@
 #include <GL/glew.h>
 #include "ogl/oglApp.h"
-#include <ogl/ktx.cpp>
+#include "ogl/ktx.cpp"
 #include "ogl/shader.h"
-#include <ogl/glDebug.h>
+#include "ogl/glDebug.h"
 
 class simpletexture_app : public byhj::Application
 {
@@ -10,12 +10,8 @@ public:
     void v_Init()
     {
 		init_shader();
-		// Generate a name for the texture
-		glGenTextures(1, &texture);
-		// Load texture from file
-		sb6::ktx::load("../../../media/textures/tree.ktx", texture);
-		glBindTexture(GL_TEXTURE_2D, texture);
-		
+		init_texture();
+
     }
 
     void v_Shutdown(void)
@@ -27,23 +23,28 @@ public:
 
     void v_Render()
     {
-		float t = glfwGetTime();
-        static const GLfloat green[] = { 0.0f, 0.25f, 0.0f, 1.0f };
-        glClearBufferfv(GL_COLOR, 0, green);
+		glUseProgram(program);
 
-        glUseProgram(program);
+		float t = glfwGetTime();
+        static const GLfloat bgColor[] = { 0.2f, 0.3f, 0.4f, 1.0f };
+        glClearBufferfv(GL_COLOR, 0, bgColor);
+
 		glBindTexture(GL_TEXTURE_2D, texture);
-        glViewport(0, 0, GetScreenWidth(), GetScreenHeight());
-        glUniform1f(0, (float)(sin(t) * 16.0 + 16.0));
-        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+		glUniform1f(exposure_loc, (float)(sin(t) * 16.0 + 16.0));
+
+		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+
+		glUseProgram(0);
     }
 
 private:
 	void init_shader();
+	void init_texture();
 
     GLuint      texture;
     GLuint      program;
     GLuint      vao;
+	GLuint      exposure_loc;
 	Shader      KtxShader;
 };
 
@@ -56,4 +57,12 @@ void simpletexture_app::init_shader()
 	KtxShader.attach(GL_FRAGMENT_SHADER, "ktx.frag");
 	KtxShader.link();
 	program = KtxShader.GetProgram();
+    exposure_loc = glGetUniformLocation(program, "exposure");
+}
+
+void simpletexture_app::init_texture()
+{
+	glGenTextures(1, &texture);
+	sb6::ktx::load("../../../media/textures/tree.ktx", texture);
+	glBindTexture(GL_TEXTURE_2D, 0);
 }

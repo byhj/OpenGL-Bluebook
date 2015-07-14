@@ -3,10 +3,10 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
-#include <ogl/vmath.h>
+#include "ogl/vmath.h"
 #include "ogl/shader.h"
-#include <ogl/ktx.cpp>
-#include <ogl/object.cpp>
+#include "ogl/ktx.cpp"
+#include "ogl/object.cpp"
 
 class Bloom: public byhj::Application
 {

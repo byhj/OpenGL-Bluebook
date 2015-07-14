@@ -1,8 +1,8 @@
 #include <gl/glew.h>
 #include "ogl/shader.h"
 #include "ogl/oglApp.h"
-#include <ogl/object.cpp>
-#include <ogl/vmath.h>
+#include "ogl/object.cpp"
+#include "ogl/vmath.h"
 
 class NormalApp: public byhj::Application
 {

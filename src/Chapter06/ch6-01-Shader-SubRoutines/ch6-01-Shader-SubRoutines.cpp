@@ -5,7 +5,7 @@
 class Subroutine: public byhj::Application
 {
 public:
-	Subroutine():program(0), subShader("Subroutine") {};
+	Subroutine():program(0), subShader("Subroutine Shader") {};
 	~Subroutine(){}
 public:
 	void v_Init();

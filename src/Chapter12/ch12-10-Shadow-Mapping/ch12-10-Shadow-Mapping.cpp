@@ -1,8 +1,8 @@
 <<<<<<< HEAD
 #include "ogl/oglApp.h"
-#include <ogl/vmath.h>
-#include <ogl/object.cpp>
-#include <ogl/ktx.cpp>
+#include "ogl/vmath.h"
+#include "ogl/object.cpp"
+#include "ogl/ktx.cpp"
 #include "ogl/shader.h"
 =======
 #include <gl/glew.h>

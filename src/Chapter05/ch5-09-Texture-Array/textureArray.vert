@@ -33,7 +33,7 @@ void main(void)
     vs_out.tc = Position[gl_VertexID].xy + vec2(0.5f);
 	vs_out.alien = alien_index % 64;
 
-	//Create a rotate matrix
+	//Create a rotate Y axis matrix
     float co = cos(droplet[alien_index].orientation);                  
     float so = sin(droplet[alien_index].orientation);                  
     mat2 rot = mat2(vec2(co, so), vec2(-so, co)); 
