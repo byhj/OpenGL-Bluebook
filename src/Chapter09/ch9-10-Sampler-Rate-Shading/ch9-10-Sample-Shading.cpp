@@ -1,23 +1,26 @@
 #include <GL/glew.h>
-#include <gl/glfw3.h>
-#include <sb6.h>
+
+#include "ogl/oglApp.h"
+#include "ogl/shader.h"
+
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include <shader.h>
 
-class Sample: public sb6::Application
+
+class Sample: public byhj::Application
 {
 public:
-	void init();
-	void render();
+	void v_Init();
+	void v_Render();
 private:
 	 GLuint VBO, IBO;   
      GLuint VAO;
      Shader cubeShader;
      GLuint mvp_matrix_loc;
 };
-DECLARE_MAIN(Sample);
+
+CALL_MAIN(Sample);
 
 static const GLushort vertex_indices[] =
 {
@@ -47,13 +50,13 @@ static const GLfloat vertex_positions[] =
             -0.25f,  0.25f,  0.25f,
 };
 
-void Sample::init(void)
+void Sample::v_Init(void)
 {
 	cubeShader.attach(GL_VERTEX_SHADER, "cube.vert");
 	cubeShader.attach(GL_FRAGMENT_SHADER, "cube.frag");
 	cubeShader.link();
 	cubeShader.use();
-	mvp_matrix_loc = glGetUniformLocation(cubeShader.program, "mvp_matrix");
+	mvp_matrix_loc = glGetUniformLocation(cubeShader.GetProgram(), "mvp_matrix");
     
 	glGenVertexArrays(1, &VAO);
     glBindVertexArray(VAO);
@@ -73,7 +76,7 @@ void Sample::init(void)
 
 bool sample_shading = true;
 
-void Sample::render()
+void Sample::v_Render()
 {
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
         static const GLfloat black[] = { 0.0f, 0.0f, 0.0f, 1.0f };

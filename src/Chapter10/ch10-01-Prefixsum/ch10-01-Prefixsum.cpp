@@ -1,7 +1,10 @@
 #include <GL/glew.h>
-#include <sb6/sb6.h>
-#include <sb6/vmath.h>
-#include <sb6/shader.h>
+
+#include "ogl/oglApp.h"
+#include "ogl/vmath.h"
+#include "ogl/shader.h"
+#include "ogl/glDebug.h"
+
 #include <cstdio>
 
 #define NUM_ELEMENTS 2048

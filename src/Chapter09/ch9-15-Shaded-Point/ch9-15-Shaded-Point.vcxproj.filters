@@ -23,7 +23,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="D:\OpenGL\OpenGL-Bluebook\ch9-16-Shaded-Point\ch9-15-Shaped-Point.cpp">
+    <ClCompile Include="ch9-shapedPoints.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

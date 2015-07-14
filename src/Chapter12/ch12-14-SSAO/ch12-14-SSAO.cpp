@@ -1,8 +1,8 @@
 #include <gl/glew.h>
-#include <sb6/sb6.h>
-#include <sb6/shader.h>
-#include <sb6/object.cpp>
-#include <sb6/vmath.h>
+#include "ogl/oglApp.h"
+#include "ogl/shader.h"
+#include "ogl/object.cpp"
+#include "ogl/vmath.h"
 
 // Random number generator
 static unsigned int seed = 0x13371337;

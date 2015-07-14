@@ -26,6 +26,7 @@ void main(void)
         p1 /= p1.w;
         p2 /= p2.w;
         p3 /= p3.w;
+
         if (p0.z <= 0.0 ||
             p1.z <= 0.0 ||
             p2.z <= 0.0 ||

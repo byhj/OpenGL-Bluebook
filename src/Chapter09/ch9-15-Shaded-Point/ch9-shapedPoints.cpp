@@ -1,21 +1,23 @@
 #include <GL/glew.h>
-#include <gl/glfw3.h>
-#include <sb6.h>
+
+#include "ogl/oglApp.h"
+#include "ogl/shader.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
-#include <shader.h>
 
-class Shape: public sb6::Application
+
+class Shape: public byhj::Application
 {
 public:
 	void init_shader();
-	void init();
-	void render();
+	void v_Init();
+	void v_Render();
+
 private:
    Shader shapeShader;
 };
 
-DECLARE_MAIN(Shape);
+CALL_MAIN(Shape);
 
 void Shape::init_shader(void)
 {
@@ -25,12 +27,13 @@ void Shape::init_shader(void)
 	shapeShader.link();
 	shapeShader.use();
 }
-void Shape::init()
+
+void Shape::v_Init()
 {
 	init_shader();
 }
 
-void Shape::render(void)
+void Shape::v_Render(void)
 {
 	static const GLfloat black[] = { 0.0f, 0.0f, 0.0f, 0.0f };
     static const GLfloat one[] = { 1.0f };
@@ -38,7 +41,6 @@ void Shape::render(void)
 	glClearBufferfv(GL_DEPTH, 0, one);
 
 	glViewport(0, 0, 1300, 900);
-	shapeShader.use();
 	glEnable(GL_POINT_SPRITE);
 	glEnable(GL_PROGRAM_POINT_SIZE);
     glPointSize(200.0f);

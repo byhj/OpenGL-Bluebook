@@ -20,7 +20,8 @@ void main()
    vec3 lightDir = normalize(LightPos - vPosition);
 
    //add the diffuse intensity
-   vs_out.color = vec4(0.7, 0.6, 1.0, 1.0) * abs(dot(EyeNormal, lightDir));
+  // vs_out.color = vec4(0.7, 0.6, 1.0, 1.0) * abs(dot(EyeNormal, lightDir));
+   vs_out.color = vec4(0.7, 0.6, 1.0, 1.0) * vec4( abs(EyeNormal.z) );
    vs_out.normal = normal;
 
    gl_Position = position;

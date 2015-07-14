@@ -1,10 +1,12 @@
 #include <GL/glew.h>
+
 #include "ogl/shader.h"
 #include "ogl/oglApp.h"
 #include "ogl/ktx.cpp"
+#include "ogl/vmath.h"
+
 #include <iostream>
 #include <vector> 
-#include "ogl/vmath.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -13,30 +15,34 @@
 class Terrian :public byhj::Application
 {
 public:
-	void v_Init() { init_shader(); }
+	void v_Init() 
+	{
+		init_shader();
+	}
 	void v_Render();
 	void init_shader();
+
 private:
 
-GLuint          program;
-GLuint          vao;
-GLuint          tex_displacement;
-GLuint          tex_color;
-float           dmap_depth;
-bool            enable_displacement;
-bool            wireframe;
-bool            enable_fog;
-bool            paused;
-
-Shader dispmapShader;
-struct
-{
-	GLint       mvp_matrix;
-	GLint       mv_matrix;
-	GLint       proj_matrix;
-	GLint       dmap_depth;
-	GLint       enable_fog;
-} uniforms;
+       GLuint          program;
+       GLuint          vao;
+       GLuint          tex_displacement;
+       GLuint          tex_color;
+       float           dmap_depth;
+       bool            enable_displacement;
+       bool            wireframe;
+       bool            enable_fog;
+       bool            paused;
+       
+       Shader dispmapShader;
+       struct
+       {
+       	GLint       mvp_matrix;
+       	GLint       mv_matrix;
+       	GLint       proj_matrix;
+       	GLint       dmap_depth;
+       	GLint       enable_fog;
+       } uniforms;
 };
 CALL_MAIN(Terrian);
 
