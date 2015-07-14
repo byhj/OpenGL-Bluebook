@@ -2,7 +2,7 @@
 #include "ogl/oglApp.h"
 #include <ogl/ktx.cpp>
 #include <ogl/object.cpp>
-#include <ogl/shader.h>
+#include "ogl/shader.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 

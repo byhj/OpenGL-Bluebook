@@ -3,7 +3,7 @@
 #include <ogl/object.cpp>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include <ogl/shader.h>
+#include "ogl/shader.h"
 
 class Gouraud: public byhj::Application
 {

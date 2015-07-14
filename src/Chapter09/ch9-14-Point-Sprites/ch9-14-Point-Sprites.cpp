@@ -9,7 +9,7 @@
 
 #include "ogl/oglApp.h"
 #include <ogl/ktx.cpp>
-#include <ogl/shader.h>
+#include "ogl/shader.h"
 
 
 enum

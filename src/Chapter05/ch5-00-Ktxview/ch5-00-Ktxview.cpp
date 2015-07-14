@@ -1,7 +1,7 @@
 #include <GL/glew.h>
 #include "ogl/oglApp.h"
 #include <ogl/ktx.cpp>
-#include <ogl/shader.h>
+#include "ogl/shader.h"
 #include <ogl/glDebug.h>
 
 class simpletexture_app : public byhj::Application

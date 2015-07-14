@@ -1,6 +1,6 @@
 #include <GL/glew.h>
 #include "ogl/oglApp.h"
-#include <ogl/shader.h>
+#include "ogl/shader.h"
 #include <ogl/ktx.cpp>
 #include <ogl/glDebug.h>
 

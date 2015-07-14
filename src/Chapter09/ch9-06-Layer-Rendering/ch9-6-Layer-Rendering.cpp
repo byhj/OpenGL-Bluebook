@@ -2,7 +2,7 @@
 #include <gl/freeglut.h>
 #include "ogl/oglApp.h"
 #include <ogl/object.cpp>
-#include <ogl/shader.h>
+#include "ogl/shader.h"
 #include <ogl/ktx.cpp>
 
 #include <glm/glm.hpp>

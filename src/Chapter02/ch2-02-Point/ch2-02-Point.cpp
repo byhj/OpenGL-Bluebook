@@ -1,6 +1,6 @@
 #include <GL/glew.h>
 #include "ogl/oglApp.h"
-#include <ogl/shader.h>
+#include "ogl/shader.h"
 
 class PointApp : public byhj::Application
 {
@@ -21,7 +21,10 @@ public:
 	}
 	
 	void v_Render()
-	{
+	{		
+		static const GLfloat black[] = {0.0f, 0.0f, 0.0f, 1.0f};
+	    glClearBufferfv(GL_COLOR, 0, black);
+
 		//Use this shader and vao data to render
 		glUseProgram(program);
 		glBindVertexArray(vao);

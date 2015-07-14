@@ -4,7 +4,7 @@
 #include <ogl/vmath.h>
 #include <ogl/object.cpp>
 #include <ogl/ktx.cpp>
-#include <ogl/shader.h>
+#include "ogl/shader.h"
 
 class fragmentlist_app : public byhj::Application
 {

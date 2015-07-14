@@ -7,7 +7,7 @@
 #include "ogl/oglApp.h"
 #include <ogl/object.cpp>
 #include <ogl/ktx.cpp>
-#include <ogl/shader.h>
+#include "ogl/shader.h"
 
 #define DEPTH_TEXTURE_SIZE      4096
 #define FRUSTUM_DEPTH           1000

@@ -1,6 +1,6 @@
 #include <gl/glew.h>
 #include "ogl/oglApp.h"
-#include <ogl/shader.h>
+#include "ogl/shader.h"
 
 class JuliaApp: public byhj::Application
 {

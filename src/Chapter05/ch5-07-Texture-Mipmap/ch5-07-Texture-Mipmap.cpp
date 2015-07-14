@@ -3,7 +3,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 #include "ogl/oglApp.h"
-#include <ogl/shader.h>
+#include "ogl/shader.h"
 #include <ogl/object.cpp>
 #include <ogl/ktx.cpp>
 #include <ogl/vmath.h>

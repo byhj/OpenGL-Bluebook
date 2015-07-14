@@ -2,7 +2,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-#include <ogl/shader.h>
+#include "ogl/shader.h"
 #include "ogl/oglApp.h"
 
 

@@ -1,5 +1,5 @@
 #include <GL/glew.h>
-#include <ogl/shader.h>
+#include "ogl/shader.h"
 #include "ogl/oglApp.h"
 
 Shader shader("test");
