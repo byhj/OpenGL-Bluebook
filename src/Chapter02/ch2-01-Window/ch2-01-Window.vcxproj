@@ -64,6 +64,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ch2-01-Window.cpp" />
+    <ClCompile Include="RenderSystem.cpp" />
+    <ClCompile Include="window.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="RenderSystem.h" />
+    <ClInclude Include="window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

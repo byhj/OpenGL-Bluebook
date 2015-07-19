@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Chapter02", "Chapter02", "{E96BE73D-2341-4CDA-8073-BD279332822F}"
+	ProjectSection(SolutionItems) = preProject
+		src\Chapter02\ch2-01-Window\window.cpp = src\Chapter02\ch2-01-Window\window.cpp
+		src\Chapter02\ch2-01-Window\window.h = src\Chapter02\ch2-01-Window\window.h
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Chapter03", "Chapter03", "{D8D4F07B-AA72-411E-9B97-B529C00E73AF}"
 EndProject
