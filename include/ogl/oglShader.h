@@ -1,5 +1,5 @@
-#ifndef OGLSHADER_H
-#define OGLSHADER_H
+#ifndef SHADER_H
+#define SHADER_H
 
 #include <GL/glew.h>
 #include <iostream>
@@ -12,14 +12,14 @@
 #define WINDOW_PLATFORM
 #endif
 
-class OGLShader 
+class Shader
 {
 
 public:
-	OGLShader(): m_Program(0), m_Name("Shader") {}
-	OGLShader(std::string shaderName):m_Program(0), m_Name(shaderName) {}
+	Shader(): m_Program(0), m_Name("Shader") {}
+	Shader(std::string shaderName):m_Program(0), m_Name(shaderName) {}
 
-	~OGLShader(){}
+	~Shader(){}
 
 public:
 	void init();
@@ -35,8 +35,8 @@ public:
 private:
 	char *textFileRead( char *fn) ;
 
-	GLuint m_Program;   //OGLShader program
-	std::string m_Name;   //OGLShader class name
+	GLuint m_Program;   //Shader program
+	std::string m_Name;   //Shader class name
 };
 
 #endif
