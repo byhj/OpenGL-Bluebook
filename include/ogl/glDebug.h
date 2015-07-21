@@ -114,7 +114,7 @@ void DebugOutput(unsigned int source, unsigned int type, unsigned int id,
 		if (strcmp(debSev, "Other") != 0 )
 		{
 		   printf("--------------------------------------------------------------------------------");
-#ifdef IN32
+#ifdef _WIN
 		   MessageBox(NULL, message, "GL Error", MB_OK);
 		   exit(0);
 #else

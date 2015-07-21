@@ -1,12 +1,11 @@
-
 #ifndef SHADER_H
 #define SHADER_H
 
+#include <GL/glew.h>
 #include <iostream>
 #include <vector>
 #include <string>
 #include <windows.h>
-#include <GL/glew.h>
 
 char *textFileRead(const char *fn);  
 
@@ -19,7 +18,6 @@ public:
 	Shader(std::string shaderName):name(shaderName) {}
 	void init();
 	void attach(int type, char *filename);
-	void linkAttach();
 	void link();
 	void interfaceInfo();
 	void use(void) 
@@ -129,17 +127,9 @@ void Shader::link()
 		printf("%s linked successful\n",name.c_str());
 	
 }
-void Shader::linkAttach()
-{
-	program = glCreateProgram();
-	for (int i=0; i!=handles.size(); i++) {
-		glAttachShader(program, handles[i]); //将前面创建的shader添加到program
 
-	}
-}
 void Shader::interfaceInfo()
 {
-	std::cout << "--------------------" << name << " Interface------------------------" << std::endl; 
 	GLint outputs = 0;
 	glGetProgramInterfaceiv(program, GL_PROGRAM_INPUT,  GL_ACTIVE_RESOURCES, &outputs);
 	static const GLenum props[] = {GL_TYPE, GL_LOCATION};
@@ -149,7 +139,7 @@ void Shader::interfaceInfo()
 
     if (outputs > 0)
 	   std::cout << "----------Input-----------" << std::endl;
-	std::cout << std::endl;
+
 	for (int i = 0; i != outputs; ++i)
 	{
 		glGetProgramResourceName(program, GL_PROGRAM_INPUT, i, sizeof(name), NULL, name);
@@ -162,7 +152,6 @@ void Shader::interfaceInfo()
     glGetProgramInterfaceiv(program, GL_PROGRAM_OUTPUT,  GL_ACTIVE_RESOURCES, &outputs);
     if (outputs > 0)
 	   std::cout << "----------Onput-----------" << std::endl;
-	std::cout << std::endl;
 
 	for (int i = 0; i != outputs; ++i)
 	{
@@ -173,11 +162,12 @@ void Shader::interfaceInfo()
 		//std::cout << "Index " << i << std::endl;
 		std::cout  <<  "(" <<  type_name  << ")" << " locatoin: " << params[1] << std::endl;
 	}
+
 	
 	glGetProgramInterfaceiv(program, GL_UNIFORM_BLOCK,  GL_ACTIVE_RESOURCES, &outputs);
 	if (outputs > 0)
 	  std::cout << "------Uniform Block-------" << std::endl;
-	std::cout << std::endl;
+
 	for (int i = 0; i != outputs; ++i)
 	{
 		glGetProgramResourceName(program, GL_UNIFORM_BLOCK, i, sizeof(name), NULL, name);
@@ -188,12 +178,10 @@ void Shader::interfaceInfo()
 		std::cout  <<  "(" <<  type_name  << ")" << " locatoin: " << params[1] << std::endl;
 	}
 
-
 	glGetProgramInterfaceiv(program, GL_UNIFORM,  GL_ACTIVE_RESOURCES, &outputs);
 	if (outputs > 0)
 		std::cout << "----------Uniform---------" << std::endl;
-
-	if (outputs > 10)
+	if (outputs > 100)
 		return ;
 	for (int i = 0; i != outputs; ++i)
 	{
@@ -204,7 +192,6 @@ void Shader::interfaceInfo()
 		//std::cout << "Index " << i << std::endl;
 		std::cout  <<  "(" <<  type_name  << ")" << " locatoin: " << params[1] << std::endl;
 	}
-
 }
 
 

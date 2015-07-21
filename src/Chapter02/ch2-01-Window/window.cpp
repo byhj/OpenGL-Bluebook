@@ -22,4 +22,10 @@ void Window::Render()
 {
 
 }
+
+void Window::Shutdown()
+{
+
+}
+
 }

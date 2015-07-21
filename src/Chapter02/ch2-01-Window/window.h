@@ -12,6 +12,8 @@ public:
 
 	void Init();
 	void Render();
+	void Shutdown();
+
 private:
 
 };
