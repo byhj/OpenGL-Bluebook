@@ -1,73 +1,11 @@
-#include <GL/glew.h>
-#include "ogl/oglApp.h"
-#include "ogl/shader.h"
+#include "RenderSystem.h"
+#include <memory>
 
-class TriangleApp: public byhj::Application
+int main(int argc, const char **argv)
 {
-public:
-	TriangleApp():program(0), flat(0), TriangleShader("Triangle Shader") 
-	{
-	};
+	auto app = std::make_shared<byhj::RenderSystem>();
 
-	~TriangleApp() {} ;
+	app->Run(app);
 
-	void v_Init()
-	{
-		init_shader();
-	}
-
-	void v_Render()
-	{
-		static const GLfloat black[] = {0.0f, 0.0f, 0.0f, 1.0f};
-		glClearBufferfv(GL_COLOR, 0, black);
-
-		//We use current time change the vertex position every frame,
-		//it will animate just a cricle.
-		GLfloat time = static_cast<GLfloat>(glfwGetTime());
-		GLfloat offset[] = {
-			(float)sin(time) * 0.5f, 
-			(float)cos(time) * 0.5f,
-			0.0f, 0.0f
-		};
-
-		glUseProgram(program);
-		glUniform1i(glGetUniformLocation(program, "isFlat"), flat);
-		glVertexAttrib4fv(0, offset);
-
-		glDrawArrays(GL_TRIANGLES, 0, 3);
-		glUseProgram(0);
-	}
-
-	void v_Shutdown()
-	{
-		glDeleteProgram(program);
-	}
-
-	void v_Keyboard(GLFWwindow * window, int key, int scancode, int action, int mode)
-	{
-		//Enter key 'F' to change the color smooth or flat
-	    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
-			glfwSetWindowShouldClose(window, GL_TRUE);
-		if (key == GLFW_KEY_F && action == GLFW_PRESS)
-			flat = !flat;
-	}
-
-
-private:
-	void init_shader();
-
-	Shader TriangleShader;
-	GLuint program;
-	int flat;
-};
-
-CALL_MAIN(TriangleApp);
-
-void TriangleApp::init_shader()
-{
-	TriangleShader.init();
-	TriangleShader.attach(GL_VERTEX_SHADER, "triangle.vert");
-	TriangleShader.attach(GL_FRAGMENT_SHADER, "triangle.frag");
-	TriangleShader.link();
-	program = TriangleShader.GetProgram();
+	return 0;
 }
