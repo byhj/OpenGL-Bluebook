@@ -9,7 +9,6 @@ const vec4 Color[3] =
    vec4(0.0f,  0.0f, 1.0f, 1.0f)
 };
 
-//Use flat or smooth
 out VS_OUT 
 {
    vec4 color;

@@ -63,11 +63,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\include\ogl\ktx.cpp" />
+    <ClCompile Include="..\..\..\include\ogl\object.cpp" />
+    <ClCompile Include="..\..\..\include\ogl\oglApp.cpp" />
+    <ClCompile Include="..\..\..\include\ogl\oglShader.cpp" />
+    <ClCompile Include="..\..\..\include\ogl\oglUtility.cpp" />
     <ClCompile Include="ch05-06-Texture-Image.cpp" />
+    <ClCompile Include="RenderSystem.cpp" />
+    <ClCompile Include="texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="texture.frag" />
     <None Include="texture.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\include\ogl\ktx.h" />
+    <ClInclude Include="..\..\..\include\ogl\object.h" />
+    <ClInclude Include="..\..\..\include\ogl\oglApp.h" />
+    <ClInclude Include="..\..\..\include\ogl\oglShader.h" />
+    <ClInclude Include="..\..\..\include\ogl\oglUtility.h" />
+    <ClInclude Include="RenderSystem.h" />
+    <ClInclude Include="texture.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

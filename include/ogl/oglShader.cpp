@@ -1,6 +1,10 @@
 #include "oglShader.h"
 #include <fstream>
 
+namespace byhj
+{ 
+
+
 //read the Shader code
 char * Shader::textFileRead( char *fn) {  //read the shader code
 	FILE *fp;  
@@ -168,4 +172,6 @@ void Shader::end() const
 GLuint Shader::GetProgram() const
 {
 	return m_Program;
+}
+
 }

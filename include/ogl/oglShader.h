@@ -12,6 +12,10 @@
 #define WINDOW_PLATFORM
 #endif
 
+
+namespace byhj
+{
+
 class Shader
 {
 
@@ -39,5 +43,6 @@ private:
 	std::string m_Name;   //Shader class name
 };
 
+}
 #endif
 

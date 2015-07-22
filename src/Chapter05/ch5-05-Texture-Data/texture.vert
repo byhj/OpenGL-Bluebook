@@ -13,6 +13,6 @@ const vec4 Position[4] =
 
 void main(void)
 {
-   tc = Position[gl_VertexID].xy + vec2(0.5);
+   tc = Position[gl_VertexID].xy + vec2(0.5f);
    gl_Position = Position[gl_VertexID];
 }

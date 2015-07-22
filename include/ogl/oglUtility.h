@@ -37,13 +37,11 @@ namespace byhj
 		}
 	};
 
+	const GLuint OGL_VALUE = 0xffffffff;
 }
 
 #define BUFFER_OFFSET(offset) ((GLvoid*)(NULL + offset))
 #define ARRAY_ELEMENTS(a) ( sizeof(a)/sizeof(a[0]) )
-
-#define INVALID_UNIFORM_LOCATION 0xffffffff
-#define INVALID_OGL_VALUE 0xffffffff
 #define SAFE_DELETE(p) if (p) { delete p; p = NULL; }
 
 void CalcNormals(const GLuint *pIndexData, GLsizei IndexCount,
