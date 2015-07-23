@@ -1,5 +1,6 @@
 #include "Cube.h"
 #include <glfw/glfw3.h>
+#include "ogl/oglDebug.h"
 
 namespace byhj
 {
@@ -33,7 +34,11 @@ void Cube::Render(const byhj::MvpMatrix &matrix)
 	glm::mat4 view  = matrix.view;
 	glm::mat4 proj  = matrix.proj;
 	glm::mat4 mvp = proj * view * model;
-	glUniformMatrix4fv(mvp_loc, 1, GL_FALSE, &mvp[0][0]);
+	glUniformMatrix4fv(-1, 1, GL_FALSE, &mvp[0][0]);
+	glUniform4fv(1, 1, &mvp[0][0]);
+
+	byhj::OGLDebug oglDebug;
+	oglDebug.Debug();
 
 	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 
