@@ -3,6 +3,7 @@
 layout (location = 0) in vec4 Position;
 
 out vec4 vColor;
+
 uniform mat4 mvp;
 
 layout (binding = 0) uniform sampler1D grasspalette_texture;
