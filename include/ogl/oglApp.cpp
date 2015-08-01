@@ -26,7 +26,7 @@ void byhj::Application::Run(std::shared_ptr<byhj::Application> the_app)
 	glfwSetScrollCallback(window, glfw_scroll);
 
 	// GLFW Options
-	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 	if (window == NULL)
 	{

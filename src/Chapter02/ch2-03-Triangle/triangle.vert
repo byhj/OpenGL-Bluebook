@@ -19,7 +19,7 @@ out vec4 vColor;
 
 void main(void)
 {
-   //gl_VertexID is current vertex index, Vertex Shader run each vertex 
+   //gl_VertexID is current vertex index, Vertex Shader run each vertex one time
 
    vColor = Color[gl_VertexID];
    gl_Position = Position[gl_VertexID];

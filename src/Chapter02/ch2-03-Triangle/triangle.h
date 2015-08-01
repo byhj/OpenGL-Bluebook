@@ -3,6 +3,7 @@
 
 #include <GL/glew.h>
 #include "ogl/oglShader.h"
+#include "ogl/oglUtility.h"
 
 namespace byhj
 {

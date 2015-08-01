@@ -65,6 +65,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\include\ogl\oglApp.cpp" />
     <ClCompile Include="..\..\..\include\ogl\oglShader.cpp" />
+    <ClCompile Include="..\..\..\include\ogl\oglUtility.cpp" />
     <ClCompile Include="ch2-03-Triangle.cpp" />
     <ClCompile Include="triangle.cpp" />
     <ClCompile Include="RenderSystem.cpp" />
@@ -76,6 +77,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\..\include\ogl\oglApp.h" />
     <ClInclude Include="..\..\..\include\ogl\oglShader.h" />
+    <ClInclude Include="..\..\..\include\ogl\oglUtility.h" />
     <ClInclude Include="triangle.h" />
     <ClInclude Include="RenderSystem.h" />
   </ItemGroup>

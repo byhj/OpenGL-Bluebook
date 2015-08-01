@@ -12,8 +12,8 @@
 #ifdef _WIN32
 const int ScreenWidth = static_cast<int>( GetSystemMetrics(SM_CXSCREEN) * 0.75 );
 const int ScreenHeight = static_cast<int>(  GetSystemMetrics(SM_CYSCREEN) * 0.75 );
-const int PosX = (GetSystemMetrics(SM_CXSCREEN) - ScreenWidth)  / 2;
-const int PosY = (GetSystemMetrics(SM_CYSCREEN) - ScreenHeight) / 2;
+const int PosX = (GetSystemMetrics(SM_CXSCREEN) - ScreenWidth) ;
+const int PosY = (GetSystemMetrics(SM_CYSCREEN) - ScreenHeight);
 #else
 const int ScreenWidth = 1200;
 const int ScreenHeight = 1000;

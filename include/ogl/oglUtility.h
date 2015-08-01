@@ -44,7 +44,5 @@ namespace byhj
 #define ARRAY_ELEMENTS(a) ( sizeof(a)/sizeof(a[0]) )
 #define SAFE_DELETE(p) if (p) { delete p; p = NULL; }
 
-void CalcNormals(const GLuint *pIndexData, GLsizei IndexCount,
-				 byhj::Vertex *pVertexData, GLsizei VertexCount);
 
 #endif

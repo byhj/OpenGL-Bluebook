@@ -16,7 +16,7 @@ RenderSystem::~RenderSystem()
 
 void RenderSystem::v_InitInfo()
 {
-	windowInfo.title += "Window";
+	windowInfo.title += "ch2-01-Window";
 }
 
 void RenderSystem::v_Init()
@@ -28,17 +28,17 @@ void RenderSystem::v_Render()
 {
 	//Every frame we get the currentTime
 	static double time = 0.0;
-	time = glfwGetTime();
+	time = static_cast<GLfloat>( glfwGetTime() );
 
-	//Use the current time to change the backgroud color
+	//Use the current time to change the background color
 	const GLfloat bgColor[] =
 	{
-		static_cast<float>(sin(time)) * 0.5f + 0.5f,
-		static_cast<float>(cos(time)) * 0.5f + 0.5f,
+		sinf(time) * 0.5f + 0.5f,
+		cosf(time) * 0.5f + 0.5f,
 		0.0f, 1.0f
 	};
 
-	//Clear the color buffer to the random color
+	//Clear the Color Buffer(index 0) to a random color
 	glClearBufferfv(GL_COLOR, 0, bgColor);
 
 	m_Window.Render();

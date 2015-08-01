@@ -26,7 +26,7 @@ void Point::Render()
 	glUseProgram(program);
 	glBindVertexArray(vao);
 
-	//Render Point, which is 40 pixel 
+	//make Point occupy 40 pixels 
 	glPointSize(40.0f);
 	glDrawArrays(GL_POINTS, 0, 1);
 
@@ -47,7 +47,7 @@ static const GLsizei VertexCount = sizeof(VertexData);
 
 void Point::init_buffer()
 {
-	//Sent the Vertex Data to vbo, which is a memory manage by opengl
+	//Sent the Vertex Data to vbo, which is a memory, which manage by opengl
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 	glBufferData(GL_ARRAY_BUFFER, VertexCount, VertexData, GL_STATIC_DRAW);
@@ -56,7 +56,7 @@ void Point::init_buffer()
 
 void Point::init_vertexArray()
 {
-	//We use vao to manage the opengl status, include vbo, ibo, tbo etc...
+	//We use vao to manage the opengl status, include vbo, ibo, tbo, fbo, sbo, etc...
 	glGenVertexArrays(1, &vao);
 	glBindVertexArray(vao);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -66,13 +66,18 @@ void Point::init_vertexArray()
 	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 0, 0);
 
 	//We should always disable the status after use it
+	glBindVertexArray(0);
 	glDisableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
+
 }
 
 void Point::init_shader()
 {
+
+	//glCreateShader --> glShaderSource --> glCompileShader --> glCreateProgram 
+	//               --> glAttachShader --> glLinkShader    --> glDeleteShader 
+
 	PointShader.init();
 	PointShader.attach(GL_VERTEX_SHADER, "point.vert");
 	PointShader.attach(GL_FRAGMENT_SHADER, "point.frag");
