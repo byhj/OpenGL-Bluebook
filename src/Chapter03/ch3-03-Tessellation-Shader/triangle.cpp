@@ -40,6 +40,7 @@ void Triangle::Render()
 	//We send the data to shader index 0 vertex attrib
 	glVertexAttrib4fv(0, offset);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glPatchParameteri(GL_PATCHES, 3);
 	glDrawArrays(GL_PATCHES, 0, 3);
 
 	glUseProgram(0);
