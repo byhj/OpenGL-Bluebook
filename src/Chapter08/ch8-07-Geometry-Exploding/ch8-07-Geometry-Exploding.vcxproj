@@ -63,12 +63,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\include\ogl\object.cpp" />
+    <ClCompile Include="..\..\..\include\ogl\oglApp.cpp" />
+    <ClCompile Include="..\..\..\include\ogl\oglShader.cpp" />
+    <ClCompile Include="..\..\..\include\ogl\oglUtility.cpp" />
     <ClCompile Include="ch8-07-Gemometry-Exploding.cpp" />
+    <ClCompile Include="geometry.cpp" />
+    <ClCompile Include="RenderSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="culling.frag" />
     <None Include="culling.geom" />
     <None Include="culling.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\include\ogl\object.h" />
+    <ClInclude Include="..\..\..\include\ogl\oglApp.h" />
+    <ClInclude Include="..\..\..\include\ogl\oglShader.h" />
+    <ClInclude Include="..\..\..\include\ogl\oglUtility.h" />
+    <ClInclude Include="geometry.h" />
+    <ClInclude Include="RenderSystem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
