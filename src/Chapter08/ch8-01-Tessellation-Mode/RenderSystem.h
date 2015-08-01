@@ -2,7 +2,7 @@
 #define RENDERSYSTEM_H
 
 #include "ogl/oglApp.h"
-#include "Plane.h"
+#include "window.h"
 
 namespace byhj
 {
@@ -18,10 +18,11 @@ public:
 	void v_Init();
 	void v_Render();
 	void v_Shutdown();
+	void v_KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode);
 
 private:
 
-	byhj::Plane m_Plane;
+	byhj::Window m_Window;
 };
 
 }

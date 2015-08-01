@@ -1,5 +1,5 @@
-#ifndef Clip_H
-#define Clip_H
+#ifndef Plane_H
+#define Plane_H
 
 #include <GL/glew.h>
 #include "ogl/oglShader.h"
@@ -10,11 +10,11 @@
 namespace byhj
 {
 
-class Clip
+class Plane
 {
 public:
-	Clip();
-	~Clip();
+	Plane();
+	~Plane();
 
 	void Init();
 	void Render(GLfloat aspect);

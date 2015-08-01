@@ -2,7 +2,7 @@
 #define RENDERSYSTEM_H
 
 #include "ogl/oglApp.h"
-#include "Plane.h"
+#include "Cube.h"
 
 namespace byhj
 {
@@ -21,7 +21,7 @@ public:
 
 private:
 
-	byhj::Plane m_Plane;
+	byhj::Cube m_Cube;
 };
 
 }

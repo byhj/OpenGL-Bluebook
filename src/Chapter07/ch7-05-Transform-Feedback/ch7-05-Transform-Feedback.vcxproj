@@ -74,7 +74,7 @@
     <ClCompile Include="..\..\..\include\ogl\oglShader.cpp" />
     <ClCompile Include="..\..\..\include\ogl\oglUtility.cpp" />
     <ClCompile Include="ch7-5-Transform-Feedback-Spring.cpp" />
-    <ClCompile Include="clip.cpp" />
+    <ClCompile Include="plane.cpp" />
     <ClCompile Include="RenderSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -83,7 +83,7 @@
     <ClInclude Include="..\..\..\include\ogl\oglDebug.h" />
     <ClInclude Include="..\..\..\include\ogl\oglShader.h" />
     <ClInclude Include="..\..\..\include\ogl\oglUtility.h" />
-    <ClInclude Include="clip.h" />
+    <ClInclude Include="plane.h" />
     <ClInclude Include="RenderSystem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

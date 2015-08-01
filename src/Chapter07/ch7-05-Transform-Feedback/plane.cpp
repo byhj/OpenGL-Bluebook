@@ -1,4 +1,4 @@
-#include "Clip.h"
+#include "Plane.h"
 #include "ogl/vmath.h"
 
 #include <glfw/glfw3.h>
@@ -23,17 +23,17 @@ enum
 namespace byhj
 {
 
-Clip::Clip()
+Plane::Plane()
 {
 
 }
 
-Clip::~Clip()
+Plane::~Plane()
 {
 
 }
 
-void Clip::Init()
+void Plane::Init()
 {
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CLIP_DISTANCE0);
@@ -44,7 +44,7 @@ void Clip::Init()
 	init_shader();
 }
 
-void Clip::Render(GLfloat aspect)
+void Plane::Render(GLfloat aspect)
 {
 
 	glUseProgram(update_program);
@@ -101,14 +101,14 @@ void Clip::Render(GLfloat aspect)
 }
 
 
-void Clip::Shutdown()
+void Plane::Shutdown()
 {
 	glDeleteProgram(update_program);
 	glDeleteBuffers(5, m_vbo);
 	glDeleteVertexArrays(2, m_vao);
 }
 
-void Clip::init_buffer()
+void Plane::init_buffer()
 {
 	glm::vec4 * initial_positions = new glm::vec4[POINTS_TOTAL];
 	glm::vec3 * initial_velocities = new glm::vec3[POINTS_TOTAL];
@@ -213,12 +213,12 @@ void Clip::init_buffer()
 
 }
 
-void Clip::init_vertexArray()
+void Plane::init_vertexArray()
 {
 
 }
 
-void Clip::init_shader()
+void Plane::init_shader()
 {
 	updateShader.init();
 	updateShader.attach(GL_VERTEX_SHADER, "update.vert");
