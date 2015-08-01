@@ -2,7 +2,7 @@
 #define RENDERSYSTEM_H
 
 #include "ogl/oglApp.h"
-#include "Asteroid.h"
+#include "Clip.h"
 
 namespace byhj
 {
@@ -21,7 +21,7 @@ public:
 
 private:
 
-	byhj::Asteroid m_Asteroid;
+	byhj::Clip m_Clip;
 };
 
 }

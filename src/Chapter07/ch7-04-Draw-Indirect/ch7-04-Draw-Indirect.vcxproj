@@ -67,11 +67,21 @@
     <None Include="asteroid.vert" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\include\ogl\ktx.cpp" />
+    <ClCompile Include="..\..\..\include\ogl\object.cpp" />
+    <ClCompile Include="..\..\..\include\ogl\oglApp.cpp" />
+    <ClCompile Include="..\..\..\include\ogl\oglShader.cpp" />
+    <ClCompile Include="..\..\..\include\ogl\oglUtility.cpp" />
     <ClCompile Include="asteroid.cpp" />
     <ClCompile Include="ch7-04-Draw-Indirect.cpp" />
     <ClCompile Include="RenderSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\include\ogl\ktx.h" />
+    <ClInclude Include="..\..\..\include\ogl\object.h" />
+    <ClInclude Include="..\..\..\include\ogl\oglApp.h" />
+    <ClInclude Include="..\..\..\include\ogl\oglShader.h" />
+    <ClInclude Include="..\..\..\include\ogl\oglUtility.h" />
     <ClInclude Include="asteroid.h" />
     <ClInclude Include="RenderSystem.h" />
   </ItemGroup>
