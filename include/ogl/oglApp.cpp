@@ -15,6 +15,9 @@ void byhj::Application::Run(std::shared_ptr<byhj::Application> the_app)
 
 	v_InitInfo();
 
+	//Add this to use the debug output
+	glfwWindowHint( GLFW_OPENGL_DEBUG_CONTEXT, true );
+
 	GLFWwindow *window = glfwCreateWindow(windowInfo.Width, windowInfo.Height,
 		                                  windowInfo.title.c_str(), nullptr, nullptr);
 	glfwSetWindowPos(window, windowInfo.posX, windowInfo.posY);

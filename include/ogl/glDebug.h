@@ -9,7 +9,6 @@
 
 #define INVALID_UNIFORM_LOCATION 0xffffffff
 #define INVALID_OGL_VALUE 0xffffffff
-
 #define SAFE_DELETE(p) if (p) { delete p; p = NULL; }
 
 #define GLExitIfError                                                          \
@@ -161,7 +160,7 @@ void CALLBACK DebugCallback(unsigned int source, unsigned int type,
 								   unsigned int id, unsigned int severity,
 								   int length, const char* message, const void* userParam)
 {
-	     DebugOutput(source, type, id, severity, message);
+	 DebugOutput(source, type, id, severity, message);
 }
 
 

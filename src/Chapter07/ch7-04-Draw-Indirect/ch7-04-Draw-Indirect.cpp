@@ -32,9 +32,7 @@ public:
 		init_buffer();
 		init_vertexArray();
 
-		glEnable(GL_DEPTH_TEST);
-		glDepthFunc(GL_LEQUAL);
-		glEnable(GL_CULL_FACE);
+
 	}
 
 	void v_Render()
@@ -104,13 +102,7 @@ private:
 
 private:
 
-	GLuint program, indirect_vbo, draw_vbo;
-	Shader AsteroidShader;
-	GLint  time_loc;
-	GLint  view_loc;
-	GLint  proj_loc;
-	GLint  viewproj_loc;
-	sb6::Object object;
+
 };
 CALL_MAIN(Asteroid);
 
