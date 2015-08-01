@@ -27,6 +27,7 @@ void Texture::Init()
 void Texture::Render()
 {
 	glUseProgram(program);
+	glBindVertexArray(0);
 
 	update();
 
@@ -41,6 +42,7 @@ void Texture::Render()
 		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 	}
 
+	glBindVertexArray(0);
 	glUseProgram(0);
 }
 
