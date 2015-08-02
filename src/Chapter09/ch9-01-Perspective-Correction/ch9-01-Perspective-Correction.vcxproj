@@ -63,7 +63,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\include\ogl\oglApp.cpp" />
+    <ClCompile Include="..\..\..\include\ogl\oglShader.cpp" />
+    <ClCompile Include="..\..\..\include\ogl\oglUtility.cpp" />
     <ClCompile Include="ch9-01-Perspective-Correction.cpp" />
+    <ClCompile Include="plane.cpp" />
+    <ClCompile Include="RenderSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="perspective.frag" />
@@ -73,6 +78,13 @@
     <ProjectReference Include="..\..\Chapter02\ch2-01-Window\ch2-01-Window.vcxproj">
       <Project>{58ba1a5e-f865-4248-9b15-7db221375158}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\include\ogl\oglApp.h" />
+    <ClInclude Include="..\..\..\include\ogl\oglShader.h" />
+    <ClInclude Include="..\..\..\include\ogl\oglUtility.h" />
+    <ClInclude Include="plane.h" />
+    <ClInclude Include="RenderSystem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

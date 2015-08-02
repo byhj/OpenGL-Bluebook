@@ -1,75 +1,11 @@
-#include <gl/glew.h>
-#include "ogl/oglApp.h"
-#include "ogl/shader.h"
-#include "ogl/ktx.cpp"
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
+#include "RenderSystem.h"
+#include <memory>
 
-
-class KtxView :public byhj::Application
+int main(int argc, const char **argv)
 {
-public:
-	KtxView(){}
-	~KtxView(){}
-	void init_shader();
-	void init_buffer();
-	void init_vertexArray();
-	void init_texture();
+	auto app = std::make_shared<byhj::RenderSystem>();
 
-	void v_Init()
-	{
-		init_shader();
-		init_texture();
-	}
+	app->Run(app);
 
-	void v_Render()
-	{
-		static const GLfloat black[] = { 0.0f, 0.25f, 0.0f, 1.0f };
-		glClearBufferfv(GL_COLOR, 0, black);
-		glUseProgram(program_exposure);
-
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, tex_src);
-		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-	}
-    
-
-private:
-	GLuint exposure_loc ;
-	Shader exposureShader;
-	GLuint  tex_src;
-	GLuint  tex_lut;
-	GLuint  program_exposure;
-	GLuint  vao;
-	float   exposure;
-	int     mode;
-};
-
-
-void KtxView::init_texture()
-{
-	tex_src = sb6::ktx::load("../../../media/textures/treelights_2k.ktx");
-	glBindTexture(GL_TEXTURE_2D, tex_src);
-	
+	return 0;
 }
-
-
-void KtxView::init_shader()
-{
-	exposureShader.attach(GL_VERTEX_SHADER, "hdr.vert");
-	exposureShader.attach(GL_FRAGMENT_SHADER, "hdr_exposure.frag");
-	exposureShader.link();
-	program_exposure = exposureShader.GetProgram();
-	exposure_loc = glGetUniformLocation(program_exposure, "exposure");
-}
-
-
-void KtxView::init_buffer()
-{
-}
-
-void KtxView::init_vertexArray()
-{
-}
-
-CALL_MAIN(KtxView);
