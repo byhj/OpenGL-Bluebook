@@ -200,6 +200,7 @@ void Plane::init_shader()
 {
 	GLuint shaders[2];
 
+	RenderShader.init();
 	RenderShader.attach(GL_VERTEX_SHADER, "render.vert");
 	RenderShader.attach(GL_FRAGMENT_SHADER, "render.frag");
 	RenderShader.link();
@@ -209,6 +210,7 @@ void Plane::init_shader()
 	uniforms.render.proj_matrix = glGetUniformLocation(render_program, "proj_matrix");
 	uniforms.render.shading_level = glGetUniformLocation(render_program, "shading_level");
 
+	SsaoShader.init();
 	SsaoShader.attach(GL_VERTEX_SHADER, "ssao.vert");
 	SsaoShader.attach(GL_FRAGMENT_SHADER, "ssao.frag");
 	SsaoShader.link();
