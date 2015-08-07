@@ -1,9 +1,9 @@
 #include <GL/glew.h>
-
+#include <memory>
 #include "ogl/oglApp.h"
 #include "ogl/vmath.h"
-#include "ogl/object.cpp"
-#include "ogl/ktx.cpp"
+#include "ogl/object.h"
+#include "ogl/ktx.h"
 #include "ogl/shader.h"
 
 #define FBO_SIZE                2048
@@ -23,8 +23,10 @@ public:
     }
 
 protected:
+	void v_InitInfo() {}
     void v_Init();
     void v_Render();
+	void v_Shutdown() {}
     void render_scene(double currentTime);
 	void init_shader();
 	void v_Keyboard(GLFWwindow * window, int key, int scancode, int action, int mode);
@@ -274,7 +276,7 @@ void shadowmapping_app::v_Keyboard(GLFWwindow * window, int key, int scancode, i
 
 void shadowmapping_app::init_shader()
 {
-
+	ViewShader.init();
 	ViewShader.attach(GL_VERTEX_SHADER, "render.vert");
 	ViewShader.attach(GL_FRAGMENT_SHADER, "render.frag");
 	ViewShader.link();
@@ -285,6 +287,7 @@ void shadowmapping_app::init_shader()
     uniforms.view.full_shading = glGetUniformLocation(view_program, "full_shading");
     uniforms.view.diffuse_albedo = glGetUniformLocation(view_program, "diffuse_albedo");
 
+	DisplayShader.init();
     DisplayShader.attach( GL_VERTEX_SHADER, "display.vert");
     DisplayShader.attach( GL_FRAGMENT_SHADER, "display.frag");
 	DisplayShader.link();
@@ -293,9 +296,17 @@ void shadowmapping_app::init_shader()
     uniforms.dof.focal_distance = glGetUniformLocation(display_program, "focal_distance");
     uniforms.dof.focal_depth = glGetUniformLocation(display_program, "focal_depth");
 
+	FilterShader.init();
     FilterShader.attach( GL_COMPUTE_SHADER, "gensat.comp");
 	FilterShader.link();
     filter_program = FilterShader.GetProgram();
 }
 
-CALL_MAIN(shadowmapping_app)
+int main(int argc, const char **argv)
+{
+	auto app = std::make_shared<shadowmapping_app>();
+
+	app->Run(app);
+
+	return 0;
+}

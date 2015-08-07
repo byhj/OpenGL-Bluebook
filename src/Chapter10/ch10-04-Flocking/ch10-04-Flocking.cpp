@@ -1,4 +1,5 @@
 #include <GL/glew.h>
+#include <memory>
 
 #include "ogl/oglApp.h"
 #include "ogl/vmath.h"
@@ -24,7 +25,8 @@ public:
 
     }
 
-
+	void v_InitInfo() {}
+	void v_Shutdown() {}
    void v_Init()
     {
         // This is position and normal data for a paper airplane
@@ -202,4 +204,13 @@ private:
     GLuint      frame_index;
 };
 
-CALL_MAIN(csflocking_app)
+
+
+int main(int argc, const char **argv)
+{
+	auto app = std::make_shared<csflocking_app>();
+
+	app->Run(app);
+
+	return 0;
+}
