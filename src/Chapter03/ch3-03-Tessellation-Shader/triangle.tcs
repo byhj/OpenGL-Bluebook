@@ -1,5 +1,6 @@
 #version 430 core
 
+//TCS run every output patch vertices
 layout (vertices = 3) out;
 
 in VS_OUT

@@ -16,7 +16,7 @@ RenderSystem::~RenderSystem()
 
 void RenderSystem::v_InitInfo()
 {
-	windowInfo.title += "Window";
+	windowInfo.title += "Interface Block";
 }
 
 void RenderSystem::v_Init()

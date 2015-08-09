@@ -1,9 +1,9 @@
 #version 430 core
 
+//Gemo run each primitive
 layout (triangles) in ;
 layout (triangle_strip, max_vertices = 6) out;
 
-//Notice, The data is array
 in TES_OUT
 {
   vec4 color;

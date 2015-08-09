@@ -37,7 +37,7 @@ void Triangle::Render()
 
 	glUseProgram(program);
 
-	//We send the data to shader index 0 vertex attrib
+	//We send the data to shader index (location = 0) vertex attrib
 	glVertexAttrib4fv(0, offset);
 	glDrawArrays(GL_TRIANGLES, 0, 3);
 
