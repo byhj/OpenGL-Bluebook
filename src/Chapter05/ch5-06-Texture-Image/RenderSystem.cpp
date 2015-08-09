@@ -17,7 +17,7 @@ RenderSystem::~RenderSystem()
 
 void RenderSystem::v_InitInfo()
 {
-	windowInfo.title += "Window";
+	windowInfo.title += "Texture Image";
 }
 
 void RenderSystem::v_Init()

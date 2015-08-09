@@ -82,14 +82,14 @@ void Texture::generate_texture(float *data, int width, int height)
 
 void Texture::init_texture()
 {
-	//GL_RGBA is input's style, GL_RGBA32F is show's style
+	// GL_RGBA32F is internal style
 	glGenTextures(1, &texture);
 	glBindTexture(GL_TEXTURE_2D, texture);
 	glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA32F, 256, 256);
 
 	float *data = new float[256 * 256 * 4];
 
-	generate_texture(data, 256, 256);
+	generate_texture(data, 256, 256);      //Format + type (external format)
 	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, 256, 256, GL_RGBA, GL_FLOAT, data);
 	glBindTexture(GL_TEXTURE, 0);
 

@@ -16,7 +16,7 @@ RenderSystem::~RenderSystem()
 
 void RenderSystem::v_InitInfo()
 {
-	windowInfo.title += "Window";
+	windowInfo.title += "Shader SubRoutines";
 }
 
 void RenderSystem::v_Init()

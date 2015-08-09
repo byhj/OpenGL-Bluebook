@@ -17,7 +17,7 @@ RenderSystem::~RenderSystem()
 
 void RenderSystem::v_InitInfo()
 {
-	windowInfo.title += "Window";
+	windowInfo.title += "Texture-Wrap";
 }
 
 void RenderSystem::v_Init()

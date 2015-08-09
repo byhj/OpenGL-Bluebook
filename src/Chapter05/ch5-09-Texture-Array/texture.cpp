@@ -27,7 +27,7 @@ void Texture::Init()
 void Texture::Render()
 {
 	glUseProgram(program);
-	glBindVertexArray(0);
+	glBindVertexArray(vao);
 
 	update();
 
@@ -56,12 +56,13 @@ void Texture::Shutdown()
 
 void Texture::update()
 {
-	//We change the ubo data every frame, use mapbuffer, 0 is bind point
+	//We change the ubo data every frame, use map buffer, 0 is binding point
 	// GL_MAP_INVALIDATE_BUFFER_BIT: previous contents of the entire buffer may be discarded. 
 	glBindBufferBase(GL_UNIFORM_BUFFER, 0, ubo);
 
 	float time = static_cast<float>(glfwGetTime());
 
+	//glMapBufferRange ¡ª map a section of a buffer object's data store
 	glm::vec4 *droplet = (glm::vec4*)glMapBufferRange(
 		                             GL_UNIFORM_BUFFER,
 		                             0, 256 * sizeof(glm::vec4),

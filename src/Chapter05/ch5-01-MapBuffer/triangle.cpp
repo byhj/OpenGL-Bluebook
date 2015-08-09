@@ -60,7 +60,7 @@ void Triangle::init_buffer()
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 	glBufferData(GL_ARRAY_BUFFER, VertexSize, NULL, GL_STATIC_DRAW);
 
-	//We map the opengl memory and set the data, avoid the copy the data
+	//We map the opengl memory and set the data, avoid the copy data
 	void *ptr = glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
 
 	memcpy(ptr, VertexData, VertexSize);

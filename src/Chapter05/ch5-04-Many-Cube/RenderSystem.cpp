@@ -21,7 +21,7 @@ RenderSystem::~RenderSystem()
 
 void RenderSystem::v_InitInfo()
 {
-	windowInfo.title += "Cube";
+	windowInfo.title += "Many Cube";
 }
 
 void RenderSystem::v_Init()

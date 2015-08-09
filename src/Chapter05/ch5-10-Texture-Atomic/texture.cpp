@@ -19,7 +19,7 @@ void Texture::Init(int sw, int sh)
 {
 	init_buffer(sw, sh);
 	init_vertexArray();
-	init_shader();
+	init_shader(); 
 	init_texture();
 }
 
