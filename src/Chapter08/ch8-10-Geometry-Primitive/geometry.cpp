@@ -94,6 +94,7 @@ void Geometry::init_shader()
 	LineShader.attach(GL_VERTEX_SHADER, "line.vert");
 	LineShader.attach(GL_GEOMETRY_SHADER, "line.geom");
 	LineShader.attach(GL_FRAGMENT_SHADER, "line.frag");
+	LineShader.link();
 	line_prog = LineShader.GetProgram();
 
 	line_mvp_loc = glGetUniformLocation(line_prog, "mvp");

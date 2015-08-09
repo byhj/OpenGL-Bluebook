@@ -27,8 +27,6 @@ void RenderSystem::v_Init()
 void RenderSystem::v_Render()
 {
 
-	static const GLfloat black[] = { 0.0f, 0.0f, 0.0f, 1.0f };
-	glClearBufferfv(GL_COLOR, 0, black);
 
 	m_Plane.Render(GetAspect());
 

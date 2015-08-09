@@ -35,7 +35,7 @@ private:
 	Shader FanShader;
 	Shader LineShader;
 
-	int         mode = 0;
+	int         mode = 1;
 	int         vid_offset = 0;
 	bool        paused = false;
 };

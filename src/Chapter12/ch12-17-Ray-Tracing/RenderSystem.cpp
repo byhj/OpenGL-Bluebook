@@ -23,7 +23,7 @@ void RenderSystem::v_InitInfo()
 
 void RenderSystem::v_Init()
 {
-	glEnable(GL_DEPTH_TEST);
+
 	m_Sphere.Init( );
 }
 

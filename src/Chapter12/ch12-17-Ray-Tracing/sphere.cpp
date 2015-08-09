@@ -334,6 +334,7 @@ void Sphere::init_vertexArray()
 
 void Sphere::init_shader()
 {
+	PrepareShader.init();
 	PrepareShader.attach(GL_VERTEX_SHADER, "trace-prepare.vert");
 	PrepareShader.attach(GL_FRAGMENT_SHADER, "trace-prepare.frag");
 	PrepareShader.link();
@@ -343,11 +344,13 @@ void Sphere::init_shader()
 	uniforms.ray_lookat = glGetUniformLocation(prepare_program, "ray_lookat");
 	uniforms.aspect = glGetUniformLocation(prepare_program, "aspect");
 
+	RaytracerShader.init();
 	RaytracerShader.attach(GL_VERTEX_SHADER, "raytracer.vert");
 	RaytracerShader.attach(GL_FRAGMENT_SHADER, "raytracer.frag");
 	RaytracerShader.link();
 	trace_program = RaytracerShader.GetProgram();
 
+	BlitShader.init();
 	BlitShader.attach(GL_VERTEX_SHADER, "blit.vert");
 	BlitShader.attach(GL_FRAGMENT_SHADER, "blit.frag");
 	BlitShader.link();

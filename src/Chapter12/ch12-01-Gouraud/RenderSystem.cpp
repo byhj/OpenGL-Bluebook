@@ -18,7 +18,7 @@ RenderSystem::~RenderSystem()
 
 void RenderSystem::v_InitInfo()
 {
-	windowInfo.title += "Sphere";
+	windowInfo.title += "Grouraud";
 }
 
 void RenderSystem::v_Init()

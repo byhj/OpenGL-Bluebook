@@ -18,7 +18,7 @@ RenderSystem::~RenderSystem()
 
 void RenderSystem::v_InitInfo()
 {
-	windowInfo.title += "Cube";
+	windowInfo.title += "Stereo Diaplay";
 }
 
 void RenderSystem::v_Init()

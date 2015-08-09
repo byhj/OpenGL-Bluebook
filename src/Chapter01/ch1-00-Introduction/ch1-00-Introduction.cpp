@@ -26,5 +26,5 @@ OpenGL ARB : Architectural Review Board
 Pipeline:  Vertex Fetch --> Vertex Shader --> Tessellation Control Shader --> Tessellation --> 
            Tessellation Evaluation Shader --> Geometry Shader --> Rasterization -->
 		   (back end) 
-		   Fragment Shader --> Framebuffer Operations(scissor Test, Depth Test, Stencil Test, blending, logical operator)
+		   Fragment Shader --> Framebuffer Operations(Scissor Test, Depth Test, Stencil Test, blending, logical operator)
 */

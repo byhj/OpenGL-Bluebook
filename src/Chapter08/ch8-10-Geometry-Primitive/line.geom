@@ -16,6 +16,8 @@ out GS_OUT
 
 void main(void)
 {
+
+//Triangle 1
     gl_Position = gl_in[0].gl_Position;
     gs_out.uv = vec2(1.0, 0.0);
     EmitVertex();
@@ -38,6 +40,7 @@ void main(void)
 
     EndPrimitive();
 
+	//Triangle 2
     gl_Position = gl_in[0].gl_Position;
     gs_out.uv = vec2(1.0, 0.0);
     EmitVertex();

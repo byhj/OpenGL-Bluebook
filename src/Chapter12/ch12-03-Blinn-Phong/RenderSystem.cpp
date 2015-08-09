@@ -18,7 +18,7 @@ RenderSystem::~RenderSystem()
 
 void RenderSystem::v_InitInfo()
 {
-	windowInfo.title += "Sphere";
+	windowInfo.title += "Blinn-Phong";
 }
 
 void RenderSystem::v_Init()

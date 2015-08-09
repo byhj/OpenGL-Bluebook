@@ -18,7 +18,7 @@ RenderSystem::~RenderSystem()
 
 void RenderSystem::v_InitInfo()
 {
-	windowInfo.title += "Plane";
+	windowInfo.title += "Depth Clamping";
 }
 
 void RenderSystem::v_Init()

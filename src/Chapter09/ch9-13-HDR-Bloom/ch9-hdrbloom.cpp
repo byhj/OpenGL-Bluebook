@@ -5,20 +5,22 @@
 #include <glm/gtc/type_ptr.hpp>
 #include "ogl/vmath.h"
 #include "ogl/shader.h"
-#include "ogl/ktx.cpp"
-#include "ogl/object.cpp"
+#include "ogl/ktx.h"
+#include "ogl/object.h"
 
 class Bloom: public byhj::Application
 {
 public:
-	void init_shader();
-	void init_texture();
-	void init_buffer();
 
+
+	void v_InitInfo() {}
 	void v_Init();
 	void v_Render();
+	void v_Shutdown() {}
 	void v_Keyboard(GLFWwindow * window, int key, int scancode, int action, int mode);
 private:
+
+	void init_shader();
 
 	enum
 	{
@@ -78,11 +80,22 @@ private:
 	bool depthClamp;
 };
 
-CALL_MAIN(Bloom);
+#include <memory>
+
+int main(int argc, const char **argv)
+{
+	auto app = std::make_shared<Bloom>();
+
+	app->Run(app);
+
+	return 0;
+}
+
 
 void Bloom::init_shader(void)
 {
 
+	SceneShader.init();
 	SceneShader.attach( GL_VERTEX_SHADER,  "scene.vert");
 	SceneShader.attach( GL_FRAGMENT_SHADER, "scene.frag");
 	SceneShader.link();
@@ -90,12 +103,14 @@ void Bloom::init_shader(void)
 	uniforms.scene.bloom_thresh_min = glGetUniformLocation(program_render, "bloom_thresh_min");
 	uniforms.scene.bloom_thresh_max = glGetUniformLocation(program_render, "bloom_thresh_max");
 
+	FilterShader.init();
 	FilterShader.attach( GL_VERTEX_SHADER, "filter.vert");
 	FilterShader.attach( GL_FRAGMENT_SHADER, "filter.frag");
 	FilterShader.link();
 	program_filter = FilterShader.GetProgram();
 
 
+	ResloveShader.init();
 	ResloveShader.attach(GL_VERTEX_SHADER, "resolve.vert");
 	ResloveShader.attach(GL_FRAGMENT_SHADER, "resolve.frag");
 	ResloveShader.link();
@@ -203,8 +218,6 @@ void Bloom::v_Render()
 	last_time = currentTime;
 	float t = (float)total_time;
 
-	glViewport(0, 0, GetScreenWidth(), GetScreenHeight());
-
 	glBindFramebuffer(GL_FRAMEBUFFER, render_fbo);
 	glClearBufferfv(GL_COLOR, 0, black);
 	glClearBufferfv(GL_COLOR, 1, black);
@@ -247,13 +260,12 @@ void Bloom::v_Render()
 
 	glBindFramebuffer(GL_FRAMEBUFFER, filter_fbo[0]);
 	glBindTexture(GL_TEXTURE_2D, tex_brightpass);
-	glViewport(0, 0, GetScreenWidth(), GetScreenHeight());
+
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
 	glBindFramebuffer(GL_FRAMEBUFFER, filter_fbo[1]);
 	glBindTexture(GL_TEXTURE_2D, tex_filter[0]);
-	glViewport(0, 0, GetScreenWidth(), GetScreenHeight());
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
@@ -278,6 +290,8 @@ void Bloom::v_Render()
 	glBindTexture(GL_TEXTURE_2D, show_prefilter ? tex_brightpass : tex_scene);
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+
+
 }
 
 

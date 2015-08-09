@@ -18,7 +18,7 @@ RenderSystem::~RenderSystem()
 
 void RenderSystem::v_InitInfo()
 {
-	windowInfo.title += "Cube";
+	windowInfo.title += "Scrissor-Test";
 }
 
 void RenderSystem::v_Init()
