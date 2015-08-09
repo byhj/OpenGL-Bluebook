@@ -1,6 +1,7 @@
 #include <GL/glew.h>
 #include "RenderSystem.h"
 
+
 namespace byhj
 {
 
@@ -21,7 +22,11 @@ void RenderSystem::v_InitInfo()
 
 void RenderSystem::v_Init()
 {
+	static const GLfloat color[] ={ 0.0f, 0.0f, 0.0f, 0.0f };
+	glClearBufferfv(GL_COLOR, 0, color);
+
 	m_Plane.Init();
+
 }
 
 void RenderSystem::v_Render()

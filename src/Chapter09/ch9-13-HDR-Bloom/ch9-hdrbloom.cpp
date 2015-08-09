@@ -8,10 +8,24 @@
 #include "ogl/ktx.h"
 #include "ogl/object.h"
 
-class Bloom: public byhj::Application
+class Bloom : public byhj::Application
 {
 public:
 
+	Bloom()
+		: exposure(1.0f),
+		program_render(0),
+		program_filter(0),
+		program_resolve(0),
+		mode(0),
+		paused(false),
+		bloom_factor(1.0f),
+		show_bloom(true),
+		show_scene(true),
+		bloom_thresh_min(0.8f),
+		bloom_thresh_max(1.2f),
+		show_prefilter(false)
+	{}
 
 	void v_InitInfo() {}
 	void v_Init();

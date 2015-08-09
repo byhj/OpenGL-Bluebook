@@ -5,7 +5,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-
+#include "ogl/oglDebug.h"
 
 namespace byhj
 {
@@ -52,6 +52,10 @@ void Plane::Render(GLfloat aspect)
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
 	glUseProgram(0);
+
+	OGLDebug debug;
+	debug.Init();
+	debug.Debug();
 }
 
 
@@ -196,7 +200,7 @@ void Plane::init_texture()
 	glTexSubImage1D(GL_TEXTURE_1D, 0, 0, 256, GL_RGB, GL_UNSIGNED_BYTE, palette);
 	glGenerateMipmap(GL_TEXTURE_1D);
 
-	glBindTexture(GL_TEXTURE_1D, 0);
+	//glBindTexture(GL_TEXTURE_1D, 0);
 }
 
 }

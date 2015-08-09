@@ -35,11 +35,11 @@ private:
 		GLint   C;
 	} uniforms;
 
-	bool paused;
-	float time_offset;
-	float zoom;
-	float x_offset;
-	float y_offset;
+	bool paused = false;
+	float time_offset = 0.0f;
+	float x_offset    = 0.0f;
+	float y_offset    = 0.0f;
+	float zoom = 1.0f;
 };
 
 }

@@ -48,8 +48,8 @@ private:
 	GLuint      tex_diffuse;
 	GLuint      tex_nm;
 
-	bool        use_nm;
-	bool        paused;
+	bool        use_nm = true;
+	bool        paused = false;
 
 	enum
 	{
@@ -58,7 +58,7 @@ private:
 		VIS_WS_COORDS,
 		VIS_DIFFUSE,
 		VIS_META
-	} vis_mode;
+	} vis_mode = VIS_OFF;
 
 #pragma pack (push, 1)
 	struct light_t

@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\include\ogl\oglApp.cpp" />
+    <ClCompile Include="..\..\..\include\ogl\oglDebug.cpp" />
     <ClCompile Include="..\..\..\include\ogl\oglShader.cpp" />
     <ClCompile Include="..\..\..\include\ogl\oglUtility.cpp" />
     <ClCompile Include="ch12-16-Without-Triangle.cpp" />
@@ -24,6 +25,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\include\ogl\oglApp.h" />
+    <ClInclude Include="..\..\..\include\ogl\oglDebug.h" />
     <ClInclude Include="..\..\..\include\ogl\oglShader.h" />
     <ClInclude Include="..\..\..\include\ogl\oglUtility.h" />
     <ClInclude Include="plane.h" />
