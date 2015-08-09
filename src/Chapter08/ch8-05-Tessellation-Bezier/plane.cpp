@@ -4,8 +4,8 @@
 #include "ogl/vmath.h"
 
 namespace Key {
-	bool   show_points = false;
-	bool   show_cage = false;
+	bool   show_points = true;
+	bool   show_cage = true;
 	bool   wireframe = false;
 	bool   paused = false;
 };
@@ -174,14 +174,15 @@ void Plane::init_shader()
 	patch::program  = cubicBezierShader.GetProgram();
 	patch::mv_matrix_loc = glGetUniformLocation(patch::program, "mv_matrix");
 	patch::proj_matrix_loc = glGetUniformLocation(patch::program, "proj_matrix");
-	patch::mvp_matrix_loc = glGetUniformLocation(patch::program, "mvp_matrix");
+	patch::mvp_matrix_loc = glGetUniformLocation(patch::program, "mvp");
 
 	cvShader.init();
 	cvShader.attach(GL_VERTEX_SHADER, "cv.vert");
 	cvShader.attach(GL_FRAGMENT_SHADER, "cv.frag");
+	cvShader.link();
 	cv::program =  cvShader.GetProgram();
 	cv::draw_color_loc = glGetUniformLocation(cv::program, "draw_color");
-	cv::mvp_matrix_loc = glGetUniformLocation(cv::program, "mvp_matrix");
+	cv::mvp_matrix_loc = glGetUniformLocation(cv::program, "mvp");
 
 }
 

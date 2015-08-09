@@ -18,7 +18,7 @@ RenderSystem::~RenderSystem()
 
 void RenderSystem::v_InitInfo()
 {
-	windowInfo.title += "Geometry";
+	windowInfo.title += "Geometry Exploding";
 }
 
 void RenderSystem::v_Init()

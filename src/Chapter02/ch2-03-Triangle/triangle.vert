@@ -21,6 +21,7 @@ void main(void)
 {
    //gl_VertexID is current vertex index, Vertex Shader run each vertex one time
 
+   //Vertex Data xyz will /w , set w = 1.0f 
    vColor = Color[gl_VertexID];
    gl_Position = Position[gl_VertexID];
 }

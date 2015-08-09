@@ -18,7 +18,7 @@ RenderSystem::~RenderSystem()
 
 void RenderSystem::v_InitInfo()
 {
-	windowInfo.title += "Plane";
+	windowInfo.title += "Tessellation Bezier";
 }
 
 void RenderSystem::v_Init()

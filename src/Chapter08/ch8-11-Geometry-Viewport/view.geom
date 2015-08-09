@@ -1,6 +1,6 @@
 #version 420 core                                                  
                     
-//invocations 绘制多少个实例，重复操作绘制命令多次                                          
+//invocations 绘制多少个实例,重复操作绘制命令多次 gl_InvocationID                                          
 layout (triangles, invocations = 4) in;                            
 layout (triangle_strip, max_vertices = 3) out;                     
                                                                    

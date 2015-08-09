@@ -18,7 +18,7 @@ RenderSystem::~RenderSystem()
 
 void RenderSystem::v_InitInfo()
 {
-	windowInfo.title += "Instance";
+	windowInfo.title += "Instance Quad";
 }
 
 void RenderSystem::v_Init()

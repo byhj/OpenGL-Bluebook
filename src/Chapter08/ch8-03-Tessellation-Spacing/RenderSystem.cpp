@@ -16,7 +16,7 @@ RenderSystem::~RenderSystem()
 
 void RenderSystem::v_InitInfo()
 {
-	windowInfo.title += "ch2-01-Window";
+	windowInfo.title += "Tessellation Spacing";
 }
 
 void RenderSystem::v_Init()

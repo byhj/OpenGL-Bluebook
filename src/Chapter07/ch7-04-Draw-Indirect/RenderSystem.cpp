@@ -18,7 +18,7 @@ RenderSystem::~RenderSystem()
 
 void RenderSystem::v_InitInfo()
 {
-	windowInfo.title += "Asteroid";
+	windowInfo.title += "Draw Indirect";
 }
 
 void RenderSystem::v_Init()

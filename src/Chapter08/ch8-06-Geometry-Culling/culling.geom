@@ -1,5 +1,6 @@
 #version 430 core
 
+//Gemo run each primitive
 layout (triangles) in;
 layout (triangle_strip, max_vertices = 3) out;
 

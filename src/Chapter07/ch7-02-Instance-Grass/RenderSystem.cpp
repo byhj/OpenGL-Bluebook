@@ -18,7 +18,7 @@ RenderSystem::~RenderSystem()
 
 void RenderSystem::v_InitInfo()
 {
-	windowInfo.title += "Grass";
+	windowInfo.title += "Instance Grass";
 }
 
 void RenderSystem::v_Init()

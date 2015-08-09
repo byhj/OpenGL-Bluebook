@@ -36,8 +36,6 @@ Plane::~Plane()
 void Plane::Init()
 {
 	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_CLIP_DISTANCE0);
-	glEnable(GL_CLIP_DISTANCE1);
 
 	init_buffer();
 	init_vertexArray();
