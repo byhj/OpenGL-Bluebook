@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -11,14 +11,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{3725CE7A-516C-4F2F-907B-8FA46C0185ED}</ProjectGuid>
-    <RootNamespace>ch704DrawIndirect</RootNamespace>
+    <ProjectGuid>{496DC041-918F-494B-8F92-59554BFC7F70}</ProjectGuid>
+    <RootNamespace>ch100Introduction</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -33,7 +33,6 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\OpenGL-Bluebook.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -44,6 +43,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -55,6 +55,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -63,27 +64,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="asteroid.frag" />
-    <None Include="asteroid.vert" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\..\include\ogl\ktx.cpp" />
-    <ClCompile Include="..\..\..\include\ogl\object.cpp" />
-    <ClCompile Include="..\..\..\include\ogl\oglApp.cpp" />
-    <ClCompile Include="..\..\..\include\ogl\oglShader.cpp" />
-    <ClCompile Include="..\..\..\include\ogl\oglUtility.cpp" />
-    <ClCompile Include="asteroid.cpp" />
-    <ClCompile Include="ch7-04-Draw-Indirect.cpp" />
-    <ClCompile Include="RenderSystem.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\..\include\ogl\ktx.h" />
-    <ClInclude Include="..\..\..\include\ogl\object.h" />
-    <ClInclude Include="..\..\..\include\ogl\oglApp.h" />
-    <ClInclude Include="..\..\..\include\ogl\oglShader.h" />
-    <ClInclude Include="..\..\..\include\ogl\oglUtility.h" />
-    <ClInclude Include="asteroid.h" />
-    <ClInclude Include="RenderSystem.h" />
+    <ClCompile Include="ch1-00-Introduction.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
