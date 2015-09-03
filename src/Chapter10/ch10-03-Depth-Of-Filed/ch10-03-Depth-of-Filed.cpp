@@ -1,6 +1,6 @@
 #include <GL/glew.h>
 #include <memory>
-#include "ogl/oglApp.h"
+#include "ogl/App.h"
 #include "ogl/vmath.h"
 #include "ogl/object.h"
 #include "ogl/ktx.h"
@@ -9,7 +9,7 @@
 #define FBO_SIZE                2048
 #define FRUSTUM_DEPTH           1000
 
-class shadowmapping_app : public byhj::Application
+class shadowmapping_app : public ogl::App
 {
 public:
     shadowmapping_app()

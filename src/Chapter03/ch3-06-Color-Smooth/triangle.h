@@ -2,7 +2,7 @@
 #define Triangle_H
 
 #include <GL/glew.h>
-#include "ogl/oglShader.h"
+#include "ogl/Shader.h"
 
 namespace byhj
 {
@@ -24,7 +24,7 @@ private:
 	void init_vertexArray();
 	void init_shader();
 
-	Shader TriangleShader{ "Triangle Shader" };
+	ogl::Shader TriangleShader{ "Triangle Shader" };
 	GLuint program = 0;
 	GLboolean flat;
 };

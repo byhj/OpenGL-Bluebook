@@ -83,9 +83,9 @@ void Texture::init_shader()
 	program = TextureShader.GetProgram();
 
 	tex_loc = glGetUniformLocation(program, "tex");
-	assert(tex_loc != byhj::OGL_VALUE);
+	assert(tex_loc != ogl::VALUE);
 	offset_loc = glGetUniformLocation(program, "offset");
-	assert(offset_loc != byhj::OGL_VALUE);
+	assert(offset_loc != ogl::VALUE);
 }
 
 

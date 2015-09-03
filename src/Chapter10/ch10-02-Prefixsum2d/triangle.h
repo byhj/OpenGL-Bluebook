@@ -2,8 +2,8 @@
 #define Triangle_H
 
 #include <GL/glew.h>
-#include "ogl/oglShader.h"
-#include "ogl/oglUtility.h"
+#include "ogl/Shader.h"
+#include "ogl/Utility.h"
 
 #define NUM_ELEMENTS 2048
 

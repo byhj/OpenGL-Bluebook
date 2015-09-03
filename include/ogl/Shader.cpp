@@ -1,8 +1,11 @@
-#include "oglShader.h"
+#include "Shader.h"
 #include <fstream>
 
 namespace byhj
 { 
+namespace ogl
+{
+
 
 
 //read the Shader code
@@ -172,6 +175,8 @@ void Shader::end() const
 GLuint Shader::GetProgram() const
 {
 	return m_Program;
+}
+
 }
 
 }

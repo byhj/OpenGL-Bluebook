@@ -129,7 +129,7 @@ void Texture::init_shader()
 	program = TextureArrayShader.GetProgram();
 
 	tex_loc = glGetUniformLocation(program, "tex_array");
-	assert(tex_loc != byhj::OGL_VALUE);
+	assert(tex_loc != ogl::VALUE);
 }
 
 

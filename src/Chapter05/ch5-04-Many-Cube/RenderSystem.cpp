@@ -1,6 +1,6 @@
 #include <GL/glew.h>
 
-#include "ogl/oglUtility.h"
+#include "ogl/Utility.h"
 #include "RenderSystem.h"
 
 #define MANY_CUBE 

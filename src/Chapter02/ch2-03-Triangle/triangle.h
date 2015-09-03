@@ -2,8 +2,8 @@
 #define Triangle_H
 
 #include <GL/glew.h>
-#include "ogl/oglShader.h"
-#include "ogl/oglUtility.h"
+#include "ogl/Shader.h"
+#include "ogl/Utility.h"
 
 namespace byhj
 {
@@ -23,7 +23,7 @@ private:
 	void init_vertexArray();
 	void init_shader();
 
-	Shader TriangleShader{ "Triangle Shader" };
+	ogl::ogl::Shader TriangleShader{ "Triangle Shader" };
 	GLuint program = 0;
 };
 

@@ -2,8 +2,8 @@
 #define Triangle_H
 
 #include <GL/glew.h>
-#include "ogl/oglShader.h"
-#include "ogl/oglUtility.h"
+#include "ogl/Shader.h"
+#include "ogl/Utility.h"
 
 namespace byhj
 {
@@ -25,11 +25,11 @@ private:
 
 	Shader CubeShader = { "Cube Shader" };
 
-	GLuint program = byhj::OGL_VALUE;
-	GLuint mvp_loc = byhj::OGL_VALUE;
-	GLuint vao = byhj::OGL_VALUE;
-	GLuint ibo = byhj::OGL_VALUE;
-	GLuint vbo = byhj::OGL_VALUE;
+	GLuint program = ogl::VALUE;
+	GLuint mvp_loc = ogl::VALUE;
+	GLuint vao = ogl::VALUE;
+	GLuint ibo = ogl::VALUE;
+	GLuint vbo = ogl::VALUE;
 
 };
 

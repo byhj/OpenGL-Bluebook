@@ -1,8 +1,8 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
-#include "ogl/oglUtility.h"
-#include "ogl/oglShader.h"
+#include "ogl/Utility.h"
+#include "ogl/Shader.h"
 
 namespace byhj
 {
@@ -20,10 +20,10 @@ public:
 private:
 	void init_shader();
 
-	GLuint program = byhj::OGL_VALUE;
-	GLuint sub_loc = byhj::OGL_VALUE;
+	GLuint program = ogl::VALUE;
+	GLuint sub_loc = ogl::VALUE;
 	GLuint subroutines[2];
-	byhj::Shader subShader ={ "Sub Shader" };
+	ogl::Shader subShader ={ "Sub Shader" };
 };
 
 }

@@ -2,8 +2,8 @@
 #define Asteroid_H
 
 
-#include "ogl/oglUtility.h"
-#include "ogl/oglShader.h"
+#include "ogl/Utility.h"
+#include "ogl/Shader.h"
 #include "ogl/object.h"
 
 enum {
@@ -49,15 +49,15 @@ namespace byhj
 
 		MODE  mode = MODE_MULTIDRAW;
 
-		GLuint draw_vbo     = byhj::OGL_VALUE;
-		GLuint indirect_vbo = byhj::OGL_VALUE;
-		GLuint view_loc     = byhj::OGL_VALUE;
-		GLuint proj_loc     = byhj::OGL_VALUE;
-		GLuint viewproj_loc = byhj::OGL_VALUE;
-		GLuint time_loc     = byhj::OGL_VALUE;
-		GLuint program      = byhj::OGL_VALUE;
+		GLuint draw_vbo     = ogl::VALUE;
+		GLuint indirect_vbo = ogl::VALUE;
+		GLuint view_loc     = ogl::VALUE;
+		GLuint proj_loc     = ogl::VALUE;
+		GLuint viewproj_loc = ogl::VALUE;
+		GLuint time_loc     = ogl::VALUE;
+		GLuint program      = ogl::VALUE;
 
-		byhj::Shader AsteroidShader ={ "Asteroid Shader" };
+		ogl::Shader AsteroidShader ={ "Asteroid Shader" };
 		sb6::Object object;
 	};
 

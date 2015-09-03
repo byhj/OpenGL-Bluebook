@@ -2,8 +2,8 @@
 #define Triangle_H
 
 #include <GL/glew.h>
-#include "ogl/oglShader.h"
-#include "ogl/oglUtility.h"
+#include "ogl/Shader.h"
+#include "ogl/Utility.h"
 
 namespace byhj
 {
@@ -27,9 +27,9 @@ private:
 	void init_texture();
 
 	Shader TextureShader = { "Texture Shader" };
-	GLuint program = byhj::OGL_VALUE;
-	GLuint tex_loc = byhj::OGL_VALUE;
-	GLuint texture = byhj::OGL_VALUE;
+	GLuint program = ogl::VALUE;
+	GLuint tex_loc = ogl::VALUE;
+	GLuint texture = ogl::VALUE;
 };
 
 }

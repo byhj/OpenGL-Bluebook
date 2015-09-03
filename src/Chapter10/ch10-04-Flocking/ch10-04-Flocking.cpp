@@ -1,7 +1,7 @@
 #include <GL/glew.h>
 #include <memory>
 
-#include "ogl/oglApp.h"
+#include "ogl/App.h"
 #include "ogl/vmath.h"
 #include "ogl/shader.h"
 
@@ -14,7 +14,7 @@ enum
     FLOCK_SIZE      = (NUM_WORKGROUPS * WORKGROUP_SIZE)
 };
 
-class csflocking_app : public byhj::Application
+class csflocking_app : public ogl::App
 {
 public:
     csflocking_app()

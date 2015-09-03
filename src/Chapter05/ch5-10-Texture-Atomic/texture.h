@@ -4,8 +4,8 @@
 #include <GL/glew.h>
 #include <array>
 
-#include "ogl/oglShader.h"
-#include "ogl/oglUtility.h"
+#include "ogl/Shader.h"
+#include "ogl/Utility.h"
 #include "ogl/object.h"
 #include "ogl/vmath.h"
 
@@ -33,9 +33,9 @@ private:
 
 	Shader TextureArrayShader = { "TextureArray Shader" };
 
-	GLuint clear_program   = byhj::OGL_VALUE;
-	GLuint append_program  = byhj::OGL_VALUE;
-	GLuint resolve_program = byhj::OGL_VALUE;
+	GLuint clear_program   = ogl::VALUE;
+	GLuint append_program  = ogl::VALUE;
+	GLuint resolve_program = ogl::VALUE;
 
 	Shader  ClearShader    = {"Clear Shader"};
 	Shader  AppendShader   = { "Append Shader" };

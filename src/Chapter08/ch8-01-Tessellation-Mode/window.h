@@ -2,7 +2,7 @@
 #define WINDOW_H
 
 #include <gl/glew.h>
-#include "ogl/oglshader.h"
+#include "ogl/Shader.h"
 
 namespace byhj
 {
@@ -25,7 +25,7 @@ private:
 
 	GLuint  program[3], vao;
 	GLuint  program_index = 0;
-	byhj::Shader  TessellationShader[3];
+	ogl::Shader  TessellationShader[3];
 };
 
 }

@@ -2,7 +2,7 @@
 #define Plane_H
 
 #include <GL/glew.h>
-#include "ogl/oglShader.h"
+#include "ogl/Shader.h"
 #include "ogl/vmath.h"
 #include "ogl/object.h"
 

@@ -2,8 +2,8 @@
 #define GRASS_H
 
 
-#include "ogl/oglUtility.h"
-#include "ogl/oglShader.h"
+#include "ogl/Utility.h"
+#include "ogl/Shader.h"
 
 namespace byhj
 {
@@ -45,9 +45,9 @@ private:
 	};
 	TextureID texID;
 
-	GLuint vao = byhj::OGL_VALUE;
-	GLuint vbo = byhj::OGL_VALUE;
-	GLuint program = byhj::OGL_VALUE;
+	GLuint vao = ogl::VALUE;
+	GLuint vbo = ogl::VALUE;
+	GLuint program = ogl::VALUE;
 	Shader GrassShader ={ "Grass Shader" };
 };
 

@@ -1,5 +1,5 @@
 
-#include "ogl/oglApp.h"
+#include "ogl/App.h"
 #include "ogl/vmath.h"
 #include "ogl/shader.h"
 
@@ -8,7 +8,7 @@
 #define NUM_PASSES 200
 #define NUM_CUBES 256
 
-class multimaterial_app : public byhj::Application
+class multimaterial_app : public ogl::App
 {
 public:
 	multimaterial_app()

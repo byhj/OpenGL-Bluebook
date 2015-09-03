@@ -136,7 +136,7 @@ void Cube::init_shader()
 	mvp_loc = glGetUniformLocation(program, "mvp");
 
 	//If false, throw a exception
-	assert(mvp_loc != byhj::OGL_VALUE);
+	assert(mvp_loc != ogl::VALUE);
 }
 
 }

@@ -4,8 +4,8 @@
 #include <GL/glew.h>
 #include <array>
 
-#include "ogl/oglShader.h"
-#include "ogl/oglUtility.h"
+#include "ogl/Shader.h"
+#include "ogl/Utility.h"
 #include "ogl/ktx.h"
 
 constexpr int TEX_NUM = 256;
@@ -32,11 +32,11 @@ private:
 
 	Shader TextureArrayShader = { "TextureArray Shader" };
 
-	GLuint program = byhj::OGL_VALUE;
-	GLuint tex_loc = byhj::OGL_VALUE;
-	GLuint mvp_loc = byhj::OGL_VALUE;
-	GLuint vao = byhj::OGL_VALUE;
-	GLuint ubo = byhj::OGL_VALUE;
+	GLuint program = ogl::VALUE;
+	GLuint tex_loc = ogl::VALUE;
+	GLuint mvp_loc = ogl::VALUE;
+	GLuint vao = ogl::VALUE;
+	GLuint ubo = ogl::VALUE;
 
 	GLuint tex_alien_array = 0;
 
