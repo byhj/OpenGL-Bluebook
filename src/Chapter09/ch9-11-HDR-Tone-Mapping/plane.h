@@ -24,7 +24,7 @@ private:
 	void init_texture();
 
 	GLuint exposure_loc;
-	Shader naiveShader, exposureShader, adaptiveShader;
+	ogl::Shader naiveShader, exposureShader, adaptiveShader;
 	GLuint      tex_src;
 	GLuint      tex_lut;
 	GLuint      program_naive;

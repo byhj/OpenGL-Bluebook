@@ -25,8 +25,8 @@ private:
 	void init_vertexArray();
 	void init_shader();
 
-	Shader updateShader = { "update Shader" };
-	Shader renderShader = { "render Shader" };
+	ogl::Shader updateShader = { "update Shader" };
+	ogl::Shader renderShader = { "render Shader" };
 	GLuint m_vao[2];
 	GLuint m_vbo[5];
 	GLuint m_index_buffer;

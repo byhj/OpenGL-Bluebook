@@ -23,7 +23,7 @@ private:
 	void init_shader();
 	void init_texture();
 
-	Shader   shapeShader;
+	ogl::Shader   shapeShader;
 	GLuint program;
 };
 

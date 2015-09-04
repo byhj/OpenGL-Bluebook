@@ -27,7 +27,7 @@ private:
 	GLuint perspective_loc, mvp_matrix_loc, tex_loc;
 	GLuint program, tex;
 	bool use_perspective;
-	Shader perspectiveShader;
+	ogl::Shader perspectiveShader;
 };
 
 }

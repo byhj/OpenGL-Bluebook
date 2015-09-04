@@ -33,7 +33,7 @@ private:
 	bool            enable_fog = true;
 	bool            paused;
 
-	Shader dispmapShader;
+	ogl::Shader dispmapShader;
 	struct
 	{
 		GLint       mvp_matrix;

@@ -27,7 +27,7 @@ private:
 
 	GLuint VBO, IBO;
 	GLuint VAO, program;
-	Shader cubeShader;
+	ogl::Shader cubeShader;
 	GLuint mv_location, proj_location;;
 
 };

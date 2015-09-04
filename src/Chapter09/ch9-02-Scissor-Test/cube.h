@@ -26,7 +26,7 @@ private:
 
 	GLuint VBO, IBO;
 	GLuint VAO, UBO;
-	Shader cubeShader;
+	ogl::ogl::Shader cubeShader;
 
 };
 

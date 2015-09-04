@@ -23,8 +23,8 @@ private:
 	void init_vertexArray();
 	void init_shader();
 
-	Shader cubicBezierShader;
-	Shader cvShader;
+	ogl::Shader cubicBezierShader;
+	ogl::Shader cvShader;
 	glm::vec3 patch_data[16];
 };
 

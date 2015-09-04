@@ -32,8 +32,8 @@ private:
 	GLuint line_mvp_loc;
 	GLuint line_vid_offset_loc;
 
-	Shader FanShader;
-	Shader LineShader;
+	ogl::Shader FanShader;
+	ogl::Shader LineShader;
 
 	int         mode = 1;
 	int         vid_offset = 0;

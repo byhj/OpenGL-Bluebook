@@ -27,7 +27,7 @@ private:
 
 	GLuint VBO, IBO;
 	GLuint VAO, program;
-	Shader cubeShader;
+	ogl::Shader cubeShader;
 	GLuint mvp_matrix_loc;
 	bool sample_shading = true;
 };

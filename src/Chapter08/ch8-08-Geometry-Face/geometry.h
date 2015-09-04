@@ -24,7 +24,7 @@ private:
 	void init_vertexArray();
 	void init_shader();
 
-	Shader cubeShader;
+	ogl::ogl::Shader cubeShader;
 	GLuint program, mv_matrix_loc, mvp_matrix_loc;
 	GLuint stretch_loc, vao, vbo, ibo;
 };

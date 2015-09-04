@@ -24,7 +24,7 @@ private:
 	void init_vertexArray();
 	void init_shader();
 
-	Shader ClipShader{ "Clip Shader" };
+	ogl::Shader ClipShader{ "Clip Shader" };
 	GLuint program = 0;
 	sb6::Object object;
 

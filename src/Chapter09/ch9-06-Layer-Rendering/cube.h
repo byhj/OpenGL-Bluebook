@@ -27,7 +27,7 @@ private:
 
 	GLuint width, height;
 	GLuint program;
-	Shader LayerShader, ShowShader;
+	ogl::Shader LayerShader, ShowShader;
 	sb6::Object object;
 	GLuint vao, transform_ubo, array_texture, array_depth, layered_fbo;
 	GLuint program_layer, program_show;

@@ -8,6 +8,8 @@
 #include "ogl/ktx.h"
 #include "ogl/object.h"
 
+namespace byhj
+{ 
 class Bloom : public ogl::App
 {
 public:
@@ -86,25 +88,28 @@ private:
 	GLuint      ubo_transform;
 	GLuint      ubo_material;
 
-	Shader ResloveShader;
-	Shader FilterShader;
-	Shader SceneShader;
+	ogl::Shader ResloveShader;
+	ogl::Shader FilterShader;
+	ogl::Shader SceneShader;
 	sb6::Object   obj;
 	GLuint explode_factor_location;
 	bool depthClamp;
-};
+}; 
 
+}
 #include <memory>
 
 int main(int argc, const char **argv)
 {
-	auto app = std::make_shared<Bloom>();
+	auto app = std::make_shared<byhj::Bloom>();
 
 	app->Run(app);
 
 	return 0;
 }
 
+namespace byhj
+{
 
 void Bloom::init_shader(void)
 {
@@ -361,4 +366,6 @@ void Bloom::v_Keyboard(GLFWwindow * window, int key, int scancode, int action, i
 		exposure /= 1.1f;
 		break;
 	}
+}
+
 }

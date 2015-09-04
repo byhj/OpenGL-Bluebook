@@ -35,8 +35,8 @@ private:
 
 	GLint    fbo_mv_loc, fbo_proj_loc;
 	GLint    base_mv_loc, base_proj_loc;
-	Shader FboShader;
-	Shader BaseShader;
+	ogl::Shader FboShader;
+	ogl::Shader BaseShader;
 
 };
 

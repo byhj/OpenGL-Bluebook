@@ -30,7 +30,7 @@ private:
 	GLuint uniform_buffer;
 	GLint  mv_location;
 	GLint  proj_location;
-	Shader viewShader;
+	ogl::Shader viewShader;
 
 };
 

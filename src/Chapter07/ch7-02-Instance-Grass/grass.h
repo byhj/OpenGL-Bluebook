@@ -48,7 +48,7 @@ private:
 	GLuint vao = ogl::VALUE;
 	GLuint vbo = ogl::VALUE;
 	GLuint program = ogl::VALUE;
-	Shader GrassShader ={ "Grass Shader" };
+	ogl::Shader GrassShader ={ "Grass Shader" };
 };
 
 }

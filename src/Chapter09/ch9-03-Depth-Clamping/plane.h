@@ -27,7 +27,7 @@ private:
 
 	GLuint program;
 	GLuint mv_loc, mvp_loc, vp_loc;
-	Shader ClampingShader;
+	ogl::Shader ClampingShader;
 	sb6::Object object;
 	bool depthClamp;
 };

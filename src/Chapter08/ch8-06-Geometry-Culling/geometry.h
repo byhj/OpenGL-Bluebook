@@ -26,7 +26,7 @@ private:
 
 	GLuint program;
 	GLuint mv_loc, mvp_loc, vp_loc;
-	Shader CullingShader;
+	ogl::Shader CullingShader;
 	sb6::Object object;
 };
 

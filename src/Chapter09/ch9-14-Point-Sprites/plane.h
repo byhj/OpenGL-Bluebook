@@ -24,7 +24,7 @@ private:
 	void init_texture();
 
 	GLuint   time_loc, proj_loc, texture;
-	Shader   StarShader;
+	ogl::Shader   StarShader;
 	GLuint   program;
 	GLuint   star_texture;
 	GLuint   star_vao;
