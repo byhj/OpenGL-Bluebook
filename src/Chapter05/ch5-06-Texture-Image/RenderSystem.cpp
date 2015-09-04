@@ -38,7 +38,7 @@ void RenderSystem::v_Render()
 
 	float currentTime = static_cast<float>(glfwGetTime());
 
-	static byhj::MvpMatrix matrix;
+	static ogl::MvpMatrix matrix;
 	matrix.proj  = glm::perspective(45.0f,GetAspect(), 0.1f, 1000.0f);
 	matrix.view = glm::lookAt(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, -3.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 

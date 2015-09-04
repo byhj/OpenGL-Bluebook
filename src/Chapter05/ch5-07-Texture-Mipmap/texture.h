@@ -30,7 +30,7 @@ private:
 	void init_shader();
 	void init_texture();
 
-	Shader TextureShader = { "Texture Shader" };
+	ogl::Shader TextureShader = { "Texture Shader" };
 
 	GLuint tex_index = 0;
 	GLuint program    = ogl::VALUE;
@@ -39,7 +39,7 @@ private:
 	GLuint offset_loc = ogl::VALUE;
 	GLuint tex_wall, tex_ceiling, tex_floor;
 
-	std::array<GLuint, TEX_SIZE> textures = { ogl::VALUE, ogl::VALUE };
+	std::array<GLuint, TEX_SIZE> textures ;
 };
 
 }

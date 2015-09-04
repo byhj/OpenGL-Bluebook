@@ -21,7 +21,7 @@ public:
 	~Texture();
 
 	void Init();
-	void Render(const byhj::MvpMatrix &matrix);
+	void Render(const ogl::MvpMatrix &matrix);
 	void Shutdown();
 
 	void ChangeTexture();
@@ -32,14 +32,14 @@ private:
 	void init_shader();
 	void init_texture();
 
-	Shader TextureShader = { "Texture Shader" };
+	ogl::Shader TextureShader = { "Texture Shader" };
 	sb6::Object TorusModel;
 
 	GLuint tex_index = 0;
 	GLuint program = ogl::VALUE;
 	GLuint tex_loc = ogl::VALUE;
 	GLuint mvp_loc = ogl::VALUE;
-	std::array<GLuint, TEX_SIZE> textures = { ogl::VALUE, ogl::VALUE };
+	std::array<GLuint, TEX_SIZE> textures;
 };
 
 }

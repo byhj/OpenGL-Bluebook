@@ -26,7 +26,7 @@ private:
 	void init_shader();
 	void init_texture();
 
-	Shader TextureShader = { "Texture Shader" };
+	ogl::Shader TextureShader = { "Texture Shader" };
 
 	GLuint program    = ogl::VALUE;
 	GLuint tex_loc    = ogl::VALUE;

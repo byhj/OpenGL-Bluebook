@@ -8,7 +8,7 @@
 #include "ogl/Utility.h"
 #include "ogl/ktx.h"
 
-constexpr int TEX_NUM = 256;
+const int TEX_NUM = 256;
 
 namespace byhj
 {
@@ -30,7 +30,7 @@ private:
 	void init_shader();
 	void init_texture();
 
-	Shader TextureArrayShader = { "TextureArray Shader" };
+	ogl::Shader TextureArrayShader = { "TextureArray Shader" };
 
 	GLuint program = ogl::VALUE;
 	GLuint tex_loc = ogl::VALUE;

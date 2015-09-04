@@ -26,7 +26,7 @@ private:
 	GLuint      texture = 0;
 	GLuint      program = 0;
 	GLuint      exposure_loc = 0;
-	Shader      KtxShader = { "Ktx Shader" };
+	ogl::Shader      KtxShader = { "Ktx Shader" };
 };
 
 }

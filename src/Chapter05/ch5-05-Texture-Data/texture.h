@@ -26,7 +26,7 @@ private:
 	void generate_texture(float *data, int width, int height);
 	void init_texture();
 
-	Shader TextureShader = { "Texture Shader" };
+	ogl::Shader TextureShader = { "Texture Shader" };
 	GLuint program = ogl::VALUE;
 	GLuint tex_loc = ogl::VALUE;
 	GLuint texture = ogl::VALUE;

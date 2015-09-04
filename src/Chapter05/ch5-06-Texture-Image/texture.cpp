@@ -22,7 +22,7 @@ void Texture::Init()
 	init_texture();
 }
 
-void Texture::Render(const byhj::MvpMatrix &matrix)
+void Texture::Render(const ogl::MvpMatrix &matrix)
 {
 	glUseProgram(program);
 

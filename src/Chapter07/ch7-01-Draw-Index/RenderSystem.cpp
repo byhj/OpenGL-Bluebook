@@ -34,7 +34,7 @@ void RenderSystem::v_Render()
 	static const GLfloat one[] = { 1.0f };
 	glClearBufferfv(GL_DEPTH, 0, one);
 
-	static byhj::MvpMatrix matrix;
+	static ogl::MvpMatrix matrix;
 	float time = static_cast<float>( glfwGetTime() );
 	matrix.model = glm::rotate(glm::mat4(1.0f), time, glm::vec3(1.0f, 1.0f, 1.0f) );
 	matrix.view  = glm::lookAt(glm::vec3(0.0, 0.0, 3.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));

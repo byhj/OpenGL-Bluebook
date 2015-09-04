@@ -15,7 +15,7 @@ public:
 	~Cube();
 
 	void Init();
-	void Render(const byhj::MvpMatrix &matrix);
+	void Render(const ogl::MvpMatrix &matrix);
 	void Shutdown();
 
 private:
@@ -23,7 +23,7 @@ private:
 	void init_vertexArray();
 	void init_shader();
 
-	Shader CubeShader = { "Cube Shader" };
+	ogl::Shader CubeShader = { "Cube Shader" };
 
 	GLuint program = ogl::VALUE;
 	GLuint mvp_loc = ogl::VALUE;

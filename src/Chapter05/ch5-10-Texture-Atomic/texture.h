@@ -9,7 +9,7 @@
 #include "ogl/object.h"
 #include "ogl/vmath.h"
 
-constexpr int TEX_NUM = 256;
+const int TEX_NUM = 256;
 
 namespace byhj
 {
@@ -31,15 +31,15 @@ private:
 	void init_shader();
 	void init_texture();
 
-	Shader TextureArrayShader = { "TextureArray Shader" };
+	ogl::Shader TextureArrayShader = { "TextureArray Shader" };
 
 	GLuint clear_program   = ogl::VALUE;
 	GLuint append_program  = ogl::VALUE;
 	GLuint resolve_program = ogl::VALUE;
 
-	Shader  ClearShader    = {"Clear Shader"};
-	Shader  AppendShader   = { "Append Shader" };
-	Shader  ResolveShader  = { "Resovle Shader" };
+	ogl::Shader  ClearShader    = {"Clear Shader"};
+	ogl::Shader  AppendShader   = { "Append Shader" };
+	ogl::Shader  ResolveShader  = { "Resovle Shader" };
 
 	struct
 	{
