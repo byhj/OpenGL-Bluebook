@@ -26,7 +26,7 @@ private:
 	void init_texture();
 
 	GLuint program, mvp_loc, mv_loc;
-	Shader GlossShader;
+	ogl::Shader GlossShader;
 	GLuint tex_envmap;
 	GLuint envmap, tex_glossmap;
 	sb6::Object      object;

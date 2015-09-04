@@ -27,7 +27,7 @@ private:
 	GLuint      vao;
 	GLuint      palette_texture;
 
-	Shader JuliaShader;
+	ogl::Shader JuliaShader;
 	struct
 	{
 		GLint   zoom;

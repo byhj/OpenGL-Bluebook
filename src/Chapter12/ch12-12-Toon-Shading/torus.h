@@ -26,7 +26,7 @@ private:
 	void init_texture();
 
 	GLuint program, mvp_loc, mv_loc, tex_toon;
-	Shader ToonShader;
+	ogl::Shader ToonShader;
 	sb6::Object object;
 
 };

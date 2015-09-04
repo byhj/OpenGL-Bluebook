@@ -26,7 +26,7 @@ private:
 	void init_texture();
 
 	GLuint program, mvp_loc, mv_loc;
-	Shader NormalMappingShader;
+	ogl::Shader NormalMappingShader;
 	GLuint lightPos_loc;
 	sb6::Object object;
 	GLuint tex_color, tex_normal;

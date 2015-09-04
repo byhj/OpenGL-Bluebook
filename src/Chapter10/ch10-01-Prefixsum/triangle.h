@@ -30,7 +30,7 @@ private:
 	GLuint  data_buffer[2];
 	float input_data[NUM_ELEMENTS];
 	float output_data[NUM_ELEMENTS];
-	Shader PrefixsumShader ={ "Prefixsum Shader" };
+	ogl::Shader PrefixsumShader ={ "Prefixsum Shader" };
 	GLuint  prefix_sum_prog;
 	GLuint vao;
 };

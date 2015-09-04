@@ -31,10 +31,10 @@ private:
 
 	sb6::Object object;
 
-	Shader RenderShader;
-	Shader RenderNMShader;
-	Shader LightShader;
-	Shader VisShader;
+	ogl::Shader RenderShader;
+	ogl::Shader RenderNMShader;
+	ogl::Shader LightShader;
+	ogl::Shader VisShader;
 	GLuint      render_program;
 	GLuint      render_program_nm;
 	GLuint      render_transform_ubo;

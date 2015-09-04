@@ -26,7 +26,7 @@ private:
 	void render_scene(double currentTime);
 
 	GLuint program, mvp_loc, mv_loc;
-	Shader BlinnShader;
+	ogl::Shader BlinnShader;
 	sb6::Object sphereObject;
 
 };

@@ -26,7 +26,7 @@ private:
 	void init_texture();
 
 	GLuint program, mvp_loc, mv_loc;
-	Shader EnvironmentShader;
+	ogl::Shader EnvironmentShader;
 	GLuint tex_envmap;
 	GLuint envmaps[3];
 	int    envmap_index = 0;

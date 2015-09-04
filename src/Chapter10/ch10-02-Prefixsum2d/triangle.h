@@ -31,8 +31,8 @@ private:
 	GLuint  prefix_sum_prog;
 	GLuint  show_image_prog;
 	GLuint  dummy_vao;
-	Shader Prefixsum2dShader;
-	Shader ShowShader;
+	ogl::Shader Prefixsum2dShader;
+	ogl::Shader ShowShader;
 	GLuint vao;
 };
 

@@ -26,7 +26,7 @@ private:
 	void render_scene(double currentTime);
 
 	GLuint program, mvp_loc, mv_loc;
-	Shader RimLightShader;
+	ogl::Shader RimLightShader;
 	GLint           rim_color_loc;
 	GLint           rim_power_loc;
 

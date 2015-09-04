@@ -26,7 +26,7 @@ private:
 	GLuint      prog_noise;
 	GLuint      vao;
 	int         loc_time;
-	Shader NoiseShader;
+	ogl::Shader NoiseShader;
 };
 
 }

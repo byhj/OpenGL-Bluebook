@@ -11,10 +11,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\include\ogl\oglApp.cpp" />
-    <ClCompile Include="..\..\..\include\ogl\oglDebug.cpp" />
-    <ClCompile Include="..\..\..\include\ogl\oglShader.cpp" />
-    <ClCompile Include="..\..\..\include\ogl\oglUtility.cpp" />
+    <ClCompile Include="..\..\..\include\ogl\App.cpp" />
+    <ClCompile Include="..\..\..\include\ogl\ktx.cpp" />
+    <ClCompile Include="..\..\..\include\ogl\object.cpp" />
+    <ClCompile Include="..\..\..\include\ogl\Shader.cpp" />
+    <ClCompile Include="..\..\..\include\ogl\Utility.cpp" />
     <ClCompile Include="ch12-16-Without-Triangle.cpp" />
     <ClCompile Include="plane.cpp" />
     <ClCompile Include="RenderSystem.cpp" />
@@ -24,10 +25,11 @@
     <None Include="julia.vert" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\include\ogl\oglApp.h" />
-    <ClInclude Include="..\..\..\include\ogl\oglDebug.h" />
-    <ClInclude Include="..\..\..\include\ogl\oglShader.h" />
-    <ClInclude Include="..\..\..\include\ogl\oglUtility.h" />
+    <ClInclude Include="..\..\..\include\ogl\App.h" />
+    <ClInclude Include="..\..\..\include\ogl\ktx.h" />
+    <ClInclude Include="..\..\..\include\ogl\object.h" />
+    <ClInclude Include="..\..\..\include\ogl\Shader.h" />
+    <ClInclude Include="..\..\..\include\ogl\Utility.h" />
     <ClInclude Include="plane.h" />
     <ClInclude Include="RenderSystem.h" />
   </ItemGroup>

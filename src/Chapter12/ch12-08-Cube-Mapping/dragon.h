@@ -26,7 +26,7 @@ private:
 	void init_texture();
 
 	GLuint skybox_prog, render_prog, mvp_loc, mv_loc, view_loc, skybox_vao;
-	Shader renderShader, skyboxShader;
+	ogl::Shader renderShader, skyboxShader;
 	GLuint tex_envmap;
 	GLuint envmaps[3];
 	int    envmap_index = 0;

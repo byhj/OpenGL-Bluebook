@@ -29,9 +29,9 @@ private:
 	GLuint          trace_program;
 	GLuint          blit_program;
 
-	Shader PrepareShader;
-	Shader RaytracerShader;
-	Shader BlitShader;
+	ogl::Shader PrepareShader;
+	ogl::Shader RaytracerShader;
+	ogl::Shader BlitShader;
 
 	struct uniforms_block
 	{

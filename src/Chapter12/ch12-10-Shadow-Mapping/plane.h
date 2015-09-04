@@ -31,9 +31,9 @@ private:
 	GLuint          light_program;
 	GLuint          view_program;
 	GLint           show_light_depth_program;
-	Shader LightShader;
-	Shader ViewShader;
-	Shader ShowShader;
+	ogl::Shader LightShader;
+	ogl::Shader ViewShader;
+	ogl::Shader ShowShader;
 	struct
 	{
 		struct

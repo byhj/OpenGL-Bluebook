@@ -35,8 +35,8 @@ private:
 	void init_shader();
 	void init_texture();
 
-	Shader RenderShader;
-	Shader SsaoShader;
+	ogl::Shader RenderShader;
+	ogl::Shader SsaoShader;
 	GLuint      render_program;
 	GLuint      ssao_program;
 	bool        paused;
