@@ -23,7 +23,7 @@ private:
 	void init_vertexArray();
 	void init_shader();
 
-	ogl::ogl::Shader cubeShader;
+	ogl::Shader cubeShader;
 	GLuint program, mvp_loc, vao, vbo, ibo, ubo;
 
 };

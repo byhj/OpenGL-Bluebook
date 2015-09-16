@@ -23,7 +23,7 @@ private:
 	void init_vertexArray();
 	void init_shader();
 
-	ogl::ogl::Shader TriangleShader{ "Triangle Shader" };
+	ogl::Shader TriangleShader{ "Triangle Shader" };
 	GLuint program = 0;
 };
 

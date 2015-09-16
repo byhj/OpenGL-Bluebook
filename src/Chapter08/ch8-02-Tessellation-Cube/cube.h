@@ -23,7 +23,7 @@ private:
 	void init_vertexArray();
 	void init_shader();
 
-	ogl::ogl::Shader cubeShader = { "Cube Shader" };
+	ogl::Shader CubeShader = { "Cube Shader" };
 
 	GLuint program = ogl::VALUE;
 	GLuint mv_matrix_loc = ogl::VALUE;
