@@ -71,6 +71,8 @@ void Plane::Render(GLfloat aspect)
 
 	glUseProgram(0);
 
+	//N frame to N+1 frame
+	
 	//Now, we use the transform feedback data to render the scene
 
 	glDisable(GL_RASTERIZER_DISCARD);

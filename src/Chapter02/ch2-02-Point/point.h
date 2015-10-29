@@ -19,6 +19,7 @@ public:
 	void Shutdown();
 
 private:
+
 	void init_buffer();
 	void init_vertexArray();
 	void init_shader();

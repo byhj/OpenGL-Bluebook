@@ -27,7 +27,7 @@ void RenderSystem::v_Init()
 void RenderSystem::v_Render()
 {
 	//Every frame we get the currentTime
-	static double time = 0.0;
+	static float time = 0.0;
 	time = static_cast<GLfloat>( glfwGetTime() );
 
 	//Use the current time to change the background color
@@ -38,7 +38,7 @@ void RenderSystem::v_Render()
 		0.0f, 1.0f
 	};
 
-	//Clear the Color Buffer(index 0) to a random color
+	//Clear the framework : Color Buffer(index 0) to a random color
 	glClearBufferfv(GL_COLOR, 0, bgColor);
 
 	m_Window.Render();

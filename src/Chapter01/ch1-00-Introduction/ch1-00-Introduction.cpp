@@ -22,9 +22,12 @@ OpenGL ARB : Architectural Review Board
 2013 OpenGL 4.4      GLSL version 440
 2014 OpenGL 4.5      GLSL version 450
 
-           (front end)
-Pipeline:  Vertex Fetch --> Vertex Shader --> Tessellation Control Shader --> Tessellation --> 
-           Tessellation Evaluation Shader --> Geometry Shader --> Rasterization -->
+           (front end)   data                   vertex                                 patch
+Pipeline:  Vertex Fetch --------> Vertex Shader --------> Tessellation Control Shader -------> Tessellation Engine------> 
+                                                                  primitives                     pixel
+		   Tessellation Evaluation Shader -----> Geometry Shader --------------> Rasterization --------->
+                                                   |
+										     Transform feedback
 		   (back end) 
 		   Fragment Shader --> Framebuffer Operations(Scissor Test, Depth Test, Stencil Test, blending, logical operator)
 */
