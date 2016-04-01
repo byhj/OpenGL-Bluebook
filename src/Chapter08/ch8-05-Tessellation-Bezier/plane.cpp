@@ -104,7 +104,7 @@ void Plane::Render(GLfloat aspect)
 	vmath::mat4 mv_matrix = vmath::translate(0.0f, 0.0f, -4.0f)
 		* vmath::rotate(t * 10.0f, 0.0f, 1.0f, 0.0f)
 		* vmath::rotate(t * 17.0f, 1.0f, 0.0f, 0.0f);
-
+	std::cout << t << std::endl;
 	glUniformMatrix4fv(patch::mv_matrix_loc, 1, GL_FALSE, mv_matrix);
 	glUniformMatrix4fv(patch::proj_matrix_loc, 1, GL_FALSE, proj_matrix);
 	glUniformMatrix4fv(patch::mvp_matrix_loc, 1, GL_FALSE, (proj_matrix * mv_matrix));

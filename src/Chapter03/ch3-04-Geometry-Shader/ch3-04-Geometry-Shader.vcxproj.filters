@@ -21,9 +21,6 @@
     <None Include="triangle.tes">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="triangle.vert">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="triangle.frag">
       <Filter>Resource Files</Filter>
     </None>
@@ -31,6 +28,9 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="triangle.geom">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="triangle.vert">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
